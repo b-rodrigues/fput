@@ -1,3 +1,0 @@
-# Unit tests
-
-## Introduction to unit testing
