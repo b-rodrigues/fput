@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/fp_tdd_data" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Bruno Rodrigues">
 
-<meta name="date" content="2016-08-17">
+<meta name="date" content="2016-08-18">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="unit-tests.html">
+<link rel="prev" href="unit-testing.html">
 <link rel="next" href="final-words.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -125,11 +125,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>4</b> Unit tests</a><ul>
-<li class="chapter" data-level="4.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-to-unit-testing"><i class="fa fa-check"></i><b>4.1</b> Introduction to unit testing</a></li>
+<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-package-testthat"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the package <code>testthat</code></a></li>
+<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
-<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#introduction-to-r-packages"><i class="fa fa-check"></i><b>5.1</b> Introduction to R packages</a></li>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -155,9 +159,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="packages" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Packages</h1>
-<div id="introduction-to-r-packages" class="section level2">
-<h2><span class="header-section-number">5.1</span> Introduction to R packages</h2>
+<div id="why-you-need-your-own-packages-in-your-life" class="section level2">
+<h2><span class="header-section-number">5.1</span> Why you need your own packages in your life</h2>
+<p>One of the reasons you might have tried R in the first place is the abundance of packages. As I’m writing these lines (in August 2016), 8922 packages are available on CRAN. That’s almost over 9000. This is an absolutely crazy amount of packages! Chances are that if you want to do something, there’s a package for that (I’ll stop it here with the lame references, promise!).</p>
+<p>So why the heck should you write your own packages? After all, with 8922 packages you’re sure to find something that suits your needs, right? No. Simply because the data sets that you’re working with are probably unique to your workplace or maybe what you want to do with them is unique to your needs. You won’t find a package that will take care of cleaning <em>your</em> data for you.</p>
+<p>Ok, but is it necessary to write a package? Why not just write functions inside some scripts and then simply run these scripts? This seems like a valid solution at first. However, it quickly becomes tedious, especially if you have multiple scripts scattered around your computer or inside different subfolders. You’ll also have to write the documentation on separate files and these can easily get lost or become outdated.</p>
+<p>Having everything inside a package takes care of these headaches for you. And code that is inside packages is very easy to test, especially if you’re using Rstudio. It also makes it possible to use the wonderful <code>covr</code> package, which tells you which lines in which functions are called by your tests. If some lines are missing, write tests that invoke them and increase the coverage of your tests!</p>
+<p>As I mentioned in the introduction, if you want to learn much more than I’ll show about packages read <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a>)</span>. I will only show you the basics, but it should be enough to get you productive.</p>
+<p>One last thing: if you don’t know git, you really should learn git. I won’t talk about it here, because there’s a ton of books on git, such as <span class="citation">Silverman (<a href="#ref-silverman2013git">2013</a>)</span>. I learned by reading it and googling whenever I had a problem. Learning git is really worth it, especially if you’re collaborating with some colleagues on your packages.</p>
+</div>
+<div id="r-packages-the-basics" class="section level2">
+<h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-wickham2014">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
+</div>
+<div id="ref-silverman2013git">
+<p>Silverman, Richard E. 2013. <em>Git Pocket Guide</em>. “ O’Reilly Media, Inc.”</p>
 </div>
 </div>
             </section>
@@ -165,7 +187,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="unit-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="unit-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="final-words.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

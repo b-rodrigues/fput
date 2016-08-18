@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/fp_tdd_data" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Bruno Rodrigues">
 
-<meta name="date" content="2016-08-17">
+<meta name="date" content="2016-08-18">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,11 +125,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>4</b> Unit tests</a><ul>
-<li class="chapter" data-level="4.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-to-unit-testing"><i class="fa fa-check"></i><b>4.1</b> Introduction to unit testing</a></li>
+<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-package-testthat"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the package <code>testthat</code></a></li>
+<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
-<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#introduction-to-r-packages"><i class="fa fa-check"></i><b>5.1</b> Introduction to R packages</a></li>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -156,11 +160,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Functional programming and unit testing for data munging</h1>
 <h4 class="author"><em>Bruno Rodrigues</em></h4>
-<h4 class="date"><em>2016-08-17</em></h4>
+<h4 class="date"><em>2016-08-18</em></h4>
 </div>
 <div id="why-this-book" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Why this book?</h1>
-<p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R. There are better resources to learn <a href="http://adv-r.had.co.nz/Functional-programming.html">functional progamming</a> and <a href="http://r-pkgs.had.co.nz/tests.html">unit testing</a> with R. But I will introduce the main ideas. I will also show how to build your own R package that will hold all the code to clean your data and accompagnying documentation. Again, there are <a href="http://r-pkgs.had.co.nz/">great resources online</a> to learn about packages. I will just cover the basics, and explain why having your code inside a packages makes sense when using functional programming and unit tests with R.</p>
+<p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R.</p>
+<p>If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
 <p>This book is not an introduction to R either. I will assume that you have intermediate knowledge of R.</p>
 <div id="motivation" class="section level2">
 <h2><span class="header-section-number">1.1</span> Motivation</h2>
@@ -169,7 +174,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="who-am-i" class="section level2">
 <h2><span class="header-section-number">1.2</span> Who am I?</h2>
-<p>I use R daily at my current job, and discovered R some years ago while I was at the <a href="http://www.unistra.fr/index.php?id=accueil">University of Strasbourg</a>. I’m not an R developer, and don’t have a CS background. Most, if not everything, that I know about R is self-taught. I hope however that you will find this book useful. You can <a href="https://twitter.com/brodriguesco">follow me on twitter</a> or check <a href="http://t.co/Hd94HCx0Wf">my blog</a>.</p>
+<p>I use R daily at my current job, and discovered R some years ago while I was at the <a href="http://www.unistra.fr/index.php?id=accueil">University of Strasbourg</a>. I’m not an R developer, and don’t have a CS background. Most, if not everything, that I know about R is self-taught. I hope however that you will find this book useful. You can <a href="https://twitter.com/brodriguesco">follow me on twitter</a> or check <a href="http://brodrigues.co">my blog</a>.</p>
 </div>
 <div id="thanks" class="section level2">
 <h2><span class="header-section-number">1.3</span> Thanks</h2>
@@ -177,6 +182,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Thanks to <a href="https://www.iame.uni-bonn.de/people/hm-gaudecker">Hans-Martin von Gaudecker</a> for introducing me to unit testing and writing elegant code. The PEP 8 style guidelines will forever remain etched in my brain.</p>
 <p>Finally I have to thank my wife for putting up with my endless rants against people not using functional programming nor testing their code (or worse, using proprietary software!).</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-wickham2014">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
+</div>
+<div id="ref-wickham2015">
+<p>Wickham, Hadley. 2015. <em>R Packages</em>. 1st ed. O’Reilly. <a href="http://r-pkgs.had.co.nz/" class="uri">http://r-pkgs.had.co.nz/</a>.</p>
 </div>
 </div>
             </section>
