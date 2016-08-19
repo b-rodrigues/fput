@@ -5,12 +5,12 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Functional programming and unit testing for data munging</title>
+  <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
   <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Functional programming and unit testing for data munging" />
+  <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
+  <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
   
   <meta name="twitter:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
   
@@ -150,7 +150,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging with R</a>
           </h1>
         </div>
 
@@ -187,7 +187,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton_recur</span>(<span class="dv">16</span>, <span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 4.00122</code></pre>
-<p>R is not a pure functional programming language though, so we can still use loops (be it <code>while</code> or <code>for</code> loops) in the bodies of our functions. Actually, for R specifically, it is better, performance-wise, to use loops instead of recursion, because R is not tail-call optimized. I won’t got into the details of what tail-call optimization is but just remember that if performance is important a loop will be faster. However, sometimes, it is easier to write a function using recursion. I personally tend to avoid loops if performance is not important, because I find that code that avoids loops is easier to read and debug. However, knowing that you have can use loops, options is reassuring. In the coming sections I will show you some built-in function that make it possible to avoid writing loops and that don’t rely on recursion, so performance won’t be penalized.</p>
+<p>R is not a pure functional programming language though, so we can still use loops (be it <code>while</code> or <code>for</code> loops) in the bodies of our functions. Actually, for R specifically, it is better, performance-wise, to use loops instead of recursion, because R is not tail-call optimized. I won’t got into the details of what tail-call optimization is but just remember that if performance is important a loop will be faster. However, sometimes, it is easier to write a function using recursion. I personally tend to avoid loops if performance is not important, because I find that code that avoids loops is easier to read and debug. However, knowing that you have can use loops is reassuring. In the coming sections I will show you some built-in function that make it possible to avoid writing loops and that don’t rely on recursion, so performance won’t be penalized.</p>
 </div>
 <div id="properties-of-functions" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> Properties of functions</h3>
@@ -419,7 +419,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 </div>
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">3.4</span> Exercises</h2>
-<p>For the following exercises, you will have to use any of the functions that we saw in this chapter. <code>Reduce()</code>, <code>Map()</code> or any function from the <code>*apply()</code> family of functions. Do not use loops! If you don’t how to solve these exercises wait for the next section, where we’ll learn how to write unit tests. Writing unit tests before the functions they’re supposed to test is called test-driven development and can help you write your functions.</p>
+<p>For the following exercises, you will have to use any of the functions that we saw in this chapter. <code>Reduce()</code>, <code>Map()</code> or any function from the <code>*apply()</code> family of functions. Do not use loops! If you don’t know how to solve these exercises wait for the next section, where we’ll learn how to write unit tests. Writing unit tests before the functions they’re supposed to test is called test-driven development and can help you write your functions.</p>
 <ol style="list-style-type: decimal">
 <li>Create a function that returns the factorial of a number using <code>Reduce()</code>. Remember: no recursion nor loops allowed!</li>
 </ol>
