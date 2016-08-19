@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Functional programming and unit testing for data munging</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Functional programming and unit testing for data munging" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
+  
+  <meta name="twitter:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
+  
+
+<meta name="author" content="Bruno Rodrigues">
+
+<meta name="date" content="2016-08-19">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="fprog.html">
+<link rel="next" href="packages.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Functional programming and unit testing for data munging</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
+<li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-package-testthat"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the package <code>testthat</code></a></li>
+<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="unit-testing" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Unit testing</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>Let’s take a look at <a href="https://en.wikipedia.org/wiki/Unit_testing">Wikipedia’s definition</a> of unit testing:</p>
+<blockquote>
+<p>In computer programming, unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use. Intuitively, one can view a unit as the smallest testable part of an application. In procedural programming, a unit could be an entire module, but it is more commonly an individual function or procedure. In object-oriented programming, a unit is often an entire interface, such as a class, but could be an individual method. Unit tests are short code fragments created by programmers or occasionally by white box testers during the development process. It forms the basis for component testing.</p>
+</blockquote>
+<p>So unit tests are small pieces of code that test your code. They’re called <em>unit</em> tests, because they test the smallest unit composing your code, in the case of functional programming, the smallest units are functions. You’ve probably been testing your code <em>manually</em> since you’ve started programming. For example, you would simply do something like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 2.00061</code></pre>
+<p>and check if the result is equal to <code>2</code> and stop there. Usually you would probably write this in the console and then forget about it. If you need to check again, you would write this small test again in the console. But what if some of your functions have to work together with other functions? Maybe changing something in these other functions will indirectly break in other functions. You would have to retest everything together again! In this chapter you will learn the basics of unit testing, which is simply writing these tests in a file, and running this file each time you change your code. If all your unit tests still pass, you can be more confident that your code works as intended.</p>
+<p>Unit tests can also be useful to guide you as you program. Some programmers do test-driven development. These programmers start by writing the unit tests first, and then the code to make them pass. This can be useful sometimes, if you don’t really know where you should start but know what you want.</p>
+</div>
+<div id="unit-testing-with-the-package-testthat" class="section level2">
+<h2><span class="header-section-number">4.2</span> Unit testing with the package <code>testthat</code></h2>
+<p>We are going to test the function we wrote in the previous chapter, <code>sqrt_newton()</code>. The basic steps are:</p>
+<ol style="list-style-type: decimal">
+<li>Write a file containing your tests</li>
+<li>Run the tests</li>
+</ol>
+<p>It’s very simple! You only need to install the <code>testthat</code> package for this. In this section I’ll only show you how to write tests and try to illustrate their usefulness. In the next section, we’ll see how we can run the tests.</p>
+<p>Below is the code that we are going to put in the file <code>test_my_functions.R</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
+              expected &lt;-<span class="st"> </span><span class="dv">2</span>
+              actual &lt;-<span class="st"> </span><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>)
+              <span class="kw">expect_equal</span>(expected, actual)
+})</code></pre></div>
+<p>The syntax of the test is pretty straightforward. We start with a short description of what the test is about, and then we define two variables: the result we expect, and the actual result that is returned by the function we wish to test. When we run this test (we’ll discuss running tests in the next section), this is what we get:</p>
+<pre><code>Error: Test failed: &#39;Test sqrt_newton: positive numeric&#39;
+* `expected` not equal to `actual`.
+1/1 mismatches
+[1] 2 - 2 == -0.00061</code></pre>
+<p>This is because the value that <code>sqrt_newton()</code> returns is not exactly equal to <code>2</code>. How to solve this? We could simply check if the difference of the value expected and the value returned is smaller than <code>eps</code> (which is actually how the function works):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
+              eps &lt;-<span class="st"> </span><span class="fl">0.001</span>
+              expected &lt;-<span class="st"> </span><span class="dv">2</span>
+              actual &lt;-<span class="st"> </span><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">eps =</span> eps)
+              <span class="kw">expect_lt</span>(<span class="kw">abs</span>(expected -<span class="st"> </span>actual), eps)
+})</code></pre></div>
+<p>There’s no visible output, meaning that the test passes. Don’t worry, we’ll see how to run these tests in the next section, and we’ll get a nice output confirming that tests did, indeed, pass.</p>
+<p>I didn’t talk about the functions <code>expect_equal()</code> and <code>expect_lt()</code>, but now is the moment. These functions are part of the <code>testthat</code> package and these are what allow you to test your functions. There’s a number of them that allow you to test for a variety of situations. Check the documentation of <code>testthat</code> for more info. Let’s continue to write more tests!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: negative numeric&quot;</span>,{
+              <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(-<span class="dv">4</span>, <span class="dv">1</span>))
+})</code></pre></div>
+<p>We would like our function to return an error message if the user tries to get the square root of a negative number (let’s say we don’t want to generalize our function to complex numbers). But what happens here is that the function runs forever! This is because we are using a while loop whose condition is never fulfilled. This test basically allowed us to find two problems with our function:</p>
+<ul>
+<li>it doesn’t deal with negative numbers</li>
+<li>the while loop may run forever if the condition is never fulfilled (for example if <code>eps</code> is too small</li>
+</ul>
+<p>Let’s rewrite our function to take care of this, one problem at a time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>Now let’s run our test again:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: negative numeric&quot;</span>,{
+              <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(-<span class="dv">4</span>, <span class="dv">1</span>))
+})</code></pre></div>
+<p>Again no output, so things are good. Now to the next issue: we need to write a safeguard in the function to avoid having the while loop running for too long. For example if you try to run this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">49</span>, <span class="fl">1E100000</span>, <span class="fl">1E-100000</span>)</code></pre></div>
+<p>You will see that it takes an awful lot of time! Let’s limit the number of iterations to 100.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span><span class="dv">100</span>) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>Now when we try to run the following expression we get an error message:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">49</span>, <span class="fl">1E100</span>, <span class="fl">1E-100</span>)</code></pre></div>
+<pre><code>Error in sqrt_newton(49, 1e+100, 1e-100) : 
+  Maximum number of iterations reached</code></pre>
+<p>But wouldn’t it be better if the user could change the number of iterations himself?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span>iter) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>We can now write some more tests:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: not enough iterations&quot;</span>,{
+              <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="fl">1E100</span>, <span class="fl">1E-100</span>, <span class="dt">iter =</span> <span class="dv">100</span>))
+})</code></pre></div>
+</div>
+<div id="actually-running-your-tests" class="section level2">
+<h2><span class="header-section-number">4.3</span> Actually running your tests</h2>
+<p>One of the easiest ways to run your tests is when your developing a package. We are going to see this in the next chapter, but for now, let’s suppose that we have a folder called <code>my_project</code> with the code inside of it. There’s a file called <code>my_functions.R</code> and another file called <code>test_my_functions.R</code> which contain the functions you programmed and the unit tests that go with it respectively.</p>
+<p>The file <code>test_my_functions.R</code> contains the following source code:</p>
+<pre><code>library(&quot;testthat&quot;)
+
+test_that(&quot;Test sqrt_newton: positive numeric&quot;,{
+    eps &lt;- 0.001
+    expected &lt;- 2
+    actual &lt;- sqrt_newton(4, 1, eps = eps)
+    expect_lt(abs(expected - actual), eps)
+})
+
+test_that(&quot;Test sqrt_newton: negative numeric&quot;,{
+    expect_error(sqrt_newton(-4, 1))
+})
+
+test_that(&quot;Test sqrt_newton: not enough iterations&quot;,{
+    expect_error(sqrt_newton(4, 1E100, 1E-100, iter = 100))
+})</code></pre>
+<p>Then you simply run the following in the console:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_file</span>(<span class="st">&quot;test_my_functions.R&quot;</span>)</code></pre></div>
+<p>of course you have to make sure that you are in the correct working directory. This can be tricky, and is one of the reasons why it’s easier to run your tests when you’re developing a package.</p>
+<p>This is the output we get:</p>
+<pre><code>...
+DONE ================================================================================</code></pre>
+<p>See the three dots on the first line? Each dot represents a test that passed successfully. Let’s add a test that will not pass on purpose, just to see what happens:</p>
+<pre><code>test_that(&quot;Test sqrt_newton: wrong on purpose&quot;,{
+    eps &lt;- 0.001
+    expected &lt;- 12
+    actual &lt;- sqrt_newton(4, 1, eps = eps)
+    expect_lt(abs(expected - actual), eps)
+})</code></pre>
+<p>This is the output we get now:</p>
+<pre><code>...1
+Failed ------------------------------------------------------------------------------
+1. Failure: Test sqrt_newton: wrong on purpose (@test_my_functions.R#22) ------------
+abs(expected - actual) is not strictly less than `eps`. Difference: 10
+
+
+DONE ================================================================================</code></pre>
+<p>You can then go back to the file that contains the tests and correct them. If all your tests are in a separate folder, you can use the function <code>test_dir()</code> to test all the functions in a given folder. The files containing your tests should all start with the string <code>test</code>. You could have a file called <code>run_tests.R</code> on the root of the directory and this file could contain the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_dir</span>(<span class="st">&quot;tests&quot;</span>)</code></pre></div>
+<p>You could then run your tests by running this file. You might also be tempted to write a bash script on GNU/Linux distributions or on macOS:</p>
+<pre><code>#!/bin/sh
+
+Rscript -e &quot;testthat::test_that(&#39;/whole/path/to/your/tests&#39;)&quot;</code></pre>
+<p>but you’ll probably only get burned because when you run this script, a new R session is started which does not know anything about your functions in your file <code>my_functions.R</code>. Managing the working directory is quite a pain. This is why in the next chapter we are going to start learning about packages and why writing or own packages to clean datasets is the best possible way to write your code.</p>
+</div>
+<div id="wrap-up-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Wrap-up</h2>
+<ul>
+<li>Unit tests are a way of testing your code, and more specifically your functions</li>
+<li>The basic workflow is to write your code, write tests, and check if your tests pass</li>
+<li>You can also start with the tests and then write or modify your code to make them pass</li>
+<li>We didn’t talk about <em>coverage</em> yet. Are you sure that you test every line of your function? No you’re not. In the next chapter I’ll show how can be sure to test each line of your function with the <code>covr</code> package.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fprog.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="packages.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-unit_test.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

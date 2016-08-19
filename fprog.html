@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Functional programming and unit testing for data munging</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Functional programming and unit testing for data munging" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
+  
+  <meta name="twitter:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
+  
+
+<meta name="author" content="Bruno Rodrigues">
+
+<meta name="date" content="2016-08-19">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="unit-testing.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Functional programming and unit testing for data munging</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
+<li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-package-testthat"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the package <code>testthat</code></a></li>
+<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fprog" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Functional Programming</h1>
+<div id="fprog_intro" class="section level2">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
+<div id="function-definitions" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Function definitions</h3>
+<p>As mentioned in the <a href="#funcprog_overview">functional programming overview</a> functional programming is one of the numerous ways to write code. In functional programming, you write functions that do the computations and then as the user, you call these functions to work for you.</p>
+<p>You should be familiar with function definitions in R. For example, suppose you want to compute the square root of a number and want to do so using Newton’s algorithm:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>You can then use this function to get the square root of a number:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">16</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 4.00122</code></pre>
+<p>We are using a <code>while</code> loop inside the body<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> of the function. In <em>pure</em> functional programming languages, like Haskell, you don’t have loops. How can you program without loops, you may ask? In functional programming, loops are replaced by recursion. Let’s rewrite our little example above with recursion:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_recur &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    if(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &lt;<span class="st"> </span>eps){
+        result &lt;-<span class="st"> </span>init
+    } else {
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *<span class="st"> </span>(init +<span class="st"> </span>a/init)
+        result &lt;-<span class="st"> </span><span class="kw">sqrt_newton_recur</span>(a, init, eps)
+    }
+    <span class="kw">return</span>(result)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton_recur</span>(<span class="dv">16</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 4.00122</code></pre>
+<p>R is not a pure functional programming language though, so we can still use loops (be it <code>while</code> or <code>for</code> loops) in the bodies of our functions. Actually, for R specifically, it is better, performance-wise, to use loops instead of recursion, because R is not tail-call optimized. I won’t got into the details of what tail-call optimization is but just remember that if performance is important a loop will be faster. However, sometimes, it is easier to write a function using recursion. I personally tend to avoid loops if performance is not important, because I find that code that avoids loops is easier to read and debug. However, knowing that you have can use loops, options is reassuring. In the coming sections I will show you some built-in function that make it possible to avoid writing loops and that don’t rely on recursion, so performance won’t be penalized.</p>
+</div>
+<div id="properties-of-functions" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Properties of functions</h3>
+<p>Mathematical functions have a nice property: we always get the same output for a given input. This is called referential transparency and we should aim to write our R functions in such a way.</p>
+<p>For example, the following function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment &lt;-<span class="st"> </span>function(x){
+    <span class="kw">return</span>(x +<span class="st"> </span><span class="dv">1</span>)
+}</code></pre></div>
+<p>Is a referential transparent function. We always get the same result for any <code>x</code> that we give to this function.</p>
+<p>This:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">increment</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>will always produce <code>11</code>.</p>
+<p>However, this one:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_opaque &lt;-<span class="st"> </span>function(x){
+    <span class="kw">return</span>(x +<span class="st"> </span>spam)
+}</code></pre></div>
+<p>is not a referential transparent function, because its value depends on the global variable <code>spam</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spam &lt;-<span class="st"> </span><span class="dv">1</span>
+
+<span class="kw">increment_opaque</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>will only produce <code>11</code> if <code>spam = 1</code>. But what if <code>spam = 19</code>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spam &lt;-<span class="st"> </span><span class="dv">19</span>
+
+<span class="kw">increment_opaque</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 29</code></pre>
+<p>To make <code>increment_opaque()</code> a referential transparent function, it is enough to make <code>spam</code> an argument:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_not_opaque &lt;-<span class="st"> </span>function(x, spam){
+    <span class="kw">return</span>(x +<span class="st"> </span>spam)
+}</code></pre></div>
+<p>Now even if there is a global variable called <code>spam</code>, this will not influence our function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spam &lt;-<span class="st"> </span><span class="dv">19</span>
+
+<span class="kw">increment_not_opaque</span>(<span class="dv">10</span>, <span class="dv">34</span>)</code></pre></div>
+<pre><code>## [1] 44</code></pre>
+<p>This is because the variable <code>spam</code> defined in the body of the function is a local variable. It could have been called anything else, really. Avoiding opaque functions makes our life easier.</p>
+<p>Another property that adepts of functional programming value is that functions should have no, or very limited, side-effects. This means that functions should not change the state of your program.</p>
+<p>For example this function (which is not a referential transparent function):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count_iter &lt;-<span class="st"> </span><span class="dv">0</span>
+
+sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        count_iter &lt;&lt;-<span class="st"> </span>count_iter +<span class="st"> </span><span class="dv">1</span> <span class="co"># The &quot;&lt;&lt;-&quot; symbol means that we assign the</span>
+    }                                 <span class="co"># RHS value in a variable in the global environment</span>
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>If you look in the environment pane, you will see that <code>count_iter</code> equals 0. Now call this function with the following arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton_side_effect</span>(<span class="dv">16000</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 126.4911</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(count_iter)</code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>If you check the value of <code>count_iter</code> now, you will see that it increased! This is a side effect, because the function changed something outside its scope. It changed a value in the global environment. In general, it is good practice to avoid side-effects. For example, we could make the above function not have any side effects like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_count &lt;-<span class="st"> </span>function(a, init, <span class="dt">count_iter =</span> <span class="dv">0</span>, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        count_iter &lt;-<span class="st"> </span>count_iter +<span class="st"> </span><span class="dv">1</span>
+    }
+    <span class="kw">return</span>(<span class="kw">c</span>(init, count_iter))
+}</code></pre></div>
+<p>Now, this function returns a list with two elements, the result, and the number of iterations it took to get the result:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton_count</span>(<span class="dv">16000</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 126.4911   9.0000</code></pre>
+<p>Writing to disk is also considered a side effect, because the function changes something (a file) outside its scope. But this cannot be avoided (and it’s actually a good thing to have, functions that can write to disk) so just remember: try to avoid having functions changing variables in the global environment unless you have a very good reason of doing so.</p>
+<p>Finally, another property of mathematical functions, is that they do one single thing. Functional programming purists also program their functions to do one single task. This has benefits, but can complicate things. The function we wrote previously does two things: it computes the square root of a number and also returns the number of iterations it took to compute the result. However, this is not a bad thing; the function is doing two tasks, but these tasks are related to each other and it makes sense to have them together. My piece of advice: avoid having functions that do too many <em>unrelated</em> things. This makes debugging harder.</p>
+<p>In conclusion: you should strive for referential transparency, try to avoid side effects unless you have a good reason to have them and try to keep your functions short and do as little tasks as possible. This makes testing and debugging easier, as you will see.</p>
+</div>
+</div>
+<div id="map-and-reduce" class="section level2">
+<h2><span class="header-section-number">3.2</span> <code>Map()</code> and <code>Reduce()</code></h2>
+<p>No introduction to functional programming would be complete without some discussion about the functions <code>Map()</code> and <code>Reduce()</code>. <code>Map()</code> allows you to map your function to every element of a list of arguments and is easy to understand, while <code>Reduce()</code> (sometimes called <code>fold()</code> in other programming languages) <em>reduces</em> a list of values to a single value by successively applying a function. It’s a bit harder to understand, but with some examples it will become clear soon enough.</p>
+<div id="map" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> <code>Map()</code></h3>
+<p>Now that we have our nice function that computes square roots using Newton’s algorithm, we would like to compute the square root of every element in the following list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">25</span>, <span class="dv">36</span>, <span class="dv">49</span>, <span class="dv">64</span>, <span class="dv">81</span>)
+
+<span class="kw">sqrt_newton</span>(numbers, <span class="dt">init =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">6</span>), <span class="dt">eps =</span> <span class="kw">rep</span>(<span class="fl">0.001</span>, <span class="dv">6</span>))</code></pre></div>
+<pre><code>## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used
+
+## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used
+
+## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used
+
+## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used
+
+## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used
+
+## Warning in while (abs(init^2 - a) &gt; eps) {: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## [1] 4.000001 5.000023 6.000253 7.001406 8.005148 9.014272</code></pre>
+<p>We get a whole bunch of nasty warning messages, but we do get the expected result. But you should not leave it like this. Who knows what may happen some time down the road, when you try to compose this function with another? Maybe you’ll get an error and you won’t understand why! Let’s rewrite the function properly.</p>
+<p>We get these warnings because the condition <code>(init^2 - a) &gt; eps</code> does not make sense for vectors. Here, R tells the user that it only uses the first element and then does the computation anyways. I would prefer if R would stop the execution and print an error message. This would force the user to have to rewrite the function to explicitly take vectors into account. And there is a very simple way of doing it, by using the function <code>Map()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Map</span>(sqrt_newton, numbers, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 4.000001
+## 
+## [[2]]
+## [1] 5.000023
+## 
+## [[3]]
+## [1] 6.000253
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 8.000002
+## 
+## [[6]]
+## [1] 9.000011</code></pre>
+<p><code>Map()</code> applies a function to every element of a list and returns a list.</p>
+<p>We could then write a wrapper around <code>Map()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span>function(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="kw">return</span>(<span class="kw">Map</span>(sqrt_newton, numbers, init, eps))
+}
+
+<span class="kw">sqrt_newton_vec</span>(numbers, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 4.000001
+## 
+## [[2]]
+## [1] 5.000023
+## 
+## [[3]]
+## [1] 6.000253
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 8.000002
+## 
+## [[6]]
+## [1] 9.000011</code></pre>
+<p>As you can see, we can give a function as an argument to another function. This makes <code>Map()</code> a <em>higher-order function</em>. Higher-order functions are functions that take other functions as arguments and return either another function, or a value. This is another important concept in functional programming and encourages modularity. It makes your code easily reusable!</p>
+<p>R has other higher-order functions that work like <code>Map()</code>, such as <code>apply(), lapply(), mapply(), sapply(), vapply()</code> and <code>tapply()</code>. Depending on what you want to do, you will have to use one or the other. <code>apply()</code> and ‘tapply()’ are different from the other <code>*apply()</code> functions, because they work on arrays. You can apply a function on the rows or columns of an array, for example if you want a row-wise sum:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))
+<span class="kw">apply</span>(a, <span class="dv">1</span>, sum)</code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<p>We could use <code>lapply()</code> instead of <code>Map()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 4.000001
+## 
+## [[2]]
+## [1] 5.000023
+## 
+## [[3]]
+## [1] 6.000253
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 8.000002
+## 
+## [[6]]
+## [1] 9.000011</code></pre>
+<p>or <code>sapply()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 4.000001 5.000023 6.000253 7.000000 8.000002 9.000011</code></pre>
+<p>We could rewrite <code>sqrt_newton_vec()</code> with <code>sapply()</code> which would return a better looking result (a list of numbers instead of a list of lists):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span>function(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="kw">return</span>(<span class="kw">sapply</span>(numbers, sqrt_newton, init, eps))
+}
+
+<span class="kw">sqrt_newton_vec</span>(numbers, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 4.000001 5.000023 6.000253 7.000000 8.000002 9.000011</code></pre>
+<p><code>mapply()</code> is different from these two:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inits &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">20</span>, <span class="dv">3212</span>, <span class="dv">487</span>, <span class="dv">5</span>, <span class="dv">9888</span>)
+<span class="kw">mapply</span>(sqrt_newton, numbers, <span class="dt">init =</span> inits)</code></pre></div>
+<pre><code>## [1] 4.000284 5.000001 6.000003 7.000006 8.000129 9.000006</code></pre>
+<p>What happens here is that <code>sqrt_newton()</code> gets called with following arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">1</span>], inits[<span class="dv">1</span>])</code></pre></div>
+<pre><code>## [1] 4.000284</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">2</span>], inits[<span class="dv">2</span>])</code></pre></div>
+<pre><code>## [1] 5.000001</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">3</span>], inits[<span class="dv">3</span>])</code></pre></div>
+<pre><code>## [1] 6.000003</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">4</span>], inits[<span class="dv">4</span>])</code></pre></div>
+<pre><code>## [1] 7.000006</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">5</span>], inits[<span class="dv">5</span>])</code></pre></div>
+<pre><code>## [1] 8.000129</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">6</span>], inits[<span class="dv">6</span>])</code></pre></div>
+<pre><code>## [1] 9.000006</code></pre>
+<p>From the <code>Map()</code>’s documentation, we learn that:</p>
+<pre><code>`Map()` is wrapper to `mapply()` which does not attempt to simplify the result... </code></pre>
+<p>All this behaviour can be replicated using loops, but once you get the gist of these functions, you can write code that is shorter and easier to read and unlike in the case of recursion, without any loss in performance (but without any gains either).</p>
+</div>
+<div id="reduce" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> <code>Reduce()</code></h3>
+<p><code>Reduce()</code> is another very useful higher-order function, especially if you want to avoid loops to make your code easier to read. In some programming languages, <code>Reduce()</code> is called <code>fold()</code>.</p>
+<p>I think that the following example illustrates the power of <code>Reduce()</code> well:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Reduce</span>(<span class="st">`</span><span class="dt">+</span><span class="st">`</span>, numbers, <span class="dt">init =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1] 271</code></pre>
+<p>Can you guess what happens? <code>Reduce()</code> takes a function as an argument, here the function <code>+</code><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> and then does the following computation:</p>
+<pre><code>0 + numbers[1] + numbers[2] + numbers[3]...</code></pre>
+<p>It applies the user supplied function successively but has to start with something, so we give it the argument <code>init</code> also. This argument is actually optional, but I show it here because in some cases it might be useful to start the computations at another value than <code>0</code>. This function generalizes functions that only take two arguments. If you were to write a function that returns the minimum between two numbers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_min &lt;-<span class="st"> </span>function(a, b){
+    if(a &lt;<span class="st"> </span>b){
+        <span class="kw">return</span>(a)
+    } else {
+        <span class="kw">return</span>(b)
+    }
+}</code></pre></div>
+<p>You could use <code>Reduce()</code> to get the minimum of a list of numbers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(numbers)</code></pre></div>
+<pre><code>## [1] 16 25 36 49 64 81</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Reduce</span>(my_min, numbers)</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>Here we don’t supply an <code>init</code> because there is no need for it. Of course R’s built-in <code>min()</code> function works on a list of values. But <code>Reduce()</code> is a very powerful function that can make our life much easier and most importantly avoid writing clumsy loops.</p>
+<p>This is the end of the introduction to functional programming. Entire books have been written on the subject, such as the upcoming book by <span class="citation">Khan (<a href="#ref-khan2017">2017</a>)</span> or <span class="citation">Lipovaca (<a href="#ref-lipovaca2011">2011</a>)</span>. If you’re curious about functional programming, you should read these books. For our purposes though, knowing how to write functions, and trying to make them referentially transparent as well as knowing about <code>Map()</code> and <code>Reduce()</code> is enough to get us going.</p>
+</div>
+</div>
+<div id="wrap-up" class="section level2">
+<h2><span class="header-section-number">3.3</span> Wrap-up</h2>
+<ul>
+<li>Make your functions referentially transparent.</li>
+<li>Avoid side effects (if possible).</li>
+<li>Make your functions do one thing (if possible).</li>
+<li>A function that takes another function as an argument is called an higher-order function. You can write your own higher-order functions and this is a way of having short and easily testable functions. Making these functions then work together is trivial and is what makes functional programming very powerful.</li>
+</ul>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">3.4</span> Exercises</h2>
+<p>For the following exercises, you will have to use any of the functions that we saw in this chapter. <code>Reduce()</code>, <code>Map()</code> or any function from the <code>*apply()</code> family of functions. Do not use loops! If you don’t how to solve these exercises wait for the next section, where we’ll learn how to write unit tests. Writing unit tests before the functions they’re supposed to test is called test-driven development and can help you write your functions.</p>
+<ol style="list-style-type: decimal">
+<li>Create a function that returns the factorial of a number using <code>Reduce()</code>. Remember: no recursion nor loops allowed!</li>
+</ol>
+<pre><code>my_fact(5)
+
+[1] 120</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose you have a list of data set names. Create a function that removes “.csv” from each of these names. Start by creating a function that does so using <code>stri_split()</code> from the package <code>stringi</code> (you can also use <code>strsplit()</code> from base R). Below is an illustration of how it’s supposed to work:</li>
+</ol>
+<pre><code>dataset_names &lt;- c(&quot;dataset1.csv&quot;, &quot;dataset2.csv&quot;, &quot;dataset3.csv&quot;)
+
+remove_csv(dataset_names)
+
+[1] &quot;dataset1&quot; &quot;dataset2&quot; dataset3&quot;
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a function that takes a number <code>a</code>, and then returns either the sum of the numbers from 1 to this number that are divisible by another number <code>b</code> or the product of the numbers from 1 to this number that are divisible by <code>b</code>. Your function should be a higher-order function with the following arguments: <code>a</code> the number, <code>divisible_func</code> the function that checks whether a number is divisible by some number <code>b</code> and <code>reduce_op</code> the function that either sums or multiplies the numbers from 1 to <code>a</code> that are divisible by <code>b</code>.</li>
+</ol>
+<pre><code>reduce_some_numbers(a = 10, divisible_func = divisible, b = 2, reduce_op = `*`)
+
+[1] 3840</code></pre>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-khan2017">
+<p>Khan, Aslam. 2017. <em>Grokking Functional Programming</em>. 1st ed. Manning Publications. <a href="https://www.manning.com/books/grokking-functional-programming" class="uri">https://www.manning.com/books/grokking-functional-programming</a>.</p>
+</div>
+<div id="ref-lipovaca2011">
+<p>Lipovaca, Miran. 2011. <em>Learn You a Haskell for Great Good!: A Beginner’s Guide</em>. no starch press. <a href="http://learnyouahaskell.com/" class="uri">http://learnyouahaskell.com/</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The <em>body</em> of a function are the instructions that define the function. You can get the body of a function with <code>body(some_func)</code><a href="fprog.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>This is simply the <code>+</code> operator you’re used to. Try this out: <code>`+`(1, 5)</code> and you’ll see <code>+</code> is a function like any other. You just have to write backticks around the plus symbol to make it work.<a href="fprog.html#fnref2">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-func_prog.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
