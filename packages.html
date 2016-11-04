@@ -8,7 +8,7 @@
   <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -25,8 +25,8 @@
 
 <meta name="author" content="Bruno Rodrigues">
 
-<meta name="date" content="2016-10-22">
 
+<meta name="date" content="2016-11-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,6 +51,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -67,21 +104,46 @@
 <li><a href="./">Functional programming and unit testing for data munging</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a></li>
-<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
+<li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the <code>testthat</code> package</a></li>
+<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="4.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
 <li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 <li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
 <li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.4</b> Unit test your package</a></li>
 <li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.5</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
-<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#exercises-2"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="7" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>7</b> Placeholder</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -115,27 +177,153 @@
 </div>
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
-<p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder.</p>
+<p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
 <p><img src="_assets/package_structure.png" /><!-- --></p>
+<p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span>iter) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>Then save this script. You can now test your package by building your package, either by clicking on the button named <em>Build and Reload</em> button which you can find inside the <em>Build</em> pane or by using the following keyboard shortcut: <code>CTRL-SHIFT-B</code>. You will use <em>Build and Reload</em> quite often, so I advise you remember this shortcut! In the next section we will see how we can add documentation to our functions.</p>
 </div>
 <div id="writing-documentation-for-your-functions" class="section level2">
 <h2><span class="header-section-number">5.3</span> Writing documentation for your functions</h2>
+<p>Writing documentation for your functions is very streamlined, thanks to the <code>roxygen2</code> package. Suppose we want to write documentation for our square root function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span>iter) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>Usually, you would write comments to describe what your function does, what are its inputs and outputs. ‘roxygen2’ is a package that turns these comments into documentation. Here is what our function would look like with <code>roxygen2</code> type comments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Function to compute the square root of a number</span>
+<span class="co">#&#39; @param a the number whose square root is computed</span>
+<span class="co">#&#39; @param init an initial guess</span>
+<span class="co">#&#39; @param eps *optional* the precision. Default value: 0.01</span>
+<span class="co">#&#39; @param iter *optional* the number of iteration. Default value: 100</span>
+<span class="co">#&#39; @description This function computes the square root of a number using a loop.</span>
+<span class="co">#&#39; @export</span>
+sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span>iter) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>The first difference with standard comments is that <code>roxygen2</code> type comments start with the <code>#'</code> symbol instead of simply the <code>#</code> symbol. Then, after <code>#'</code> you can supply different keywords such as <code>@param</code>, <code>@description</code>, <code>@export</code>. These keywords are then used by the <code>roxygenise()</code> function from the <code>roxygen</code> package to create the documentation files inside your package. Before <code>roxygen</code>, these documentation files were written in the <code>.Rd</code> format by hand. Now these files get created automagically by simply formatting your comments with this specific syntax and then running</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">roxygen2::<span class="kw">roxygenise</span>()</code></pre></div>
+<p>in the command prompt. Try it, you should see the following in the command prompt:</p>
+<pre><code>Writing sqrt_newton.Rd</code></pre>
+<p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
+<p><img src="_assets/sqrt_newton_help.png" /><!-- --></p>
+<p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package::my_function</code></pre></div>
+<p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users.</p>
 </div>
 <div id="unit-test-your-package" class="section level2">
 <h2><span class="header-section-number">5.4</span> Unit test your package</h2>
+<p>Now that we know the basics of creating a package, we move on to unit testing your package. Unit testing is very useful, but require some work, especially because you have to run them often to make them truly worth your time. However running them often can be painful because you have to be careful with the current working directory. The simplest way to do unit testing is to put your functions inside a package and write unit tests for these functions and use Rstudio’s keyboard shortcuts to run your tests. First of all, create a folder called <code>inst</code> in the root of your package and inside this <code>inst</code> folder create another folder, called <code>tests</code>. The <code>tests</code> folder will hold your unit tests and everything that is inside the <code>inst</code> folder gets installed along with the package, so the unit tests are also available to the users, along the source code of the package. Inside the <code>tests</code> folder, create a script called <code>test_sqrt_newton.R</code> and put the following code in it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;myFirstPackage&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
+    eps &lt;-<span class="st"> </span><span class="fl">0.001</span>
+    expected &lt;-<span class="st"> </span><span class="dv">2</span>
+    actual &lt;-<span class="st"> </span><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">eps =</span> eps)
+    <span class="kw">expect_lt</span>(<span class="kw">abs</span>(expected -<span class="st"> </span>actual), eps)
+})</code></pre></div>
+<p>Save this file and use the following keyboard shortcut: <code>CTRL-SHIFT-T</code> to run your unit test. You will see the following output:</p>
+<pre><code>==&gt; devtools::test()
+
+Loading myFirstPackage
+Loading required package: testthat
+Testing myFirstPackage
+.
+DONE ===========================================================================</code></pre>
+<p>You can of course add more unit tests inside the same file. Add the following code to <code>test_sqrt_newton.R</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: negative numeric&quot;</span>,{
+    <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(-<span class="dv">4</span>, <span class="dv">1</span>))
+})</code></pre></div>
+<p>You will now see the following output:</p>
+<pre><code>==&gt; devtools::test()
+
+Loading myFirstPackage
+Loading required package: testthat
+Testing myFirstPackage
+..
+DONE ===========================================================================</code></pre>
+<p>Notice the two <code>.</code> above <code>DONE</code>. This means that two unit tests passed. If a unit test does not pass, you will of course get notified. For example, add the following test to <code>test_sqrt_newton.R</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: with a string!&quot;</span>,{
+    <span class="kw">expect_equal</span>(<span class="dv">4</span>, <span class="kw">sqrt_newton</span>(<span class="st">&quot;WontWork&quot;</span>, <span class="dv">1</span>))
+})</code></pre></div>
+<p>and if you try running your tests this is what you will see:</p>
+<pre><code>==&gt; devtools::test()
+
+Loading myFirstPackage
+Loading required package: testthat
+Testing myFirstPackage
+..1
+Failed -------------------------------------------------------------------------
+1. Error: Test sqrt_newton: with a string! (@test_sqrt_newton.R#15) ------------
+non-numeric argument to binary operator
+1: expect_equal(4, sqrt_newton(&quot;WontWork&quot;, 1)) at /home/bro/Documents/myFirstPackage/inst/tests/test_sqrt_newton.R:15
+2: compare(object, expected, ...)
+3: compare.numeric(object, expected, ...)
+4: all.equal(x, y, tolerance = tolerance, ...)
+5: all.equal.numeric(x, y, tolerance = tolerance, ...)
+6: attr.all.equal(target, current, tolerance = tolerance, scale = scale, ...)
+7: mode(current)
+8: sqrt_newton(&quot;WontWork&quot;, 1)
+
+DONE ===========================================================================</code></pre>
+<p>You can then either modify the test if you made a mistake writing the test, or amend your function if your test is correct and needs to pass, but does not because there is an error in your function. For now, simply remove these lines for your <code>test_sqrt_newton.R</code> script.</p>
+<p>Another interesting feature you should use once in a while, is the <em>Check Package</em> command using <code>CTRL-SHIFT-E</code>. This command will find errors and other mistakes and warn you. For example, when I ran this command I got the following report:</p>
+<pre><code>checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE
+
+checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object &#39;sqrt_newton&#39;:
+sqrt_newton
+  Code: function(a, init, eps = 0.01, iter = 100)
+  Docs: function(a, init, eps = 0.01)
+  Argument names in code not in docs:
+    iter</code></pre>
+<p><em>Check Package</em> is telling me that I did not specify a license for my package, and that I did not document the <code>iter</code> parameter. This command takes some time to run, so do not run it as often as your unit tests, but do not forget about it either!</p>
 </div>
 <div id="checking-the-coverage-of-your-unit-tests-with-covr" class="section level2">
 <h2><span class="header-section-number">5.5</span> Checking the coverage of your unit tests with <code>covr</code></h2>
+<p>To check the coverage of your package run the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
+
+<span class="kw">shine</span>(cov)</code></pre></div>
+<p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
+<p><img src="_assets/covr_MyFirstPackage.png" /><!-- --></p>
+<p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package!</p>
 </div>
-<div id="wrap-up" class="section level2">
+<div id="wrap-up-2" class="section level2">
 <h2><span class="header-section-number">5.6</span> Wrap-up</h2>
 </div>
-<div id="exercises" class="section level2">
+<div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">5.7</span> Exercises</h2>
 
 </div>
 </div>
-<h3> Placeholder</h3>
+<h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-wickham2014">
 <p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
@@ -178,7 +366,7 @@ gitbook.start({
 },
 "edit": {
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-packages.Rmd",
-"text": null
+"text": "Edit"
 },
 "download": ["fp_tdd_data.pdf"],
 "toc": {

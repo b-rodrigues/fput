@@ -5,12 +5,12 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Functional programming and unit testing for data munging</title>
+  <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Functional programming and unit testing for data munging" />
+  <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
   
   
@@ -18,15 +18,15 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Functional programming and unit testing for data munging" />
+  <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
   
   <meta name="twitter:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
   
 
 <meta name="author" content="Bruno Rodrigues">
 
-<meta name="date" content="2016-08-18">
 
+<meta name="date" content="2016-11-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -124,16 +124,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-package-testthat"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the package <code>testthat</code></a></li>
+<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the <code>testthat</code> package</a></li>
 <li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
 <li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="4.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
 <li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
+<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.4</b> Unit test your package</a></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.5</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#exercises-2"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -149,7 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Functional programming and unit testing for data munging with R</a>
           </h1>
         </div>
 
@@ -196,9 +203,9 @@ gitbook.start({
 },
 "edit": {
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
-"text": null
+"text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }
