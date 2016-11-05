@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-04">
+<meta name="date" content="2016-11-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,7 +179,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
 <p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
-<p><img src="_assets/package_structure.png" /><!-- --></p>
+<p><img src="assets/package_structure.png" /><!-- --></p>
 <p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
     <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
@@ -229,7 +229,7 @@ sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps
 <p>in the command prompt. Try it, you should see the following in the command prompt:</p>
 <pre><code>Writing sqrt_newton.Rd</code></pre>
 <p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
-<p><img src="_assets/sqrt_newton_help.png" /><!-- --></p>
+<p><img src="assets/sqrt_newton_help.png" /><!-- --></p>
 <p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package::my_function</code></pre></div>
 <p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users.</p>
@@ -313,7 +313,7 @@ sqrt_newton
 
 <span class="kw">shine</span>(cov)</code></pre></div>
 <p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
-<p><img src="_assets/covr_MyFirstPackage.png" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage.png" /><!-- --></p>
 <p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package!</p>
 </div>
 <div id="wrap-up-2" class="section level2">
