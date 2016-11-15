@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-11">
+<meta name="date" content="2016-11-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,12 +120,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
 <li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
-<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-base-way"><i class="fa fa-check"></i><b>3.2</b> Mapping and Reducing: the <em>base</em> way</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#mapping-with-map-and-the-apply-family-of-functions"><i class="fa fa-check"></i><b>3.2.1</b> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</a></li>
 <li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-purrr-way"><i class="fa fa-check"></i><b>3.3</b> Mapping and Reducing: the <code>purrr</code> way</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="fprog.html"><a href="fprog.html#the-map-family-of-functions"><i class="fa fa-check"></i><b>3.3.1</b> The <code>map*()</code> family of functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -178,6 +183,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>lazyeval</li>
 <li>lubridate</li>
 <li>memoise</li>
+<li>purrr</li>
 <li>readr</li>
 <li>roxygen2</li>
 <li>stringr</li>
@@ -185,7 +191,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>tibble</li>
 <li>tidyr</li>
 </ul>
-<p>If you’re missing some or all of these packages, install them. You’ll notice that most, if not all, of these packages were authored or co-authored by Hadley Wickham, currently chief scientist at Rstudio.</p>
+<p>If you’re missing some or all of these packages, install them. You’ll notice that most, if not all, of these packages were authored or co-authored by Hadley Wickham, currently chief scientist at Rstudio, so you can install most of these packages by installing a single package called <code>tidyverse</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>The <code>tidyverse</code> package installs some other useful packages that we will not use, but you should check them out anyways!</p>
 </div>
 <div id="fprog_overview" class="section level2">
 <h2><span class="header-section-number">2.2</span> A short overview of functional programming</h2>

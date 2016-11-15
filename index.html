@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-11">
+<meta name="date" content="2016-11-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,12 +120,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
 <li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
-<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-base-way"><i class="fa fa-check"></i><b>3.2</b> Mapping and Reducing: the <em>base</em> way</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#mapping-with-map-and-the-apply-family-of-functions"><i class="fa fa-check"></i><b>3.2.1</b> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</a></li>
 <li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-purrr-way"><i class="fa fa-check"></i><b>3.3</b> Mapping and Reducing: the <code>purrr</code> way</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="fprog.html"><a href="fprog.html#the-map-family-of-functions"><i class="fa fa-check"></i><b>3.3.1</b> The <code>map*()</code> family of functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -170,7 +175,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Functional programming and unit testing for data munging with R</h1>
 <h4 class="author"><em>Bruno Rodrigues</em></h4>
-<h4 class="date"><em>2016-11-11</em></h4>
+<h4 class="date"><em>2016-11-15</em></h4>
 </div>
 <div id="why-this-book" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Why this book?</h1>

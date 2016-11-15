@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-11">
+<meta name="date" content="2016-11-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,12 +120,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
 <li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#map-and-reduce"><i class="fa fa-check"></i><b>3.2</b> <code>Map()</code> and <code>Reduce()</code></a><ul>
-<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#map"><i class="fa fa-check"></i><b>3.2.1</b> <code>Map()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-base-way"><i class="fa fa-check"></i><b>3.2</b> Mapping and Reducing: the <em>base</em> way</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#mapping-with-map-and-the-apply-family-of-functions"><i class="fa fa-check"></i><b>3.2.1</b> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</a></li>
 <li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.3</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-purrr-way"><i class="fa fa-check"></i><b>3.3</b> Mapping and Reducing: the <code>purrr</code> way</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="fprog.html"><a href="fprog.html#the-map-family-of-functions"><i class="fa fa-check"></i><b>3.3.1</b> The <code>map*()</code> family of functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -266,11 +271,11 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <p>In conclusion: you should strive for referential transparency, try to avoid side effects unless you have a good reason to have them and try to keep your functions short and do as little tasks as possible. This makes testing and debugging easier, as you will see.</p>
 </div>
 </div>
-<div id="map-and-reduce" class="section level2">
-<h2><span class="header-section-number">3.2</span> <code>Map()</code> and <code>Reduce()</code></h2>
-<p>No introduction to functional programming would be complete without some discussion about the functions <code>Map()</code> and <code>Reduce()</code>. <code>Map()</code> allows you to map your function to every element of a list of arguments and is easy to understand, while <code>Reduce()</code> (sometimes called <code>fold()</code> in other programming languages) <em>reduces</em> a list of values to a single value by successively applying a function. It’s a bit harder to understand, but with some examples it will become clear soon enough.</p>
-<div id="map" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> <code>Map()</code></h3>
+<div id="mapping-and-reducing-the-base-way" class="section level2">
+<h2><span class="header-section-number">3.2</span> Mapping and Reducing: the <em>base</em> way</h2>
+<p>No introduction to functional programming would be complete without some discussion about the functions <code>Map()</code> (and the associated <code>*apply()</code> family of functions) and <code>Reduce()</code>. <code>Map()</code> allows you to map your function to every element of a list of arguments and is easy to understand, while <code>Reduce()</code> (sometimes called <code>fold()</code> in other programming languages) <em>reduces</em> a list of values to a single value by successively applying a function. It’s a bit harder to understand, but with some examples it will become clear soon enough. In this section we will focus on how to do things using <code>base</code> functions. In the next section we will take a look at the <code>purrr</code> package which extends R’s functional programming capabilities tremendously.</p>
+<div id="mapping-with-map-and-the-apply-family-of-functions" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</h3>
 <p>Now that we have our nice function that computes square roots using Newton’s algorithm, we would like to compute the square root of every element in the following list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">25</span>, <span class="dv">36</span>, <span class="dv">49</span>, <span class="dv">64</span>, <span class="dv">81</span>)
 
@@ -389,7 +394,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(numbers[<span class="dv">6</span>], inits[<span class="dv">6</span>])</code></pre></div>
 <pre><code>## [1] 9.000006</code></pre>
 <p>From the <code>Map()</code>’s documentation, we learn that:</p>
-<pre><code>`Map()` is wrapper to `mapply()` which does not attempt to simplify the result... </code></pre>
+<pre><code>`Map()` is wrapper to `mapply()` which does not attempt to simplify the result...</code></pre>
 <p>All this behaviour can be replicated using loops, but once you get the gist of these functions, you can write code that is shorter and easier to read and unlike in the case of recursion, without any loss in performance (but without any gains either).</p>
 </div>
 <div id="reduce" class="section level3">
@@ -417,8 +422,192 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <p>This is the end of the introduction to functional programming. Entire books have been written on the subject, such as the upcoming book by <span class="citation">Khan (<a href="#ref-khan2017">2017</a>)</span> or <span class="citation">Lipovaca (<a href="#ref-lipovaca2011">2011</a>)</span>. If you’re curious about functional programming, you should read these books. For our purposes though, knowing how to write functions, and trying to make them referentially transparent as well as knowing about <code>Map()</code> and <code>Reduce()</code> is enough to get us going.</p>
 </div>
 </div>
+<div id="mapping-and-reducing-the-purrr-way" class="section level2">
+<h2><span class="header-section-number">3.3</span> Mapping and Reducing: the <code>purrr</code> way</h2>
+<p>Hadley Wickham developed a package called <code>purrr</code> which contains a lot of very useful functions. I will show some of them, but will only scratch the surface. Take the time to read <code>purrr</code>’s documentation! You can read more about <code>purrr</code> in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span>.</p>
+<div id="the-map-family-of-functions" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> The <code>map*()</code> family of functions</h3>
+<p>In the previous section we saw how to map a function to each element of a list. Each version of an <code>*apply()</code> function has a different purpose, but it is not very easy to remember which one returns a list, which other one returns an atomic vector and so on. If you’re working on data frames you can use <code>apply()</code> to sum (for example) over columns or rows, because you can specify which <code>MARGIN</code> you want to sum over. But you do not get a data frame back. In the <code>purrr</code> package, each of the functions that do mapping have a similar name. The first part of these functions’ names all start with <code>map_</code> and the second part tells you what this function is going to output. For example, if you want <code>double</code>s out, you would use <code>map_dbl()</code>. If you are working on data frames want a data frame back, you would use <code>map_df()</code>. These are much more intuitive and easier to remember. There are also other interesting variants, such as <code>map_if()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;purrr&quot;</span>)
+a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
+
+is_multiple_of_two &lt;-<span class="st"> </span>function(x){
+    <span class="kw">ifelse</span>(x %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+}
+
+<span class="kw">map_if</span>(a, is_multiple_of_two, sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 1.414214
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 2
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 2.44949
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 2.828427
+## 
+## [[9]]
+## [1] 9
+## 
+## [[10]]
+## [1] 3.162278</code></pre>
+<p>What happened in this snippet of code? First I wrote a function that returns <code>TRUE</code> if a number is a multiple of 2, and <code>FALSE</code> otherwise. Then, I used <code>map_if()</code> to take the square root of only those numbers in vector <code>a</code> that are divisble by 2.</p>
+<p><code>map2()</code> is the equivalent of <code>mapply()</code> and <code>pmap()</code> is the generalisation of <code>map2()</code> for more than 2 arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map2</span>(numbers, inits, sqrt_newton)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 4.000284
+## 
+## [[2]]
+## [1] 5.000001
+## 
+## [[3]]
+## [1] 6.000003
+## 
+## [[4]]
+## [1] 7.000006
+## 
+## [[5]]
+## [1] 8.000129
+## 
+## [[6]]
+## [1] 9.000006</code></pre>
+</div>
+<div id="reducing-with-purrr" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Reducing with <code>purrr</code></h3>
+<p>In the <code>purrr</code> package, you can find two more functions for folding: <code>reduce()</code> and <code>reduce_right()</code>. The difference between <code>reduce()</code> and <code>reduce_right()</code> is pretty obvious: <code>reduce_right()</code> starts from the right!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)
+
+<span class="kw">reduce</span>(a, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## [1] -53</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">reduce_right</span>(a, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## [1] -35</code></pre>
+<p>For operations that are not commutative, this makes a difference. Other interesting folding functions are <code>accumulate()</code> and <code>accumulate_right()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)
+
+<span class="kw">accumulate</span>(a, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>)</code></pre></div>
+<pre><code>##  [1]   1  -1  -4  -8 -13 -19 -26 -34 -43 -53</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">accumulate_right</span>(a, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>)</code></pre></div>
+<pre><code>##  [1] -35 -34 -32 -29 -25 -20 -14  -7   1  10</code></pre>
+<p>These two functions keep the intermediary results.</p>
+</div>
+<div id="other-useful-functions-from-purrr" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Other useful functions from <code>purrr</code></h3>
+<p>There are a lot of other useful functions in <code>purrr</code>. For example <code>safely()</code> and <code>possibly()</code> are great:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+
+<span class="kw">sqrt</span>(a)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">sqrt</span>(a) :<span class="st"> </span>non-numeric argument to mathematical function</code></pre></div>
+<p>Using <code>map()</code> or <code>Map()</code> will result in a similar error. However, using <code>safely()</code> will work for the numbers contained in <code>a</code> and show an error for the first element of <code>a</code> which is a character:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+
+safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
+
+<span class="kw">map</span>(a, safe_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [[1]]$result
+## NULL
+## 
+## [[1]]$error
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 2
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 2.236068
+## 
+## [[3]]$error
+## NULL</code></pre>
+<p>And <code>possibly()</code> allows you to specify a return value in case of an error:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">possible_sqrt &lt;-<span class="st"> </span><span class="kw">possibly</span>(sqrt, <span class="dt">otherwise =</span> <span class="ot">NA_real_</span>)
+
+<span class="kw">map</span>(a, possible_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 2.236068</code></pre>
+<p>Of course, in this particular example, the same effect could be obtained way more easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">as.numeric</span>(a))</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1]       NA 2.000000 2.236068</code></pre>
+<p>However, in some situations, this trick does not work as intended (or at all), so <code>possibly()</code> and <code>safely()</code> are the way to go.</p>
+<p>Another interesting function is <code>transpose()</code>. It is not an alternative to the function <code>t()</code> from <code>base</code> but, has a similar effect. <code>transpose()</code> works on lists. Let’s take a look at the example from before:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt, <span class="dt">otherwise =</span> <span class="ot">NA_real_</span>)
+
+<span class="kw">map</span>(a, safe_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [[1]]$result
+## [1] NA
+## 
+## [[1]]$error
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 2
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 2.236068
+## 
+## [[3]]$error
+## NULL</code></pre>
+<p>The output is a list with the first element being a list with a result and an error message. One might want to have all the results in a single list, and all the error messages in another list. This is safe with transpose:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">transpose</span>(<span class="kw">map</span>(a, safe_sqrt))</code></pre></div>
+<pre><code>## $result
+## $result[[1]]
+## [1] NA
+## 
+## $result[[2]]
+## [1] 2
+## 
+## $result[[3]]
+## [1] 2.236068
+## 
+## 
+## $error
+## $error[[1]]
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## $error[[2]]
+## NULL
+## 
+## $error[[3]]
+## NULL</code></pre>
+</div>
+</div>
 <div id="wrap-up" class="section level2">
-<h2><span class="header-section-number">3.3</span> Wrap-up</h2>
+<h2><span class="header-section-number">3.4</span> Wrap-up</h2>
 <ul>
 <li>Make your functions referentially transparent.</li>
 <li>Avoid side effects (if possible).</li>
@@ -427,7 +616,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 </ul>
 </div>
 <div id="exercises" class="section level2">
-<h2><span class="header-section-number">3.4</span> Exercises</h2>
+<h2><span class="header-section-number">3.5</span> Exercises</h2>
 <p>For the following exercises, you will have to use any of the functions that we saw in this chapter. <code>Reduce()</code>, <code>Map()</code> or any function from the <code>*apply()</code> family of functions. Do not use loops! If you don’t know how to solve these exercises wait for the next section, where we’ll learn how to write unit tests. Writing unit tests before the functions they’re supposed to test is called test-driven development and can help you write your functions.</p>
 <ol style="list-style-type: decimal">
 <li>Create a function that returns the factorial of a number using <code>Reduce()</code>. Remember: no recursion nor loops allowed!</li>
@@ -460,6 +649,9 @@ remove_csv(dataset_names)
 </div>
 <div id="ref-lipovaca2011">
 <p>Lipovaca, Miran. 2011. <em>Learn You a Haskell for Great Good!: A Beginner’s Guide</em>. no starch press. <a href="http://learnyouahaskell.com/" class="uri">http://learnyouahaskell.com/</a>.</p>
+</div>
+<div id="ref-wickham2016">
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science</em>. 1st ed. O’Reilly. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
 <div class="footnotes">
