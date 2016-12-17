@@ -609,7 +609,7 @@ safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
 </div>
 <div id="anonymous-functions" class="section level2">
 <h2><span class="header-section-number">3.4</span> Anonymous functions</h2>
-<p>One last very useful concept are anonymous functions. Suppose that you want to apply one of your own functions to a list of datasets. For instance, you want to have a histogram a variable that is called the same accross a list of datasets. Maybe your datasets are yearly surveys and each year the survey was conducted is another <code>.csv</code> file. For illustration purposes, let us the <code>mtcars</code> dataset with some minor changes:</p>
+<p>One last very useful concept are anonymous functions. Suppose that you want to apply one of your own functions to a list of datasets. For instance, you want to have a histogram of a variable that is called the same accross a list of datasets. Maybe your datasets are yearly surveys and each year the survey was conducted is another <code>.csv</code> file. For illustration purposes, let us use the <code>mtcars</code> dataset with some minor changes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
 
 mtcars2000 &lt;-<span class="st"> </span>mtcars
@@ -617,15 +617,15 @@ mtcars2001 &lt;-<span class="st"> </span>mtcars
 mtcars2001$cyl &lt;-<span class="st"> </span>mtcars2001$cyl<span class="dv">+3</span>
 datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;mtcars2000&quot;</span> =<span class="st"> </span>mtcars2000,
 <span class="st">&quot;mtcars2001&quot;</span> =<span class="st"> </span>mtcars2001)</code></pre></div>
-<p>In the next chapters we will learn how to load a lot of datasets at once and store them in a list. So it is important to know how to work with datasets that are stored on lists. Now suppose you want to use <code>map()</code> to plot a histogram of variable <code>cyl</code> for each dataset that is contained in your list.</p>
+<p>In the next chapters we will learn how to load a lot of datasets at once and store them in a list. So it is important to know how to work with datasets that are stored on lists. Now suppose you want to use <code>purrr::map()</code> to plot a histogram of variable <code>cyl</code> for each dataset that is contained in your list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, hist, cyl)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist.default</span>(.x[[i]], ...) :<span class="st"> &#39;x&#39;</span> must be numeric</code></pre></div>
 <p>Maybe try this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, <span class="kw">hist</span>(cyl))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist</span>(cyl) :<span class="st"> </span>object <span class="st">&#39;cyl&#39;</span> not found</code></pre></div>
-<p>So how can we solve this issue? One way is to use an anonymous function. Anonymous functions are functions that get declared on the fly and do not have names. These are especially useful inside higher order functions such as <code>map()</code>:</p>
+<p>So how can we solve this issue? One way is to use an anonymous function. Anonymous functions are functions that get declared on the fly and do not have names. These are especially useful inside higher order functions such as <code>purrr::map()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, (function(x) <span class="kw">hist</span>(x$cyl)))</code></pre></div>
-<p><img src="fp_tdd_data_files/figure-html/unnamed-chunk-41-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/unnamed-chunk-41-2.png" width="672" /></p>
+<p><img src="fp_tdd_data_files/figure-html/histograms_of_cyl-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/histograms_of_cyl-2.png" width="672" /></p>
 <pre><code>## $mtcars2000
 ## $breaks
 ## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
@@ -669,12 +669,13 @@ datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class=
 ## 
 ## attr(,&quot;class&quot;)
 ## [1] &quot;histogram&quot;</code></pre>
-<p>Or we can do this:</p>
+<p>Here the function is enclosed between <code>()</code> and is not named. The function has a single argument <code>x</code>, which is supposed to be a dataset. We then plot a histogram of the variable <code>cyl</code> from this dataset. Then this function is mapped to every dataset contained in the list <code>datasets</code> that we created above.</p>
+<p>We can also write anonymous functions that are more complex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map2</span>(
 <span class="dt">.x =</span> datasets, <span class="dt">.y =</span> <span class="kw">names</span>(datasets),
 (function(.x, .y) <span class="kw">hist</span>(.x$cyl, <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Histogram of cyl in&quot;</span>, .y)))
 )</code></pre></div>
-<p><img src="fp_tdd_data_files/figure-html/unnamed-chunk-42-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/unnamed-chunk-42-2.png" width="672" /></p>
+<p><img src="fp_tdd_data_files/figure-html/histograms_of_cyl2-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/histograms_of_cyl2-2.png" width="672" /></p>
 <pre><code>## $mtcars2000
 ## $breaks
 ## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
