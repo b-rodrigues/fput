@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/functional_programming_and_unit_testing_for_data_munging" />
+  <meta name="github-repo" content="b-rodrigues/fput" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-15">
+<meta name="date" content="2016-12-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,8 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
 <li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -178,18 +179,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.1</span> Getting R</h2>
 <p>Since I’m assuming you have an intermediate level in R, you already should have R and Rstudio installed on your machine. However, you may lack some of the following packages that are needed to follow the examples in this book:</p>
 <ul>
-<li>covr</li>
-<li>dplyr</li>
-<li>lazyeval</li>
-<li>lubridate</li>
-<li>memoise</li>
-<li>purrr</li>
-<li>readr</li>
-<li>roxygen2</li>
-<li>stringr</li>
-<li>testthat</li>
-<li>tibble</li>
-<li>tidyr</li>
+<li>covr: to check the coverage of your unit tests</li>
+<li>dplyr: to clean, transform, prepare data</li>
+<li>lazyeval: for lazy evaluation</li>
+<li>lubridate: makes working with dates easier</li>
+<li>memoise: makes your function remember intermediate results</li>
+<li>purrr: extends R’s functional programming capabilities</li>
+<li>readr: provides alternative functions to <code>read.csv()</code> and such</li>
+<li>roxygen2: creates documentation files from comments</li>
+<li>stringr: makes working with characters easier</li>
+<li>testthat: the library we are going to use for unit testing</li>
+<li>tibble: provides a nice, cleaner alternative to <code>data.frame</code></li>
+<li>tidyr: works hand in hand with <code>dplyr</code></li>
 </ul>
 <p>If you’re missing some or all of these packages, install them. You’ll notice that most, if not all, of these packages were authored or co-authored by Hadley Wickham, currently chief scientist at Rstudio, so you can install most of these packages by installing a single package called <code>tidyverse</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
@@ -202,7 +203,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In computer science, functional programming is a programming paradigm —a style of building the structure and elements of computer programs— that treats computation as the evaluation of mathematical functions and avoids changing state and mutable data. It is a declarative programming paradigm, which means programming is done with expressions or declarations instead of statements. In functional code, the output value of a function depends only on the arguments that are input to the function, so calling a function f twice with the same value for an argument x will produce the same result f(x) each time. Eliminating side effects, i.e. changes in state that do not depend on the function inputs, can make it much easier to understand and predict the behavior of a program, which is one of the key motivations for the development of functional programming.</p>
 </blockquote>
 <p>That’s the first paragraph of the <a href="https://en.wikipedia.org/wiki/Functional_programming">Wikipedia page</a> and it’s quite heavy already!</p>
-<p>So let’s try to decrypt what is said in this paragraph. Functional programming is a programming paradigm. You may have heard of object oriented programming, or imperative programming before. You actually probably program in an imperative way without knowing it. Imperative programming is usually how programming is taught at universities, and most people then keep on programming in this way. Usually, people that write code in an imperative way tend to write very long scripts that change the state of the program gradually. In the case of a statistician (I will use the word ‘statistician’ to mean any person that works with datasets. Be it an economist, biologist, data scientist, etc.) this usually means loading a dataset, doing whatever you have to do by writing each step on a file, then running everything. Sometimes you have to save temporary datasets, and then write other scripts that do a series of computations on these temporary datasets and then not forget to delete said temporary datasets. Functional programming is different, in that you write functions that do one single task and then call these functions successively on your data set. These functions can be used for any other project, can be documented and tested. It is also easier to automate tasks and navigate through the code. Since one function does one single task, if you’re looking for the line of code that creates variable <code>X</code>, just look in the function called <code>create_var_X()</code>, instead of scrolling aimlessly through a 1000 lines long script. You can also be sure that your functions do not do anything else (basically, this is what is meant by “eliminating side effects”) than the single task you gave them. You can <em>trust your functions</em>.</p>
+<p>So let’s try to decrypt what is said in this paragraph. Functional programming is a programming paradigm. You may have heard of object oriented programming, or imperative programming before. You actually probably program in an imperative way without knowing it. Imperative programming is usually how programming is taught at universities, and most people then keep on programming in this way, especially in applied sciences like applied econometrics. Usually, people that write code in an imperative way tend to write very long scripts that change the state of the program gradually. In the case of a statistician (I will use the word ‘statistician’ to mean any person that works with datasets. Be it an economist, biologist, data scientist, etc.) this usually means loading a dataset, doing whatever has to be done by writing each instruction in a file, then running everything. Sometimes this statistician has to save temporary datasets, and then write other scripts that do a series of computations on these temporary datasets and then not forget to delete said temporary datasets. Functional programming is different, in that you write functions that do one single task and then call these functions successively on your data set. These functions can be used for any other project, can be easily documented and tested (more on this below). Because each function performs a single task and is well documented, it is also easier to understand what the program is supposed to do. Comments in a thousand-lines file are actually not that much useful. The file is so long, that even when commented you simply cannot make any sense of what is going on. It is also easier to automate tasks and navigate through the code. Since one function does one single task, if you’re looking for the line of code that creates variable <code>X</code>, just look in the function called <code>create_var_X()</code>, instead of <code>CTRL-F</code>ing around. 1000 lines long script. You can also be sure that your functions do not do anything else (basically, this is what is meant by “eliminating side effects”) than the single task you gave them. You can <em>trust your functions</em>.</p>
 </div>
 <div id="unit_overview" class="section level2">
 <h2><span class="header-section-number">2.3</span> A short overview of unit testing</h2>

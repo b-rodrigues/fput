@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/functional_programming_and_unit_testing_for_data_munging" />
+  <meta name="github-repo" content="b-rodrigues/fput" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-15">
+<meta name="date" content="2016-12-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,8 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
 <li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -186,7 +187,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
 <p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
-<p><img src="assets/package_structure.png" /><!-- --></p>
+<p><img src="assets/package_structure.png" alt="" /><!-- --></p>
 <p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
     <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
@@ -236,7 +237,7 @@ sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps
 <p>in the command prompt. Try it, you should see the following in the command prompt:</p>
 <pre><code>Writing sqrt_newton.Rd</code></pre>
 <p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
-<p><img src="assets/sqrt_newton_help.png" /><!-- --></p>
+<p><img src="assets/sqrt_newton_help.png" alt="" /><!-- --></p>
 <p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package::my_function</code></pre></div>
 <p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users.</p>
@@ -322,13 +323,13 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
 <span class="kw">shine</span>(cov)</code></pre></div>
 <p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
-<p><img src="assets/covr_MyFirstPackage.png" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage.png" alt="" /><!-- --></p>
 <p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package! Add the following test to <code>test_sqrt_newton.R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test maximum number of iterations&quot;</span>,{
     <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(<span class="dv">10</span>, <span class="fl">1E10</span>, <span class="dt">eps=</span><span class="fl">1E-10</span>, <span class="dv">5</span>))
 })</code></pre></div>
 <p>Now if you look at the coverage of the package:</p>
-<p><img src="assets/covr_MyFirstPackage100percent.png" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage100percent.png" alt="" /><!-- --></p>
 <p>In this example, we used <code>package_coverage()</code>, but if you are interested in the coverage of a single function you can use <code>function_coverage()</code>, or even <code>file_coverage()</code> to get the coverage of a single file. However, I suggest to always run <code>package_coverage()</code> since we are working inside a package. There are other functions in the <code>covr</code> package that might be useful depending on your needs, so do not hesitate to explore <code>covr</code> documentation!</p>
 </div>
 <div id="wrap-up-2" class="section level2">

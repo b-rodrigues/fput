@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/functional_programming_and_unit_testing_for_data_munging" />
+  <meta name="github-repo" content="b-rodrigues/fput" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-15">
+<meta name="date" content="2016-12-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,8 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
 <li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -191,7 +192,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>data2003.csv</code></li>
 <li><code>data2004.csv</code></li>
 </ul>
-<p>The first step, of course, is to load these datasets into R. For 5 datasets, I suppos that you would simply write the following into Rstudio:</p>
+<p>The first step, of course, is to load these datasets into R. For 5 datasets, I assume that you would simply write the following into Rstudio:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2000.csv&quot;</span>, <span class="dt">header =</span> T)
 data2001 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2001.csv&quot;</span>, <span class="dt">header =</span> T)
 data2002 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2002.csv&quot;</span>, <span class="dt">header =</span> T)
@@ -201,7 +202,7 @@ data2004 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cl
 </div>
 <div id="your-first-data-munging-package-preparemydata" class="section level2">
 <h2><span class="header-section-number">6.2</span> Your first data munging package: <code>prepareMyData</code></h2>
-<p>Using Rstudio, create a new project like shown in the previous chapter, and select <em>R package</em>. Give it a name, for example <code>prepareMyData</code>. If you are working with datasets that have a name, for example the <em>Penn World Tables</em>, you could call your package <code>preparePWT</code>, or something similar. The first function I will show you is actually very general and could work with any datasets. This means that I created a package called <code>brunoUtils</code> (very inspired, I know) that contains all the little functions that I use daily. But for illustration purposes, we will put this function inside <code>prepareMyData</code>, even if it does not have anything directly to do with it. I have called this function <code>read_list()</code> and here is the source code:</p>
+<p>Using Rstudio, create a new project like shown in the previous chapter, and select <em>R package</em>. Give it a name, for example <code>prepareMyData</code>. If you are working with datasets that have a name, for example the <em>Penn World Tables</em>, you could call your package <code>preparePWT</code>, or something similar. The first function I will show you is actually very general and could work with any datasets. This means that I created a package called <code>broTools</code><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> that contains all the little functions that I use daily. But for illustration purposes, we will put this function inside <code>prepareMyData</code>, even if it does not have anything directly to do with it. I have called this function <code>read_list()</code> and here is the source code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Reads a list of datasets</span>
 <span class="co">#&#39; @param list_of_datasets A list of datasets (names of datasets are strings)</span>
 <span class="co">#&#39; @param read_func A function, the read function to use to read the data</span>
@@ -231,9 +232,79 @@ read_list &lt;-<span class="st"> </span>function(list_of_datasets, read_func, ..
     <span class="kw">names</span>(output) &lt;-<span class="st"> </span>names_of_datasets
     <span class="kw">return</span>(output)
 }</code></pre></div>
-<p>The basic idea of <code>read_list()</code> is that it takes a list of datasets as the first argument, then a functon to read in the datasets as a second argument and as a third argument the famous <code>...</code>, which allows the user to specify further options to other functions that are contained in the body of the function. In this case, further arguments are passed to the <code>read_func</code> function, for example if your data does not contains headers, you could pass the option <code>header = FALSE</code> to <code>read_list()</code> which would then get passed to <code>read_func</code>.</p>
+<p>The basic idea of <code>read_list()</code> is that it takes a list of datasets as the first argument, then a functon to read in the datasets as a second argument and as a third argument the famous <code>...</code>, which allows the user to specify further options to other functions that are contained in the body of the main function. In this case, further arguments are passed to the <code>read_func</code> function, for example if your data does not contains headers, you could pass the option <code>header = FALSE</code> to <code>read_list()</code> which would then get passed to <code>read_func</code>. Let us this function to read in the data sets:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;purrr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tibble&quot;</span>)
+list_of_data &lt;-<span class="st"> </span><span class="kw">Sys.glob</span>(<span class="st">&quot;assets/*.csv&quot;</span>)
+
+datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of_data, read_csv, <span class="dt">col_type =</span> <span class="kw">cols</span>())
+
+<span class="kw">map</span>(datasets, head)</code></pre></div>
+<pre><code>## $`assets/data2000`
+## # A tibble: 6 × 7
+##      id year2000 variable1 other2000 gender2000 eggs2000
+##   &lt;int&gt;    &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;
+## 1     1     2000        32         3          F       80
+## 2     2     2000        28         2          F       20
+## 3     3     2000        36         4          M       58
+## 4     4     2000        28         1          F       30
+## 5     5     2000        34         3          F       14
+## 6     6     2000        30         3          F       40
+## # ... with 1 more variables: spam2000 &lt;chr&gt;
+## 
+## $`assets/data2001`
+## # A tibble: 6 × 7
+##      id year2001 variable1 other2001 gender2001 eggs2001   spam2001
+##   &lt;int&gt;    &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1     1     2001        32         3          F       80 -1.5035369
+## 2     2     2001        28         2          F       20 -0.1836726
+## 3     3     2001        36         4          M       58 -0.6851989
+## 4     4     2001        28         1          F       30  1.9900760
+## 5     5     2001        34         3          F       14  0.4324725
+## 6     6     2001        30         3          F       40 -0.7900185
+## 
+## $`assets/data2002`
+## # A tibble: 6 × 7
+##      id year2002 variable1 other2002 gender2002 eggs2002   spam2002
+##   &lt;int&gt;    &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1     1     2002        32         3          F       80 -1.5035369
+## 2     2     2002        28         2          F       20 -0.1836726
+## 3     3     2002        36         4          M       58 -0.6851989
+## 4     4     2002        28         1          F       30  1.9900760
+## 5     5     2002        34         3          F       14  0.4324725
+## 6     6     2002        30         3          F       40 -0.7900185
+## 
+## $`assets/data2003`
+## # A tibble: 6 × 7
+##      id year2003 variable1 other2003 gender2003 eggs2003   spam2003
+##   &lt;int&gt;    &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1     1     2003        32         3          F       80 -1.5035369
+## 2     2     2003        28         2          F       20 -0.1836726
+## 3     3     2003        36         4          M       58 -0.6851989
+## 4     4     2003        28         1          F       30  1.9900760
+## 5     5     2003        34         3          F       14  0.4324725
+## 6     6     2003        30         3          F       40 -0.7900185
+## 
+## $`assets/data2004`
+## # A tibble: 6 × 7
+##      id year2004 variable1 other2004 gender2004 eggs2004   spam2004
+##   &lt;int&gt;    &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1     1     2004        32         3          F       80 -1.5035369
+## 2     2     2004        28         2          F       20 -0.1836726
+## 3     3     2004        36         4          M       58 -0.6851989
+## 4     4     2004        28         1          F       30  1.9900760
+## 5     5     2004        34         3          F       14  0.4324725
+## 6     6     2004        30         3          F       40 -0.7900185</code></pre>
+<p>The data sets get read into a list called <code>list_of_data</code>. Let’s take a look inside this list using <code>head()</code>. Since <code>head()</code> only works on data frames or tibbles, we use <code>map()</code> to apply <code>head()</code> to each data frame on the list.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>It stands for <code>Bruno Rodrigues' Tools</code>. I’m still working on releasing the package on Github, and maybe CRAN.<a href="putting-it-all-together-writing-a-package-to-work-on-data.html#fnref3">↩</a></p></li>
+</ol>
 </div>
             </section>
 

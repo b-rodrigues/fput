@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/functional_programming_and_unit_testing_for_data_munging" />
+  <meta name="github-repo" content="b-rodrigues/fput" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-15">
+<meta name="date" content="2016-12-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,8 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
 <li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -606,8 +607,121 @@ safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
 ## NULL</code></pre>
 </div>
 </div>
+<div id="anonymous-functions" class="section level2">
+<h2><span class="header-section-number">3.4</span> Anonymous functions</h2>
+<p>One last very useful concept are anonymous functions. Suppose that you want to apply one of your own functions to a list of datasets. For instance, you want to have a histogram a variable that is called the same accross a list of datasets. Maybe your datasets are yearly surveys and each year the survey was conducted is another <code>.csv</code> file. For illustration purposes, let us the <code>mtcars</code> dataset with some minor changes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
+
+mtcars2000 &lt;-<span class="st"> </span>mtcars
+mtcars2001 &lt;-<span class="st"> </span>mtcars
+mtcars2001$cyl &lt;-<span class="st"> </span>mtcars2001$cyl<span class="dv">+3</span>
+datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;mtcars2000&quot;</span> =<span class="st"> </span>mtcars2000,
+<span class="st">&quot;mtcars2001&quot;</span> =<span class="st"> </span>mtcars2001)</code></pre></div>
+<p>In the next chapters we will learn how to load a lot of datasets at once and store them in a list. So it is important to know how to work with datasets that are stored on lists. Now suppose you want to use <code>map()</code> to plot a histogram of variable <code>cyl</code> for each dataset that is contained in your list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, hist, cyl)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist.default</span>(.x[[i]], ...) :<span class="st"> &#39;x&#39;</span> must be numeric</code></pre></div>
+<p>Maybe try this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, <span class="kw">hist</span>(cyl))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist</span>(cyl) :<span class="st"> </span>object <span class="st">&#39;cyl&#39;</span> not found</code></pre></div>
+<p>So how can we solve this issue? One way is to use an anonymous function. Anonymous functions are functions that get declared on the fly and do not have names. These are especially useful inside higher order functions such as <code>map()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, (function(x) <span class="kw">hist</span>(x$cyl)))</code></pre></div>
+<p><img src="fp_tdd_data_files/figure-html/unnamed-chunk-41-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/unnamed-chunk-41-2.png" width="672" /></p>
+<pre><code>## $mtcars2000
+## $breaks
+## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
+## 
+## $counts
+## [1] 11  0  0  7  0  0  0 14
+## 
+## $density
+## [1] 0.6875 0.0000 0.0000 0.4375 0.0000 0.0000 0.0000 0.8750
+## 
+## $mids
+## [1] 4.25 4.75 5.25 5.75 6.25 6.75 7.25 7.75
+## 
+## $xname
+## [1] &quot;x$cyl&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;
+## 
+## $mtcars2001
+## $breaks
+## [1]  7.0  7.5  8.0  8.5  9.0  9.5 10.0 10.5 11.0
+## 
+## $counts
+## [1] 11  0  0  7  0  0  0 14
+## 
+## $density
+## [1] 0.6875 0.0000 0.0000 0.4375 0.0000 0.0000 0.0000 0.8750
+## 
+## $mids
+## [1]  7.25  7.75  8.25  8.75  9.25  9.75 10.25 10.75
+## 
+## $xname
+## [1] &quot;x$cyl&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;</code></pre>
+<p>Or we can do this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map2</span>(
+<span class="dt">.x =</span> datasets, <span class="dt">.y =</span> <span class="kw">names</span>(datasets),
+(function(.x, .y) <span class="kw">hist</span>(.x$cyl, <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Histogram of cyl in&quot;</span>, .y)))
+)</code></pre></div>
+<p><img src="fp_tdd_data_files/figure-html/unnamed-chunk-42-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/unnamed-chunk-42-2.png" width="672" /></p>
+<pre><code>## $mtcars2000
+## $breaks
+## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
+## 
+## $counts
+## [1] 11  0  0  7  0  0  0 14
+## 
+## $density
+## [1] 0.6875 0.0000 0.0000 0.4375 0.0000 0.0000 0.0000 0.8750
+## 
+## $mids
+## [1] 4.25 4.75 5.25 5.75 6.25 6.75 7.25 7.75
+## 
+## $xname
+## [1] &quot;.x$cyl&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;
+## 
+## $mtcars2001
+## $breaks
+## [1]  7.0  7.5  8.0  8.5  9.0  9.5 10.0 10.5 11.0
+## 
+## $counts
+## [1] 11  0  0  7  0  0  0 14
+## 
+## $density
+## [1] 0.6875 0.0000 0.0000 0.4375 0.0000 0.0000 0.0000 0.8750
+## 
+## $mids
+## [1]  7.25  7.75  8.25  8.75  9.25  9.75 10.25 10.75
+## 
+## $xname
+## [1] &quot;.x$cyl&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;</code></pre>
+<p>Of course you could have defined the anonymous function as a regular function before using <code>map()</code>. But sometimes it is faster to simply use an anonymous function as long as it does not hurt clarity.</p>
+</div>
 <div id="wrap-up" class="section level2">
-<h2><span class="header-section-number">3.4</span> Wrap-up</h2>
+<h2><span class="header-section-number">3.5</span> Wrap-up</h2>
 <ul>
 <li>Make your functions referentially transparent.</li>
 <li>Avoid side effects (if possible).</li>
@@ -616,7 +730,7 @@ safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
 </ul>
 </div>
 <div id="exercises" class="section level2">
-<h2><span class="header-section-number">3.5</span> Exercises</h2>
+<h2><span class="header-section-number">3.6</span> Exercises</h2>
 <p>For the following exercises, you will have to use any of the functions that we saw in this chapter. <code>Reduce()</code>, <code>Map()</code> or any function from the <code>*apply()</code> family of functions. Do not use loops! If you don’t know how to solve these exercises wait for the next section, where we’ll learn how to write unit tests. Writing unit tests before the functions they’re supposed to test is called test-driven development and can help you write your functions.</p>
 <ol style="list-style-type: decimal">
 <li>Create a function that returns the factorial of a number using <code>Reduce()</code>. Remember: no recursion nor loops allowed!</li>

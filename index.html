@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning" />
-  <meta name="github-repo" content="b-rodrigues/functional_programming_and_unit_testing_for_data_munging" />
+  <meta name="github-repo" content="b-rodrigues/fput" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Functional programming and unit testing for data munging with R" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-11-15">
+<meta name="date" content="2016-12-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,8 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
 <li class="chapter" data-level="3.3.3" data-path="fprog.html"><a href="fprog.html#other-useful-functions-from-purrr"><i class="fa fa-check"></i><b>3.3.3</b> Other useful functions from <code>purrr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
 <li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -175,17 +176,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Functional programming and unit testing for data munging with R</h1>
 <h4 class="author"><em>Bruno Rodrigues</em></h4>
-<h4 class="date"><em>2016-11-15</em></h4>
+<h4 class="date"><em>2016-12-17</em></h4>
 </div>
 <div id="why-this-book" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Why this book?</h1>
-<p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R.</p>
-<p>If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
+<p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R. If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a>)</span>, <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> and <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
 <p>This book is not an introduction to R either. I will assume that you have intermediate knowledge of R.</p>
 <div id="motivation" class="section level2">
 <h2><span class="header-section-number">1.1</span> Motivation</h2>
 <p>Functional programming has very nice features that make working on data sets much more pleasant. It is common that you have to repeat the same instructions over and over again for different data sets that look very similar (for example, same, or similar column names). Of course, it is possible to loop over these data sets and repeat a set of instructions that change these data sets. However, we will see why a functional programming approach is to be preferred.</p>
-<p>Unit testing then allows you to make sure that the functions you want to apply to your data sets actually do what you really want them to do. Knowing and applying these two concepts together will make you hopefully a better data analyst.</p>
+<p>Unit testing then allows you to make sure that the functions you want to apply to your data sets actually do what you really want them to do. Knowing and applying these two concepts together will make you hopefully a better data analyst. Then we will learn to develop our own packages; not with the goal of publishing them in CRAN, but with the goal of making programming more streamlined.</p>
 </div>
 <div id="who-am-i" class="section level2">
 <h2><span class="header-section-number">1.2</span> Who am I?</h2>
@@ -210,6 +210,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="ref-wickham2015">
 <p>Wickham, Hadley. 2015. <em>R Packages</em>. 1st ed. O’Reilly. <a href="http://r-pkgs.had.co.nz/" class="uri">http://r-pkgs.had.co.nz/</a>.</p>
+</div>
+<div id="ref-wickham2016">
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science</em>. 1st ed. O’Reilly. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
             </section>
