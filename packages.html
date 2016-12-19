@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-12-17">
+<meta name="date" content="2016-12-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -150,7 +150,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
 <li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
-<li class="chapter" data-level="6.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparemydata"><i class="fa fa-check"></i><b>6.2</b> Your first data munging package: <code>prepareMyData</code></a></li>
+<li class="chapter" data-level="6.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>6.2</b> Your first data munging package: <code>prepareData</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>6.2.1</b> Reading a lot of datasets at once</a></li>
+<li class="chapter" data-level="6.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>6.2.2</b> Treating the columns of your datasets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -181,7 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>So why the heck should you write your own packages? After all, with 8922 packages you’re sure to find something that suits your needs, right? No. Simply because the data sets that you’re working with are probably unique to your workplace or maybe what you want to do with them is unique to your needs. You won’t find a package that will take care of cleaning <em>your</em> data for you.</p>
 <p>Ok, but is it necessary to write a package? Why not just write functions inside some scripts and then simply run these scripts? This seems like a valid solution at first. However, it quickly becomes tedious, especially if you have multiple scripts scattered around your computer or inside different subfolders. You’ll also have to write the documentation on separate files and these can easily get lost or become outdated.</p>
 <p>Having everything inside a package takes care of these headaches for you. And code that is inside packages is very easy to test, especially if you’re using Rstudio. It also makes it possible to use the wonderful <code>covr</code> package, which tells you which lines in which functions are called by your tests. If some lines are missing, write tests that invoke them and increase the coverage of your tests!</p>
-<p>As I mentioned in the introduction, if you want to learn much more than I’ll show about packages read <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a>)</span>. I will only show you the basics, but it should be enough to get you productive.</p>
+<p>As I mentioned in the introduction, if you want to learn much more than I’ll show about packages read <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a><a href="#ref-wickham2014">a</a>)</span>. I will only show you the basics, but it should be enough to get you productive.</p>
 <p>One last thing: if you don’t know git, you really should learn git. I won’t talk about it here, because there’s a ton of books on git, such as <span class="citation">Silverman (<a href="#ref-silverman2013git">2013</a>)</span>. I learned by reading it and googling whenever I had a problem. Learning git is really worth it, especially if you’re collaborating with some colleagues on your packages.</p>
 </div>
 <div id="r-packages-the-basics" class="section level2">
@@ -244,7 +247,7 @@ sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps
 </div>
 <div id="unit-test-your-package" class="section level2">
 <h2><span class="header-section-number">5.4</span> Unit test your package</h2>
-<p>Now that we know the basics of creating a package, we move on to unit testing your package. Unit testing is very useful, but require some work, especially because you have to run them often to make them truly worth your time. However running them often can be painful because you have to be careful with the current working directory. The simplest way to do unit testing is to put your functions inside a package and write unit tests for these functions and use Rstudio’s keyboard shortcuts to run your tests. First of all, create a folder called <code>inst</code> in the root of your package and inside this <code>inst</code> folder create another folder, called <code>tests</code>. The <code>tests</code> folder will hold your unit tests and everything that is inside the <code>inst</code> folder gets installed along with the package, so the unit tests are also available to the users, along the source code of the package. Inside the <code>tests</code> folder, create a script called <code>test_sqrt_newton.R</code> and put the following code in it:</p>
+<p>Now that we know the basics of creating a package, we move on to unit testing your package. Unit testing is very useful, but require some work, especially because you have to run them often to make them truly worth your time. However running them often can be painful because you have to be careful with the current working directory. The simplest way to do unit testing is to put your functions inside a package and write unit tests for these functions and use Rstudio’s keyboard shortcuts to run your tests. First of all, create a folder called <code>tests</code> in the root of your package and inside this <code>tests</code> folder create another folder, called <code>testthat</code>. The <code>testthat</code> folder will hold your unit tests. Inside the <code>tests</code> folder, create a script called <code>test_sqrt_newton.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;myFirstPackage&quot;</span>)
 
@@ -347,7 +350,7 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-wickham2014">
-<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
+<p>Wickham, Hadley. 2014a. <em>Advanced R</em>. CRC Press.</p>
 </div>
 <div id="ref-silverman2013git">
 <p>Silverman, Richard E. 2013. <em>Git Pocket Guide</em>. “ O’Reilly Media, Inc.”</p>
