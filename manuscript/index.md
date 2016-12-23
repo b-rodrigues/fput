@@ -52,7 +52,7 @@ guidelines will forever remain etched in my brain.
 
 Finally I have to thank my wife for putting up with my endless rants
 against people not using functional programming nor testing their code
-(or worse, using proprietary software\!).
+(or worse, using proprietary software!).
 
 ## 1.4 License
 
