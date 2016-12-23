@@ -32,27 +32,21 @@ making programming more streamlined.
 ## 1.2 Who am I?
 
 I use R daily at my current job, and discovered R some years ago while I
-was at the [University of
-Strasbourg](http://www.unistra.fr/index.php?id=accueil). I’m not an R
-developer, and don’t have a CS background. Most, if not everything, that
+was at the [University of Strasbourg](http://www.unistra.fr/index.php?id=accueil).
+I’m not an R developer, and don’t have a CS background. Most, if not everything, that
 I know about R is self-taught. I hope however that you will find this
-book useful. You can [follow me on
-twitter](https://twitter.com/brodriguesco) or check [my
-blog](http://brodrigues.co).
+book useful. You can [follow me on twitter](https://twitter.com/brodriguesco) or
+check [my blog](http://brodrigues.co).
 
 ## 1.3 Thanks
 
 I’d like to thank [Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/)
-and [Robert
-Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
-for developing the R programming language. Many thanks to [Hadley
-Wickham](http://hadley.nz/) for all the wonderful packages he developed
-that make R much more pleasant to use. Thanks to [Yihui
-Yie](http://yihui.name/) for `bookdown` without which this book would
+and [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
+for developing the R programming language. Many thanks to [Hadley Wickham](http://hadley.nz/) for all the wonderful packages he developed
+that make R much more pleasant to use. Thanks to [Yihui Yie](http://yihui.name/) for `bookdown` without which this book would
 not exist (at least not in this very nice format).
 
-Thanks to [Hans-Martin von
-Gaudecker](https://www.iame.uni-bonn.de/people/hm-gaudecker) for
+Thanks to [Hans-Martin von Gaudecker](https://www.iame.uni-bonn.de/people/hm-gaudecker) for
 introducing me to unit testing and writing elegant code. The PEP 8 style
 guidelines will forever remain etched in my brain.
 
@@ -71,7 +65,6 @@ This book is licensed under the GNU Free Documentation License, version
 Wickham, Hadley. 2014a. *Advanced R*. CRC Press.
 
 Wickham, Hadley. 2015. *R Packages*. 1st ed. O’Reilly.
-<http://r-pkgs.had.co.nz/>.
 
 Wickham, Hadley, and Garrett Grolemund. 2016. *R for Data Science*. 1st
-ed. O’Reilly. <http://r4ds.had.co.nz/>.
+ed. O’Reilly.
