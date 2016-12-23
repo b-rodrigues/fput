@@ -1,1 +1,6 @@
+index.md
 intro.md
+fprog.md
+unit-testing.md
+packages.md
+putting-it-all-together-writing-a-package-to-work-on-data.md
