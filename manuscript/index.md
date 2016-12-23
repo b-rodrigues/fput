@@ -59,12 +59,3 @@ against people not using functional programming nor testing their code
 This book is licensed under the GNU Free Documentation License, version
 1.3. A copy of the license is available on the repo, or you can read it
 [online](https://www.gnu.org/licenses/fdl-1.3.txt).
-
-### References
-
-Wickham, Hadley. 2014a. *Advanced R*. CRC Press.
-
-Wickham, Hadley. 2015. *R Packages*. 1st ed. O’Reilly.
-
-Wickham, Hadley, and Garrett Grolemund. 2016. *R for Data Science*. 1st
-ed. O’Reilly.
