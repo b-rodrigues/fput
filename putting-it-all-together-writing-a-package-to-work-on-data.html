@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-12-19">
+<meta name="date" content="2016-12-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -196,11 +196,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>data_2004.csv</code></li>
 </ul>
 <p>The first step, of course, is to load these datasets into R. For 5 datasets, I assume that you would simply write the following into Rstudio:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2000.csv&quot;</span>, <span class="dt">header =</span> T)
-data2001 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2001.csv&quot;</span>, <span class="dt">header =</span> T)
-data2002 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2002.csv&quot;</span>, <span class="dt">header =</span> T)
-data2003 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2003.csv&quot;</span>, <span class="dt">header =</span> T)
-data2004 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data2004.csv&quot;</span>, <span class="dt">header =</span> T)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_2000 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data_2000.csv&quot;</span>, <span class="dt">header =</span> T)
+data_2001 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data_2001.csv&quot;</span>, <span class="dt">header =</span> T)
+data_2002 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data_2002.csv&quot;</span>, <span class="dt">header =</span> T)
+data_2003 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data_2003.csv&quot;</span>, <span class="dt">header =</span> T)
+data_2004 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/path/to/data/data_2004.csv&quot;</span>, <span class="dt">header =</span> T)</code></pre></div>
 <p>This might be ok for 5 datasets which are named very similarily, especially since you can do block editing in Rstudio. However, imagine that you have hundreds, thousands, of datasets? And image that their names are not so well formatted as here? We will start our package by writing a function that reads a lot of datasets at once.</p>
 </div>
 <div id="your-first-data-munging-package-preparedata" class="section level2">
@@ -256,7 +256,7 @@ Writing read_list.Rd</code></pre>
 cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
 <span class="kw">shine</span>(cov)</code></pre></div>
-<p>Unsurprisingly we get a coverage of 0% for our package. You could also write one or more unit tests for this function. For example, we could test to see if the condition <code>stopifnot(length(list_of_datasets)&gt;0)</code> works. Create a <code>tests</code> folder in the root of the package directory and inside a <code>testthat</code> folder. This is were your tests will live. Let us write this test:</p>
+<p>Unsurprisingly we get a coverage of 0% for our package. We will now write a unit test for this function. For example, let us see if the condition <code>stopifnot(length(list_of_datasets)&gt;0)</code> works. Because you ran <code>detools::use_testthat()</code> you should have a folder called <code>tests</code> on the root of your project directory. In it, there is a folder called <code>testthat</code>. This is were you will save your unit tests, and any file needed for the tests to run (for example, mock datasets that are used by tests).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;prepareData&quot;</span>)
 
@@ -267,7 +267,7 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
     <span class="kw">expect_error</span>(<span class="kw">read_list</span>(list_datasets, read_csv, <span class="dt">col_types =</span> <span class="kw">cols</span>()))
 })</code></pre></div>
-<p>Run the test using <code>CTRL-SHIFT-T</code> you are one Rstudio. This is the output you should see. If you check the coverage of your package, you should see that the line <code>stopifnot(length(list_of_datasets)&gt;0)</code> is highlightened in green and you should have around 9% of coverage for your package.</p>
+<p>Run the test using <code>CTRL-SHIFT-T</code> if you are on Rstudio.</p>
 <pre><code>==&gt; devtools::test()
 
 Loading prepareData
@@ -275,16 +275,17 @@ Loading required package: testthat
 Testing prepareData
 .
 DONE ===========================================================================</code></pre>
-<p>You can spend some to to get the coverage as high as possible, but you have to take into account the time it will take you to write tests vs the benefits you are going to get from them.</p>
-<p>Let us this function to read in the data sets:</p>
+<p>This is the output you should see. If you check the coverage of your package, you should see that the line <code>stopifnot(length(list_of_datasets)&gt;0)</code> is highlightened in green and you should have around 9% of coverage for your package. You can spend some to to get the coverage as high as possible, but you have to take into account the time it will take you to write tests vs the benefits you are going to get from them. In the case of this function, I do not really see what more you could test.</p>
+<p>Let us use this function to read in the datasets:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;purrr&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;tibble&quot;</span>)
+
 list_of_data &lt;-<span class="st"> </span><span class="kw">Sys.glob</span>(<span class="st">&quot;assets/*.csv&quot;</span>)
 
-datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of_data, read_csv, <span class="dt">col_type =</span> <span class="kw">cols</span>())
-
-<span class="kw">map</span>(datasets, head)</code></pre></div>
+datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of_data, read_csv, <span class="dt">col_type =</span> <span class="kw">cols</span>())</code></pre></div>
+<p><code>list_of_data</code> is a variable that contains the path to the datasets. I used <code>Sys.glob(&quot;assets/*.csv&quot;)</code> to find the datasets. The datasets are saved in the <code>assets</code> folder of the book and end with the <code>.csv</code> extension. You could also use <code>list.files(&quot;*.csv&quot;)</code> to achieve the same. Let’s take a look inside this list using <code>head()</code>. Since <code>head()</code> only works on single data frames or tibbles, we use <code>map()</code> to apply <code>head()</code> to each data frame on the list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, head)</code></pre></div>
 <pre><code>## $`assets/data_2000`
 ## # A tibble: 6 × 6
 ##      id Variable1 other2000 gender2000 eggs2000      spam2000
@@ -339,7 +340,6 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## 4     4        28         1          F       30  1.9900760
 ## 5     5        34         3          F       14  0.4324725
 ## 6     6        30         3          F       40 -0.7900185</code></pre>
-<p>The data sets get read into a list called <code>list_of_data</code>. Let’s take a look inside this list using <code>head()</code>. Since <code>head()</code> only works on data frames or tibbles, we use <code>map()</code> to apply <code>head()</code> to each data frame on the list.</p>
 <p>The datasets we will work with all have the the same variables and the same inviduals. We have datasets for the years 2000 to 2004. It would be much better for analysis if we could have clean variable names and merge every datasets together in a single, longitudinal dataset. In short, what we need:</p>
 <ul>
 <li>Have nice names for the columns.</li>
@@ -350,7 +350,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 </div>
 <div id="treating-the-columns-of-your-datasets" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Treating the columns of your datasets</h3>
-<p>Let us take a look at the column names of your datasets:</p>
+<p>Let us take a look at the column names of the datasets:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, colnames)</code></pre></div>
 <pre><code>## $`assets/data_2000`
 ## [1] &quot;id&quot;         &quot;Variable1&quot;  &quot;other2000&quot;  &quot;gender2000&quot; &quot;eggs2000&quot;  
@@ -371,7 +371,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## $`assets/data_2004`
 ## [1] &quot;Id&quot;         &quot;Variable1&quot;  &quot;Other2004&quot;  &quot;Gender2004&quot; &quot;Eggs2004&quot;  
 ## [6] &quot;Spam2004&quot;</code></pre>
-<p>This is very messy, we would need to have a function that would clean all this mess and “normalize” these column names. Turns out that we’re lucky, and there is exactly what we are looking for in the <code>janitor</code> package. The function <code>janitor::clean_names</code> does exactly this. Let’s use it and see the output:</p>
+<p>This is very messy, we would need to have a function that would clean all this mess and “normalize” these column names. Turns out that we’re lucky, and there is exactly what we are looking for in the <code>janitor</code> package. The function <code>janitor::clean_names()</code> does exactly this. Let’s use it and see the output:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;janitor&quot;</span>)
 
 datasets &lt;-<span class="st"> </span><span class="kw">map</span>(datasets, clean_names)
@@ -396,8 +396,8 @@ datasets &lt;-<span class="st"> </span><span class="kw">map</span>(datasets, cle
 ## $`assets/data_2004`
 ## [1] &quot;id&quot;         &quot;variable1&quot;  &quot;other2004&quot;  &quot;gender2004&quot; &quot;eggs2004&quot;  
 ## [6] &quot;spam2004&quot;</code></pre>
-<p>This is much better. If <code>clean_names()</code> didn’t exist, you would have to had written your own function for this. This could have been a complicated exercise, depending on how messy and heterogenous the variable names could have been in your data. However, in general, <code>clean_names()</code> does a great job!</p>
-<p>Now we would like to remove the years from the column names and add a column with the name to each dataset. Let us start by removing the years from the column names. For this function, a little regular expression knowledge will not hurt. Here is what the function looks like:</p>
+<p>This is much better. If <code>clean_names()</code> didn’t exist, you would have to have written your own function for this. This could have been a complicated exercise, depending on how messy and heterogenous the variable names would have been in your data. However <code>clean_names()</code> does a great job, so there’s no need to reivent the wheel!</p>
+<p>Now we would like to remove the years from the column names and add a column with the name of each dataset. Let us start by removing the years from the column names by writing a function. For this function, a little regular expression knowledge will not hurt. Here is what the function looks like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Remove year strings from column names</span>
 <span class="co">#&#39; @param list_of_datasets A list containing named datasets</span>
 <span class="co">#&#39; @return A list of datasets with the supplied string prepended to the column names</span>
@@ -415,7 +415,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">map</span>(datasets, cle
 remove_years_from_strings &lt;-<span class="st"> </span>function(list_of_datasets){
 
   for_one_dataset &lt;-<span class="st"> </span>function(dataset){
-    <span class="co"># strsplit() accept regular expressions, so it&#39;s easy to get rid of a number made up of</span>
+    <span class="co"># strsplit() accepts regular expressions, so it&#39;s easy to get rid of a number made up of</span>
     <span class="co"># *exactly* 4 digits</span>
 
     <span class="kw">colnames</span>(dataset) &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(<span class="kw">colnames</span>(dataset), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{4}&quot;</span>, <span class="dt">perl =</span> <span class="ot">TRUE</span>))
@@ -442,7 +442,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
     actual &lt;-<span class="st"> </span><span class="kw">colnames</span>(data_list_result[[<span class="dv">1</span>]])
     <span class="kw">expect_equal</span>(expect, actual)
 })</code></pre></div>
-<p>For the unit test to work, I had to add the dataset for the year 2001 in the <code>tests/testthat</code> directory. Again, this dataset does not have to be the real dataset you’re working on. A mock dataset with simulated data on 10 rows and with the same column names works exactly the same!</p>
+<p>For the unit test to work, I had to add the dataset for the year 2001 in the <code>tests/testthat</code> directory. Again, this dataset does not have to be the real dataset you will ultimately be working on. A mock dataset with simulated data on 10 rows and with the same column names works exactly the same!</p>
 <p>Let’s take a look at the output:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datasets &lt;-<span class="st"> </span><span class="kw">remove_years_from_strings</span>(datasets)
 
@@ -462,7 +462,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## $`assets/data_2004`
 ## [1] &quot;id&quot;        &quot;variable1&quot; &quot;other&quot;     &quot;gender&quot;    &quot;eggs&quot;      &quot;spam&quot;</code></pre>
 <p>This is starting to look like something!</p>
-<p>And now to add the year column:</p>
+<p>Now, since we removed the years from the column names, we need to add a column containing the year to our datasets. And now to add the year column:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Adds the year column</span>
 <span class="co">#&#39; @param list_of_datasets A list containing named datasets</span>
 <span class="co">#&#39; @return A list of datasets with the year column</span>
@@ -480,23 +480,25 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 <span class="co">#&#39; add_year_column(list_of_data_sets)</span>
 <span class="co">#&#39; }</span>
 add_year_column &lt;-<span class="st"> </span>function(list_of_datasets){
-    for_one_dataset &lt;-<span class="st"> </span>function(dataset, dataset_name){
-        <span class="co"># Split the name of the data set and extract the number index</span>
-        index &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="kw">unlist</span>(<span class="kw">strsplit</span>(dataset_name, <span class="st">&quot;[_.]&quot;</span>)))
 
-        <span class="co"># Get the year</span>
-        year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">unlist</span>(<span class="kw">strsplit</span>(dataset_name, <span class="st">&quot;[_.]&quot;</span>))[index])
+  for_one_dataset &lt;-<span class="st"> </span>function(dataset, dataset_name){
 
-        <span class="co"># Add it to the data set</span>
+    <span class="co"># Split the name of the dataset at the &quot;_&quot;. The datasets must have a name of the</span>
+    <span class="co"># form &quot;data_2000&quot; (notice the underscore).</span>
+    name_year &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(dataset_name, <span class="st">&quot;[_.]&quot;</span>))
+    <span class="co"># Get the index of the string that contains digits</span>
+    index &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+&quot;</span>, name_year)
 
-        dataset$year &lt;-<span class="st"> </span>year
+    <span class="co"># Get the year</span>
+    year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(name_year[index])
 
-        <span class="kw">return</span>(dataset)
-
-    }
+    <span class="co"># Add it to the data set</span>
+    dataset$year &lt;-<span class="st"> </span>year
+    <span class="kw">return</span>(dataset)
+  }
 
   output &lt;-<span class="st"> </span>purrr::<span class="kw">map2</span>(list_of_datasets, <span class="kw">names</span>(list_of_datasets), for_one_dataset)
-    <span class="kw">return</span>(output)
+  <span class="kw">return</span>(output)
 }</code></pre></div>
 <p>And its unit test:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
@@ -504,7 +506,7 @@ add_year_column &lt;-<span class="st"> </span>function(list_of_datasets){
 <span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
 
 
-data_sets &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;.csv&quot;</span>)
+data_sets &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;data&quot;</span>)
 
 data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_sets, read_csv, <span class="dt">col_types =</span> <span class="kw">cols</span>())
 
@@ -515,6 +517,59 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
     actual &lt;-<span class="st"> </span><span class="kw">list</span>(data_list_result[[<span class="dv">1</span>]]$year, data_list_result[[<span class="dv">2</span>]]$year)
     <span class="kw">expect_equal</span>(expect, actual)
 })</code></pre></div>
+<p>This function does not work if the names of the datasets are not of the form “data_2000”. This means that this function should have either an additional argument, where you specify the separator (for example “_&quot; or “.” or even “-”) or fail if the name does not contain an “_“. I like the second solution better:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Adds the year column</span>
+<span class="co">#&#39; @param list_of_datasets A list containing named datasets</span>
+<span class="co">#&#39; @return A list of datasets with the year column</span>
+<span class="co">#&#39; @description This function works by extracting the year string contained in</span>
+<span class="co">#&#39; the data set name and appending a new column to the data set with the numeric</span>
+<span class="co">#&#39; value of the year. This means that the data sets have to have a name of the</span>
+<span class="co">#&#39; form data_set_2001 or data_2001_europe, etc</span>
+<span class="co">#&#39; @export</span>
+<span class="co">#&#39; @examples</span>
+<span class="co">#&#39; \dontrun{</span>
+<span class="co">#&#39; #`list_of_data_sets` is a list containing named data sets</span>
+<span class="co">#&#39; # For example, to access the first data set, called dataset_1 you would</span>
+<span class="co">#&#39; # write</span>
+<span class="co">#&#39; list_of_data_sets$dataset_1</span>
+<span class="co">#&#39; add_year_column(list_of_data_sets)</span>
+<span class="co">#&#39; }</span>
+add_year_column &lt;-<span class="st"> </span>function(list_of_datasets){
+
+  for_one_dataset &lt;-<span class="st"> </span>function(dataset, dataset_name){
+
+    if(!(<span class="st">&quot;_&quot;</span> %in%<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(dataset_name, <span class="dt">split =</span> <span class="st">&quot;&quot;</span>)))){
+    <span class="kw">stop</span>(<span class="st">&quot;Make sure that your datasets are named like</span>
+<span class="st">         `data_2000.csv` or similar. The `_` between `data`</span>
+<span class="st">         and `2000` is what matters&quot;</span>)}
+
+    <span class="co"># Split the name of the dataset at the &quot;_&quot;. The datasets must have a name of the</span>
+    <span class="co"># form &quot;data_2000&quot; (notice the underscore).</span>
+    name_year &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(dataset_name, <span class="dt">split =</span> <span class="st">&quot;[_.]&quot;</span>))
+    <span class="co"># Get the index of the string that contains digits</span>
+    index &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+&quot;</span>, name_year)
+
+    <span class="co"># Get the year</span>
+    year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(name_year[index])
+
+    <span class="co"># Add it to the data set</span>
+    dataset$year &lt;-<span class="st"> </span>year
+    <span class="kw">return</span>(dataset)
+  }
+
+  output &lt;-<span class="st"> </span>purrr::<span class="kw">map2</span>(list_of_datasets, <span class="kw">names</span>(list_of_datasets), for_one_dataset)
+  <span class="kw">return</span>(output)
+}</code></pre></div>
+<p>If you check the coverage of this function, you will see that the lines that test if the datasets are correctly named do not get called. Let’s add a unit test that does this, but first, we need to create <em>wrong</em> datasets. Just copy the datasets you have in your tests folder, and rename them to <code>wrongdata2001.csv</code> and <code>wrongdata2002.csv</code>. We expect our function to stop with an error message if it tries anything on these datasets:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_sets &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;wrong&quot;</span>)
+
+data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_sets, read_csv, <span class="dt">col_types =</span> <span class="kw">cols</span>())
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test add year column: wrong name&quot;</span>,{
+    data_list_result &lt;-<span class="st"> </span>purrr::<span class="kw">map</span>(data_list, janitor::clean_names)
+    <span class="kw">expect_error</span>(<span class="kw">add_year_column</span>(data_list_result))
+})</code></pre></div>
+<p>Now have fully covered your function, and you also know when the function breaks. With the informative error message, future you or your coworkers will know how to correctly name the datasets. Let’s try <code>add_year_column()</code> to see how it behaves on our data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datasets &lt;-<span class="st"> </span><span class="kw">add_year_column</span>(datasets)
 
 <span class="kw">map</span>(datasets, head)</code></pre></div>
@@ -572,6 +627,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## 4     4        28     1      F    30  1.9900760  2004
 ## 5     5        34     3      F    14  0.4324725  2004
 ## 6     6        30     3      F    40 -0.7900185  2004</code></pre>
+<p>Just as expected!</p>
 <p>TBC…</p>
 
 </div>
