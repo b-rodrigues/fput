@@ -4,10 +4,8 @@ This short book serves to show how functional programming and unit
 testing can be useful for the task of data munging. This book is not an
 in-depth guide to functional programming, nor unit testing with R. If
 you want to have an in-depth understanding of the concepts presented in
-these books, I can’t but recommend Wickham
-([2014](#ref-wickham2014)[a](#ref-wickham2014)), Wickham
-([2015](#ref-wickham2015)) and Wickham and Grolemund
-([2016](#ref-wickham2016)) enough. Here, I will only briefly present
+these books, I can’t but recommend Wickham (2014a), Wickham (2015) and Wickham and Grolemund
+(2016) enough. Here, I will only briefly present
 functional programming, unit testing and building your own R packages.
 Just enough to get you (hopefully) interested and going.
 
