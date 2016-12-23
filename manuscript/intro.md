@@ -38,6 +38,22 @@ I know about R is self-taught. I hope however that you will find this
 book useful. You can [follow me on twitter](https://twitter.com/brodriguesco) or
 check [my blog](http://brodrigues.co).
 
+## 1.3 Thanks
+
+I’d like to thank [Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/)
+and [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
+for developing the R programming language. Many thanks to [Hadley Wickham](http://hadley.nz/) for all the wonderful packages he developed
+that make R much more pleasant to use. Thanks to [Yihui Yie](http://yihui.name/) for `bookdown` without which this book would
+not exist (at least not in this very nice format).
+
+Thanks to [Hans-Martin von Gaudecker](https://www.iame.uni-bonn.de/people/hm-gaudecker) for
+introducing me to unit testing and writing elegant code. The PEP 8 style
+guidelines will forever remain etched in my brain.
+
+Finally I have to thank my wife for putting up with my endless rants
+against people not using functional programming nor testing their code
+(or worse, using proprietary software!).
+
 # Chapter 2 Introduction
 
 ## 2.1 Getting R
