@@ -40,8 +40,8 @@ check [my blog](http://brodrigues.co).
 
 ## 1.3 Thanks
 
-I’d like to thank [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka)
-and [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
+I’d like to thank [Ross Ihaka](https://en.wikipedia.org/wiki/Ross\_Ihaka)
+and [Robert Gentleman](https://en.wikipedia.org/wiki/Robert\_Gentleman\_\(statistician\))
 for developing the R programming language. Many thanks to [Hadley Wickham](http://hadley.nz/) for all the wonderful packages he developed
 that make R much more pleasant to use. Thanks to [Yihui Yie](http://yihui.name/) for `bookdown` without which this book would
 not exist (at least not in this very nice format).
