@@ -8,7 +8,7 @@
   <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-12-23">
+<meta name="date" content="2017-01-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,6 +114,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#general-recommendations-to-follow-this-book"><i class="fa fa-check"></i><b>2.4</b> General recommendations to follow this book</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
 <li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
@@ -144,9 +145,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 <li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
-<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.4</b> Unit test your package</a></li>
-<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.5</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>5.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>5.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="5.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>5.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.7</b> Wrap-up</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
 <li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
@@ -211,6 +216,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="unit_overview" class="section level2">
 <h2><span class="header-section-number">2.3</span> A short overview of unit testing</h2>
 <p>At the end of the last section I wrote that you can <em>trust your functions</em>. Is that true though? Functional programming can make your life easier, but it does not prevent you from introducing bugs in your code. However, what functional programming makes easily possible, is to very easily and effectively test your code thanks to unit testing. You probably already test your code, by hand. You write some loop that is supposed to sum the first 10 integers and then you try it out and check if, indeed, your loop returns 55. Because this is the correct result, you save your work and continue programming something else, and so on. Unit testing is this, but in an automated way. Instead of just trying things out in the interpreter, you write unit tests. You write code that actually checks your functions. You save this unit tests somewhere, and then re-run them whenever you make changes to your code. Even if you don’t change some parts of your code, you re-run every unit test. Because you actually never know what may happen. Maybe changing a single line in one of your functions introduced some unforeseen consequences that breaks functionality some place else. When you change code, and <em>all</em> your unit tests still pass, then you can be confident that your code is correct (actually, don’t be too confident, because maybe you didn’t write enough unit tests to cover every case. But we will see how we can be sure there is enough <em>coverage</em>).</p>
+</div>
+<div id="general-recommendations-to-follow-this-book" class="section level2">
+<h2><span class="header-section-number">2.4</span> General recommendations to follow this book</h2>
+<p>You should follow the examples in this book as closely as possible. I advise you to use exactly the same names as I do, because I will sometimes refer to previous examples and if you use different names, you will then need to go back and waste time to change the names.</p>
 
 </div>
 </div>
@@ -233,6 +242,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
@@ -250,7 +260,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

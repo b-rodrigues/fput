@@ -8,7 +8,7 @@
   <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-12-23">
+<meta name="date" content="2017-01-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,6 +114,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#general-recommendations-to-follow-this-book"><i class="fa fa-check"></i><b>2.4</b> General recommendations to follow this book</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
 <li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
@@ -144,9 +145,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 <li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
-<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.4</b> Unit test your package</a></li>
-<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.5</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>5.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>5.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="5.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>5.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.7</b> Wrap-up</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
 <li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
@@ -212,13 +217,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 1/1 mismatches
 [1] 2 - 2 == -0.00061</code></pre>
 <p>This is because the value that <code>sqrt_newton()</code> returns is not exactly equal to <code>2</code>. How to solve this? We could simply check if the difference of the value expected and the value returned is smaller than <code>eps</code> (which is actually how the function works):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;testthat&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     is_null</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
+
+<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
               eps &lt;-<span class="st"> </span><span class="fl">0.001</span>
               expected &lt;-<span class="st"> </span><span class="dv">2</span>
               actual &lt;-<span class="st"> </span><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">eps =</span> eps)
@@ -372,6 +373,7 @@ Rscript -e &quot;testthat::test_that(&#39;/whole/path/to/your/tests&#39;)&quot;<
 require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
@@ -389,7 +391,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-unit_test.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

@@ -8,7 +8,7 @@
   <title>Functional programming and unit testing for data munging with R</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2016-12-23">
+<meta name="date" content="2017-01-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,6 +114,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#general-recommendations-to-follow-this-book"><i class="fa fa-check"></i><b>2.4</b> General recommendations to follow this book</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
 <li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
@@ -144,9 +145,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
 <li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
-<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.4</b> Unit test your package</a></li>
-<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.5</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.6</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>5.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>5.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="5.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>5.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.7</b> Wrap-up</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
 <li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
@@ -180,7 +185,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Packages</h1>
 <div id="why-you-need-your-own-packages-in-your-life" class="section level2">
 <h2><span class="header-section-number">5.1</span> Why you need your own packages in your life</h2>
-<p>One of the reasons you might have tried R in the first place is the abundance of packages. As I’m writing these lines (in August 2016), 8922 packages are available on CRAN. That’s almost over 9000. This is an absolutely crazy amount of packages! Chances are that if you want to do something, there’s a package for that (I’ll stop it here with the lame references, promise!).</p>
+<p>One of the reasons you might have tried R in the first place is the abundance of packages. As I’m writing these lines (in August 2016), 8922 packages are available on CRAN. That’s almost over 9000. This is an absolutely crazy amount of packages! Chances are that if you want to do something, there’s a package for that (I’ll stop here with the lame references, promise!).</p>
 <p>So why the heck should you write your own packages? After all, with 8922 packages you’re sure to find something that suits your needs, right? No. Simply because the data sets that you’re working with are probably unique to your workplace or maybe what you want to do with them is unique to your needs. You won’t find a package that will take care of cleaning <em>your</em> data for you.</p>
 <p>Ok, but is it necessary to write a package? Why not just write functions inside some scripts and then simply run these scripts? This seems like a valid solution at first. However, it quickly becomes tedious, especially if you have multiple scripts scattered around your computer or inside different subfolders. You’ll also have to write the documentation on separate files and these can easily get lost or become outdated.</p>
 <p>Having everything inside a package takes care of these headaches for you. And code that is inside packages is very easy to test, especially if you’re using Rstudio. It also makes it possible to use the wonderful <code>covr</code> package, which tells you which lines in which functions are called by your tests. If some lines are missing, write tests that invoke them and increase the coverage of your tests!</p>
@@ -190,7 +195,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
 <p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
-<p><img src="assets/package_structure.png" alt="" /><!-- --></p>
+<p><img src="assets/package_structure.png" width="292" /></p>
 <p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
     <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
@@ -235,19 +240,57 @@ sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps
     }
     <span class="kw">return</span>(init)
 }</code></pre></div>
-<p>The first difference with standard comments is that <code>roxygen2</code> type comments start with the <code>#'</code> symbol instead of simply the <code>#</code> symbol. Then, after <code>#'</code> you can supply different keywords such as <code>@param</code>, <code>@description</code>, <code>@export</code>. These keywords are then used by the <code>roxygenise()</code> function from the <code>roxygen</code> package to create the documentation files inside your package. Before <code>roxygen</code>, these documentation files were written in the <code>.Rd</code> format by hand. Now these files get created automagically by simply formatting your comments with this specific syntax and then running</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">roxygen2::<span class="kw">roxygenise</span>()</code></pre></div>
-<p>in the command prompt. Try it, you should see the following in the command prompt:</p>
+<p>The first difference with standard comments is that <code>roxygen2</code> type comments start with two symbols, <code>#'</code> instead of simply the <code>#</code> symbol. Then, after <code>#'</code> you can supply different keywords such as <code>@param</code>, <code>@description</code>, <code>@export</code>. These keywords are then used by the <code>roxygenise()</code> function from the <code>roxygen</code> package to create the documentation files inside your package. Before <code>roxygen</code>, these documentation files were written in the <code>.Rd</code> format by hand. Now these files get created automagically by simply formatting your comments with this specific syntax and then running <code>roxygen2::roxygenise()</code> in the command prompt. Try it, you should see the following in the command prompt:</p>
 <pre><code>Writing sqrt_newton.Rd</code></pre>
 <p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
-<p><img src="assets/sqrt_newton_help.png" alt="" /><!-- --></p>
+<p><img src="assets/sqrt_newton_help.png" width="452" /></p>
 <p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package::my_function</code></pre></div>
-<p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users.</p>
+<p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users. In the next subsection, I will mention two files that got created with your package, <code>NAMESPACE</code> and <code>DESCRIPTION</code>.</p>
+</div>
+<div id="extra-files-inside-your-package-and-dependencies" class="section level2">
+<h2><span class="header-section-number">5.4</span> Extra files inside your package and dependencies</h2>
+<div id="the-namespace-file" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> The <code>NAMESPACE</code> file</h3>
+<p>The <code>NAMESPACE</code> file gets generated automatically by <code>roxyigen2</code>. You do not have to worry much about it; it lists the functions that are made available to the user when your package gets loaded. If you have helper functions that you do not want to make available to the user, remove the <code>@export</code> keyword from the function comments and the function will not get listed in the <code>NAMESPACE</code> file. There is still a way for the user to access these helper functions like so:</p>
+<pre><code>package::helper_function</code></pre>
+<p>This is somewhat similar to the concept of private/public methods in object oriented programming.</p>
+</div>
+<div id="how-can-you-use-functions-from-other-packages-inside-your-package" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> How can you use functions from other packages inside your package?</h3>
+<p>There are two solutions for this. Without going into much details, this is mostly handled by the <code>DESCRIPTION</code> file. This file is very important for two reasons: if you want to publish a package on CRAN, this is the file where you specify your name, contact information and the license of the package. But this does not mean that this file is not important if you want to write your own personal package to clean data: this is also the file where you specify the version of your package, but also where you specify the dependencies of your package. You have two fields for this: <code>Imports</code> and <code>Depends</code>. If you are lazy and want to use functions from other packages inside your package, you can list them in the <code>Depends</code> field. However, you should be careful with this approach; indeed, if you named some of your functions the same as functions from other packages, by loading your package after another, you will “overwrite” these functions. For example, imagine you have function <code>f</code> in package A but also in package B. If you first load A, and then B, <code>f</code> will refer to <code>B::f</code>. It’s basically the same problem when attaching datasets, but with functions, so it’s even worse! A cleaner way of solving the problem of using functions from other packages inside your package is to list them in the <code>Imports</code> field, and then use <code>::</code> inside your functions. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_nice_function &lt;-<span class="st"> </span>function(x){
+    readr::<span class="kw">read_csv</span>( bla bla )
+    bla bla
+}</code></pre></div>
+<p>This is much cleaner and avoids the problem described above. If you have to use a lot of functions from the same package, having always to use <code>::</code> can get annoying quite fast. In these cases, you can use the <code>@import</code> keyword when you document your function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Function to compute the square root of a number</span>
+<span class="co">#&#39; @param a the number whose square root is computed</span>
+<span class="co">#&#39; @param init an initial guess</span>
+<span class="co">#&#39; @param eps *optional* the precision. Default value: 0.01</span>
+<span class="co">#&#39; @param iter *optional* the number of iteration. Default value: 100</span>
+<span class="co">#&#39; @description This function computes the square root of a number using a loop.</span>
+<span class="co">#&#39; @export</span>
+<span class="co">#` @import dplyr</span>
+sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
+    <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
+    i &lt;-<span class="st"> </span><span class="dv">1</span>
+    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+        i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+        if(i &gt;<span class="st"> </span>iter) <span class="kw">stop</span>(<span class="st">&quot;Maximum number of iterations reached&quot;</span>)
+    }
+    <span class="kw">return</span>(init)
+}</code></pre></div>
+<p>Above, I’ve added the line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#` @import dplyr</span></code></pre></div>
+<p>which allows me to call <code>dplyr</code> functions inside my functions. This is cleaner and does not pollute your session with attached packages. If you check the <code>NAMESPACE</code> you will see the following line:</p>
+<pre><code>import(dplyr)</code></pre>
+</div>
 </div>
 <div id="unit-test-your-package" class="section level2">
-<h2><span class="header-section-number">5.4</span> Unit test your package</h2>
-<p>Now that we know the basics of creating a package, we move on to unit testing your package. Unit testing is very useful, but require some work, especially because you have to run them often to make them truly worth your time. However running them often can be painful because you have to be careful with the current working directory. The simplest way to do unit testing is to put your functions inside a package and write unit tests for these functions and use Rstudio’s keyboard shortcuts to run your tests. First of all, create a folder called <code>tests</code> in the root of your package and inside this <code>tests</code> folder create another folder, called <code>testthat</code>. The <code>testthat</code> folder will hold your unit tests. Inside the <code>tests</code> folder, create a script called <code>test_sqrt_newton.R</code> and put the following code in it:</p>
+<h2><span class="header-section-number">5.5</span> Unit test your package</h2>
+<p>Now that we know the basics of package creation, we move on to unit testing your package. Unit testing is very useful, but requires some work, especially because you have to run your unit tests often to make them truly worth your time. However running them often can be painful because you have to be careful with the current working directory. The simplest way to do unit testing is to put your functions inside a package and write unit tests for these functions and use Rstudio’s keyboard shortcuts to run your tests. First of all, create a folder called <code>tests</code> in the root of your package and inside this <code>tests</code> folder create another folder, called <code>testthat</code>. The <code>testthat</code> folder will hold your unit tests. Inside the <code>tests</code> folder, create a script called <code>test_sqrt_newton.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;myFirstPackage&quot;</span>)
 
@@ -318,7 +361,7 @@ sqrt_newton
 <p><em>Check Package</em> is telling me that I did not specify a license for my package, and that I did not document the <code>iter</code> parameter. This command takes some time to run, so do not run it as often as your unit tests, but do not forget about it either!</p>
 </div>
 <div id="checking-the-coverage-of-your-unit-tests-with-covr" class="section level2">
-<h2><span class="header-section-number">5.5</span> Checking the coverage of your unit tests with <code>covr</code></h2>
+<h2><span class="header-section-number">5.6</span> Checking the coverage of your unit tests with <code>covr</code></h2>
 <p>To check the coverage of your package run the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;covr&quot;</span>)
 
@@ -326,17 +369,17 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
 <span class="kw">shine</span>(cov)</code></pre></div>
 <p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
-<p><img src="assets/covr_MyFirstPackage.png" alt="" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage.png" width="432" /></p>
 <p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package! Add the following test to <code>test_sqrt_newton.R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test maximum number of iterations&quot;</span>,{
     <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(<span class="dv">10</span>, <span class="fl">1E10</span>, <span class="dt">eps=</span><span class="fl">1E-10</span>, <span class="dv">5</span>))
 })</code></pre></div>
 <p>Now if you look at the coverage of the package:</p>
-<p><img src="assets/covr_MyFirstPackage100percent.png" alt="" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage100percent.png" width="432" /></p>
 <p>In this example, we used <code>package_coverage()</code>, but if you are interested in the coverage of a single function you can use <code>function_coverage()</code>, or even <code>file_coverage()</code> to get the coverage of a single file. However, I suggest to always run <code>package_coverage()</code> since we are working inside a package. There are other functions in the <code>covr</code> package that might be useful depending on your needs, so do not hesitate to explore <code>covr</code> documentation!</p>
 </div>
 <div id="wrap-up-2" class="section level2">
-<h2><span class="header-section-number">5.6</span> Wrap-up</h2>
+<h2><span class="header-section-number">5.7</span> Wrap-up</h2>
 <ul>
 <li>Packages are the easiest way to organize, document and test your code.</li>
 <li>You do not need to take care of paths anymore.</li>
@@ -375,6 +418,7 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
@@ -392,7 +436,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-packages.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
