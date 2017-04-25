@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3.18 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-01-13">
+<meta name="date" content="2017-04-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="intro.html">
 <link rel="next" href="unit-testing.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -428,7 +427,6 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Reduce</span>(my_min, numbers)</code></pre></div>
 <pre><code>## [1] 16</code></pre>
 <p>Here we don’t supply an <code>init</code> because there is no need for it. Of course R’s built-in <code>min()</code> function works on a list of values. But <code>Reduce()</code> is a very powerful function that can make our life much easier and most importantly avoid writing clumsy loops.</p>
-<p>This is the end of the introduction to functional programming. Entire books have been written on the subject, such as the upcoming book by <span class="citation">Khan (<a href="#ref-khan2017">2017</a>)</span> or <span class="citation">Lipovaca (<a href="#ref-lipovaca2011">2011</a>)</span>. If you’re curious about functional programming, you should read these books. For our purposes though, knowing how to write functions, and trying to make them referentially transparent as well as knowing about <code>Map()</code> and <code>Reduce()</code> is enough to get us going.</p>
 </div>
 </div>
 <div id="mapping-and-reducing-the-purrr-way" class="section level2">
@@ -728,6 +726,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class=
 ## attr(,&quot;class&quot;)
 ## [1] &quot;histogram&quot;</code></pre>
 <p>Of course you could have defined the anonymous function as a regular function before using <code>map()</code>. But sometimes it is faster to simply use an anonymous function as long as it does not hurt clarity.</p>
+<p>This is the end of the introduction to functional programming. Entire books have been written on the subject, such as the upcoming book by <span class="citation">Khan (<a href="#ref-khan2017">2017</a>)</span> or <span class="citation">Lipovaca (<a href="#ref-lipovaca2011">2011</a>)</span>. If you’re curious about functional programming, you should read these books. For our purposes though, knowing how to write functions, and trying to make them referentially transparent as well as knowing about mapping and reducing is enough to get us going.</p>
 </div>
 <div id="wrap-up" class="section level2">
 <h2><span class="header-section-number">3.5</span> Wrap-up</h2>
@@ -767,14 +766,14 @@ remove_csv(dataset_names)
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-wickham2016">
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science</em>. 1st ed. O’Reilly. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
+</div>
 <div id="ref-khan2017">
 <p>Khan, Aslam. 2017. <em>Grokking Functional Programming</em>. 1st ed. Manning Publications. <a href="https://www.manning.com/books/grokking-functional-programming" class="uri">https://www.manning.com/books/grokking-functional-programming</a>.</p>
 </div>
 <div id="ref-lipovaca2011">
 <p>Lipovaca, Miran. 2011. <em>Learn You a Haskell for Great Good!: A Beginner’s Guide</em>. no starch press. <a href="http://learnyouahaskell.com/" class="uri">http://learnyouahaskell.com/</a>.</p>
-</div>
-<div id="ref-wickham2016">
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science</em>. 1st ed. O’Reilly. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -790,8 +789,9 @@ remove_csv(dataset_names)
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -821,7 +821,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-func_prog.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }

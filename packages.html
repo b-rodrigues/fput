@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3.18 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-01-13">
+<meta name="date" content="2017-04-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="unit-testing.html">
 <link rel="next" href="putting-it-all-together-writing-a-package-to-work-on-data.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -195,7 +194,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> R packages: the basics</h2>
 <p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
-<p><img src="assets/package_structure.png" width="292" /></p>
+<p><img src="assets/package_structure.png" /><!-- --></p>
 <p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
     <span class="kw">stopifnot</span>(a &gt;=<span class="st"> </span><span class="dv">0</span>)
@@ -243,7 +242,7 @@ sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps
 <p>The first difference with standard comments is that <code>roxygen2</code> type comments start with two symbols, <code>#'</code> instead of simply the <code>#</code> symbol. Then, after <code>#'</code> you can supply different keywords such as <code>@param</code>, <code>@description</code>, <code>@export</code>. These keywords are then used by the <code>roxygenise()</code> function from the <code>roxygen</code> package to create the documentation files inside your package. Before <code>roxygen</code>, these documentation files were written in the <code>.Rd</code> format by hand. Now these files get created automagically by simply formatting your comments with this specific syntax and then running <code>roxygen2::roxygenise()</code> in the command prompt. Try it, you should see the following in the command prompt:</p>
 <pre><code>Writing sqrt_newton.Rd</code></pre>
 <p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
-<p><img src="assets/sqrt_newton_help.png" width="452" /></p>
+<p><img src="assets/sqrt_newton_help.png" /><!-- --></p>
 <p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package::my_function</code></pre></div>
 <p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users. In the next subsection, I will mention two files that got created with your package, <code>NAMESPACE</code> and <code>DESCRIPTION</code>.</p>
@@ -369,13 +368,13 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
 <span class="kw">shine</span>(cov)</code></pre></div>
 <p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
-<p><img src="assets/covr_MyFirstPackage.png" width="432" /></p>
+<p><img src="assets/covr_MyFirstPackage.png" /><!-- --></p>
 <p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package! Add the following test to <code>test_sqrt_newton.R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test maximum number of iterations&quot;</span>,{
     <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(<span class="dv">10</span>, <span class="fl">1E10</span>, <span class="dt">eps=</span><span class="fl">1E-10</span>, <span class="dv">5</span>))
 })</code></pre></div>
 <p>Now if you look at the coverage of the package:</p>
-<p><img src="assets/covr_MyFirstPackage100percent.png" width="432" /></p>
+<p><img src="assets/covr_MyFirstPackage100percent.png" /><!-- --></p>
 <p>In this example, we used <code>package_coverage()</code>, but if you are interested in the coverage of a single function you can use <code>function_coverage()</code>, or even <code>file_coverage()</code> to get the coverage of a single file. However, I suggest to always run <code>package_coverage()</code> since we are working inside a package. There are other functions in the <code>covr</code> package that might be useful depending on your needs, so do not hesitate to explore <code>covr</code> documentation!</p>
 </div>
 <div id="wrap-up-2" class="section level2">
@@ -405,8 +404,9 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
         </div>
       </div>
 <a href="unit-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="putting-it-all-together-writing-a-package-to-work-on-data.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="putting-it-all-together-writing-a-package-to-work-on-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -436,7 +436,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-packages.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }
