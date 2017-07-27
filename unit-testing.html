@@ -141,8 +141,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.1.4</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#programming-with-the-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#prog-tidyverse-intro"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#the-naive-approach"><i class="fa fa-check"></i><b>4.2.2</b> The naive approach</a></li>
+<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>4.2.1</b> The naive approach</a></li>
+<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>4.2.2</b> Getting serious with <code>rlang</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>5</b> Unit testing</a><ul>
@@ -228,9 +228,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 1/1 mismatches
 [1] 2 - 2 == -0.00061</code></pre>
 <p>This is because the value that <code>sqrt_newton()</code> returns is not exactly equal to <code>2</code>. How to solve this? We could simply check if the difference of the value expected and the value returned is smaller than <code>eps</code> (which is actually how the function works):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)
-
-<span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;testthat&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;testthat&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     matches</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     is_null</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test sqrt_newton: positive numeric&quot;</span>,{
               eps &lt;-<span class="st"> </span><span class="fl">0.001</span>
               expected &lt;-<span class="st"> </span><span class="dv">2</span>
               actual &lt;-<span class="st"> </span><span class="kw">sqrt_newton</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">eps =</span> eps)
