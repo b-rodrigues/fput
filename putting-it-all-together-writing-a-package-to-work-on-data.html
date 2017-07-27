@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.3.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-04-25">
+<meta name="date" content="2017-07-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -133,30 +133,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
 <li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
-<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the <code>testthat</code> package</a></li>
-<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
-<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="4.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code id="tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-to-know-the-tidyverse"><i class="fa fa-check"></i><b>4.1</b> Getting to know the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.1.1</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
+<li class="chapter" data-level="4.1.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr-and-tidyr"><i class="fa fa-check"></i><b>4.1.2</b> Transforming your data with <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.1.3</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.1.4</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
-<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
-<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
-<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
-<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>5.4</b> Extra files inside your package and dependencies</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>5.4.1</b> The <code>NAMESPACE</code> file</a></li>
-<li class="chapter" data-level="5.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>5.4.2</b> How can you use functions from other packages inside your package?</a></li>
+<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#programming-with-the-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#prog-tidyverse-intro"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#the-naive-approach"><i class="fa fa-check"></i><b>4.2.2</b> The naive approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.5</b> Unit test your package</a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.7</b> Wrap-up</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
-<li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
-<li class="chapter" data-level="6.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>6.2</b> Your first data munging package: <code>prepareData</code></a><ul>
-<li class="chapter" data-level="6.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>6.2.1</b> Reading a lot of datasets at once</a></li>
-<li class="chapter" data-level="6.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>6.2.2</b> Treating the columns of your datasets</a></li>
+<li class="chapter" data-level="5" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>5</b> Unit testing</a><ul>
+<li class="chapter" data-level="5.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>5.2</b> Unit testing with the <code>testthat</code> package</a></li>
+<li class="chapter" data-level="5.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>5.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="5.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>5.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
+<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
+<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>6.3</b> Writing documentation for your functions</a></li>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>6.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>6.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>6.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>6.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>6.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>6.7</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>7</b> Putting it all together: writing a package to work on data</a><ul>
+<li class="chapter" data-level="7.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>7.1</b> Getting the data</a></li>
+<li class="chapter" data-level="7.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>7.2</b> Your first data munging package: <code>prepareData</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>7.2.1</b> Reading a lot of datasets at once</a></li>
+<li class="chapter" data-level="7.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>7.2.2</b> Treating the columns of your datasets</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -181,7 +193,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="putting-it-all-together-writing-a-package-to-work-on-data" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Putting it all together: writing a package to work on data</h1>
+<h1><span class="header-section-number">Chapter 7</span> Putting it all together: writing a package to work on data</h1>
 <p>Everything we have seen until now allows us to develop our own packages with the goal of <em>working</em> on data. By <em>working</em> on data I mean any operation that involves cleaning, transforming, analyzing or plotting data. I will summarize why everything we have seen until now helps us in this task:</p>
 <ol style="list-style-type: decimal">
 <li>Functional programming makes our code easier to test</li>
@@ -190,7 +202,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ol>
 <p>For the rest of this chapter we are going to work with mock datasets that I created. The data is completely random but for our purposes it does not matter. In this chapter, we are going to write a number of functions with the goal of going from these awful, badly formatted datasets to a nice longitudinal data set.</p>
 <div id="getting-the-data" class="section level2">
-<h2><span class="header-section-number">6.1</span> Getting the data</h2>
+<h2><span class="header-section-number">7.1</span> Getting the data</h2>
 <p>You can download the data from the <a href="https://github.com/b-rodrigues/functional_programming_and_unit_testing_for_data_munging">github repository</a> of the book. There are 5 <code>.csv</code> files that comprise the data sets we are going to work with:</p>
 <ul>
 <li><code>data_2000.csv</code></li>
@@ -208,9 +220,9 @@ data_2004 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span c
 <p>This might be ok for 5 datasets which are named very similarily, especially since you can do block editing in Rstudio. However, imagine that you have hundreds, thousands, of datasets? And image that their names are not so well formatted as here? We will start our package by writing a function that reads a lot of datasets at once.</p>
 </div>
 <div id="your-first-data-munging-package-preparedata" class="section level2">
-<h2><span class="header-section-number">6.2</span> Your first data munging package: <code>prepareData</code></h2>
+<h2><span class="header-section-number">7.2</span> Your first data munging package: <code>prepareData</code></h2>
 <div id="reading-a-lot-of-datasets-at-once" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Reading a lot of datasets at once</h3>
+<h3><span class="header-section-number">7.2.1</span> Reading a lot of datasets at once</h3>
 <p>Using Rstudio, create a new project like shown in the previous chapter, and select <em>R package</em>. Give it a name, for example <code>prepareData</code>. If you are working with datasets that have a name, for example the <em>Penn World Tables</em>, you could call your package <code>preparePWT</code>, or something similar. By the way, we are going to work on some test data sets that I created for illustration purposes. When you will develop your own package to work on your own data, you do not have to write unit tests that use you original data. A subset can be enough, or taking the time to create a small test dataset might be preferable. It depends on what features of your functions you want to test. The first function I will show you is actually very general and could work with any datasets. This means that I created a package called <code>broTools</code><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> that contains all the little functions that I use daily. But for illustration purposes, we will put this function inside <code>prepareData</code>, even if it does not have anything directly to do with it. I have called this function <code>read_list()</code> and here is the source code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Reads a list of datasets</span>
 <span class="co">#&#39; @param list_of_datasets A list of datasets (names of datasets are strings)</span>
@@ -291,7 +303,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 <p><code>list_of_data</code> is a variable that contains the path to the datasets. I used <code>Sys.glob(&quot;assets/*.csv&quot;)</code> to find the datasets. The datasets are saved in the <code>assets</code> folder of the book and end with the <code>.csv</code> extension. You could also use <code>list.files(&quot;*.csv&quot;)</code> to achieve the same. Let’s take a look inside this list using <code>head()</code>. Since <code>head()</code> only works on single data frames or tibbles, we use <code>map()</code> to apply <code>head()</code> to each data frame on the list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, head)</code></pre></div>
 <pre><code>## $`assets/data_2000`
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##      id Variable1 other2000 gender2000 eggs2000      spam2000
 ##   &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;         &lt;chr&gt;
 ## 1     1        32         3          F       80 -1.5035369157
@@ -302,7 +314,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## 6     6        30         3          F       40   -0.79001853
 ## 
 ## $`assets/data_2001`
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##      id VARIABLE1 other2001 Gender2001 eggs2001   spam2001
 ##   &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
 ## 1     1        32         3          F       80 -1.5035369
@@ -313,7 +325,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## 6     6        30         3          F       40 -0.7900185
 ## 
 ## $`assets/data_2002`
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##      ID variable1 Other2002 gender2002 eggs2002   Spam2002
 ##   &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
 ## 1     1        32         3          F       80 -1.5035369
@@ -324,7 +336,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## 6     6        30         3          F       40 -0.7900185
 ## 
 ## $`assets/data_2003`
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##      id variable1 other2003 gender2003 EGGS2003   spam2003
 ##   &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
 ## 1     1        32         3          F       80 -1.5035369
@@ -335,7 +347,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 ## 6     6        30         3          F       40 -0.7900185
 ## 
 ## $`assets/data_2004`
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##      Id Variable1 Other2004 Gender2004 Eggs2004   Spam2004
 ##   &lt;int&gt;     &lt;int&gt;     &lt;int&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
 ## 1     1        32         3          F       80 -1.5035369
@@ -353,7 +365,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">read_list</span>(list_of
 <p>This is to make the dataset tidy, as explained <span class="citation">Wickham (<a href="#ref-wickham2014tidy">2014</a><a href="#ref-wickham2014tidy">b</a>)</span>. Of course, depending on your needs, you might need to add further operations, for example creating new variables etc. For now, we are going to focus on these three steps.</p>
 </div>
 <div id="treating-the-columns-of-your-datasets" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> Treating the columns of your datasets</h3>
+<h3><span class="header-section-number">7.2.2</span> Treating the columns of your datasets</h3>
 <p>Let us take a look at the column names of the datasets:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, colnames)</code></pre></div>
 <pre><code>## $`assets/data_2000`
@@ -578,7 +590,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 
 <span class="kw">map</span>(datasets, head)</code></pre></div>
 <pre><code>## $`assets/data_2000`
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##      id variable1 other gender  eggs          spam  year
 ##   &lt;int&gt;     &lt;int&gt; &lt;int&gt;  &lt;chr&gt; &lt;int&gt;         &lt;chr&gt; &lt;dbl&gt;
 ## 1     1        32     3      F    80 -1.5035369157  2000
@@ -589,7 +601,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## 6     6        30     3      F    40   -0.79001853  2000
 ## 
 ## $`assets/data_2001`
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##      id variable1 other gender  eggs       spam  year
 ##   &lt;int&gt;     &lt;int&gt; &lt;int&gt;  &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1        32     3      F    80 -1.5035369  2001
@@ -600,7 +612,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## 6     6        30     3      F    40 -0.7900185  2001
 ## 
 ## $`assets/data_2002`
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##      id variable1 other gender  eggs       spam  year
 ##   &lt;int&gt;     &lt;int&gt; &lt;int&gt;  &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1        32     3      F    80 -1.5035369  2002
@@ -611,7 +623,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## 6     6        30     3      F    40 -0.7900185  2002
 ## 
 ## $`assets/data_2003`
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##      id variable1 other gender  eggs       spam  year
 ##   &lt;int&gt;     &lt;int&gt; &lt;int&gt;  &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1        32     3      F    80 -1.5035369  2003
@@ -622,7 +634,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 ## 6     6        30     3      F    40 -0.7900185  2003
 ## 
 ## $`assets/data_2004`
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##      id variable1 other gender  eggs       spam  year
 ##   &lt;int&gt;     &lt;int&gt; &lt;int&gt;  &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1        32     3      F    80 -1.5035369  2004
@@ -666,7 +678,7 @@ data_list &lt;-<span class="st"> </span><span class="kw">read_list</span>(data_s
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -684,10 +696,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-all_together.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-all_together.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

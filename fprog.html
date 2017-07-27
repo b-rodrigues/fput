@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.3.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-04-25">
+<meta name="date" content="2017-07-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="intro.html">
-<link rel="next" href="unit-testing.html">
+<link rel="next" href="the-tidyverse.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -133,30 +133,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
 <li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>4</b> Unit testing</a><ul>
-<li class="chapter" data-level="4.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>4.2</b> Unit testing with the <code>testthat</code> package</a></li>
-<li class="chapter" data-level="4.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>4.3</b> Actually running your tests</a></li>
-<li class="chapter" data-level="4.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>4.4</b> Wrap-up</a></li>
-<li class="chapter" data-level="4.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code id="tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-to-know-the-tidyverse"><i class="fa fa-check"></i><b>4.1</b> Getting to know the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.1.1</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
+<li class="chapter" data-level="4.1.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr-and-tidyr"><i class="fa fa-check"></i><b>4.1.2</b> Transforming your data with <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.1.3</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.1.4</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> Packages</a><ul>
-<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>5.1</b> Why you need your own packages in your life</a></li>
-<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>5.2</b> R packages: the basics</a></li>
-<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>5.3</b> Writing documentation for your functions</a></li>
-<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>5.4</b> Extra files inside your package and dependencies</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>5.4.1</b> The <code>NAMESPACE</code> file</a></li>
-<li class="chapter" data-level="5.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>5.4.2</b> How can you use functions from other packages inside your package?</a></li>
+<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#programming-with-the-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#prog-tidyverse-intro"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#the-naive-approach"><i class="fa fa-check"></i><b>4.2.2</b> The naive approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>5.5</b> Unit test your package</a></li>
-<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>5.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
-<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>5.7</b> Wrap-up</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>6</b> Putting it all together: writing a package to work on data</a><ul>
-<li class="chapter" data-level="6.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>6.1</b> Getting the data</a></li>
-<li class="chapter" data-level="6.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>6.2</b> Your first data munging package: <code>prepareData</code></a><ul>
-<li class="chapter" data-level="6.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>6.2.1</b> Reading a lot of datasets at once</a></li>
-<li class="chapter" data-level="6.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>6.2.2</b> Treating the columns of your datasets</a></li>
+<li class="chapter" data-level="5" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>5</b> Unit testing</a><ul>
+<li class="chapter" data-level="5.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>5.2</b> Unit testing with the <code>testthat</code> package</a></li>
+<li class="chapter" data-level="5.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>5.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="5.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-1"><i class="fa fa-check"></i><b>5.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="5.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-1"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
+<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
+<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>6.3</b> Writing documentation for your functions</a></li>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>6.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>6.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>6.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>6.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>6.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#wrap-up-2"><i class="fa fa-check"></i><b>6.7</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>7</b> Putting it all together: writing a package to work on data</a><ul>
+<li class="chapter" data-level="7.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>7.1</b> Getting the data</a></li>
+<li class="chapter" data-level="7.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>7.2</b> Your first data munging package: <code>prepareData</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>7.2.1</b> Reading a lot of datasets at once</a></li>
+<li class="chapter" data-level="7.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>7.2.2</b> Treating the columns of your datasets</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -789,7 +801,7 @@ remove_csv(dataset_names)
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -800,7 +812,7 @@ remove_csv(dataset_names)
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -821,7 +833,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-func_prog.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

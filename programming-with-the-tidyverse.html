@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="fprog.html">
+<link rel="prev" href="fprog.html">
+<link rel="next" href="unit-testing.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -133,17 +133,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
 <li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code id="tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-to-know-the-tidyverse"><i class="fa fa-check"></i><b>4.1</b> Getting to know the <code>tidyverse</code></a><ul>
-<li class="chapter" data-level="4.1.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.1.1</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
-<li class="chapter" data-level="4.1.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr-and-tidyr"><i class="fa fa-check"></i><b>4.1.2</b> Transforming your data with <code>dplyr</code> and <code>tidyr</code></a></li>
-<li class="chapter" data-level="4.1.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.1.3</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a></li>
-<li class="chapter" data-level="4.1.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.1.4</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#programming-with-the-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#prog-tidyverse-intro"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#the-naive-approach"><i class="fa fa-check"></i><b>4.2.2</b> The naive approach</a></li>
-</ul></li>
+<li class="chapter" data-level="4" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Programming with the <code id="tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#tidyverse-intro"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#the-naive-approach"><i class="fa fa-check"></i><b>4.2</b> The naive approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>5</b> Unit testing</a><ul>
 <li class="chapter" data-level="5.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -192,45 +184,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
-<div id="get_r" class="section level2">
-<h2><span class="header-section-number">2.1</span> Getting R</h2>
-<p>Since I’m assuming you have an intermediate level in R, you already should have R and Rstudio installed on your machine. However, you may lack some of the following packages that are needed to follow the examples in this book:</p>
-<ul>
-<li>covr: to check the coverage of your unit tests</li>
-<li>dplyr: to clean, transform, prepare data</li>
-<li>lazyeval: for lazy evaluation</li>
-<li>lubridate: makes working with dates easier</li>
-<li>memoise: makes your function remember intermediate results</li>
-<li>purrr: extends R’s functional programming capabilities</li>
-<li>readr: provides alternative functions to <code>read.csv()</code> and such</li>
-<li>roxygen2: creates documentation files from comments</li>
-<li>stringr: makes working with characters easier</li>
-<li>testthat: the library we are going to use for unit testing</li>
-<li>tibble: provides a nice, cleaner alternative to <code>data.frame</code></li>
-<li>tidyr: works hand in hand with <code>dplyr</code></li>
-</ul>
-<p>If you’re missing some or all of these packages, install them. You’ll notice that most, if not all, of these packages were authored or co-authored by Hadley Wickham, currently chief scientist at Rstudio, so you can install most of these packages by installing a single package called <code>tidyverse</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<p>The <code>tidyverse</code> package installs some other useful packages that we will not use, but you should check them out anyways!</p>
+<div id="programming-with-the-tidyverse" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Programming with the <code id="tidyverse">tidyverse</code></h1>
+<div id="tidyverse-intro" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>Functions are very powerful because by using them, we avoid repetition. This means that we must be able to write functions that allow the user to abstract over certain things, such as columns names of datasets. So for example, one would like to use a function that would look like that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, column)</code></pre></div>
+<p>and in this chapter we will learn together how to do that using <code>dplyr</code> (version 0.70 or above).</p>
+<p>I advise you to also read the “Programming with dplyr” vignette <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html">here</a>, which explains with great detail the concept I will only skim in this chapter!</p>
 </div>
-<div id="fprog_overview" class="section level2">
-<h2><span class="header-section-number">2.2</span> A short overview of functional programming</h2>
-<p>What is functional programming? Wikipedia tells us the following:</p>
-<blockquote>
-<p>In computer science, functional programming is a programming paradigm —a style of building the structure and elements of computer programs— that treats computation as the evaluation of mathematical functions and avoids changing state and mutable data. It is a declarative programming paradigm, which means programming is done with expressions or declarations instead of statements. In functional code, the output value of a function depends only on the arguments that are input to the function, so calling a function f twice with the same value for an argument x will produce the same result f(x) each time. Eliminating side effects, i.e. changes in state that do not depend on the function inputs, can make it much easier to understand and predict the behavior of a program, which is one of the key motivations for the development of functional programming.</p>
-</blockquote>
-<p>That’s the first paragraph of the <a href="https://en.wikipedia.org/wiki/Functional_programming">Wikipedia page</a> and it’s quite heavy already!</p>
-<p>So let’s try to decrypt what is said in this paragraph. Functional programming is a programming paradigm. You may have heard of object oriented programming, or imperative programming before. You actually probably program in an imperative way without knowing it. Imperative programming is usually how programming is taught at universities, and most people then keep on programming in this way, especially in applied sciences like applied econometrics. Usually, people that write code in an imperative way tend to write very long scripts that change the state of the program gradually. In the case of a statistician (I will use the word ‘statistician’ to mean any person that works with datasets. Be it an economist, biologist, data scientist, etc.) this usually means loading a dataset, doing whatever has to be done by writing each instruction in a file, then running everything. Sometimes this statistician has to save temporary datasets, and then write other scripts that do a series of computations on these temporary datasets and then not forget to delete said temporary datasets. Functional programming is different, in that you write functions that do one single task and then call these functions successively on your data set. These functions can be used for any other project, can be easily documented and tested (more on this below). Because each function performs a single task and is well documented, it is also easier to understand what the program is supposed to do. Comments in a thousand-lines file are actually not that much useful. The file is so long, that even when commented you simply cannot make any sense of what is going on. It is also easier to automate tasks and navigate through the code. Since one function does one single task, if you’re looking for the line of code that creates variable <code>X</code>, just look in the function called <code>create_var_X()</code>, instead of <code>CTRL-F</code>ing around. 1000 lines long script. You can also be sure that your functions do not do anything else (basically, this is what is meant by “eliminating side effects”) than the single task you gave them. You can <em>trust your functions</em>.</p>
-</div>
-<div id="unit_overview" class="section level2">
-<h2><span class="header-section-number">2.3</span> A short overview of unit testing</h2>
-<p>At the end of the last section I wrote that you can <em>trust your functions</em>. Is that true though? Functional programming can make your life easier, but it does not prevent you from introducing bugs in your code. However, what functional programming makes easily possible, is to very easily and effectively test your code thanks to unit testing. You probably already test your code, by hand. You write some loop that is supposed to sum the first 10 integers and then you try it out and check if, indeed, your loop returns 55. Because this is the correct result, you save your work and continue programming something else, and so on. Unit testing is this, but in an automated way. Instead of just trying things out in the interpreter, you write unit tests. You write code that actually checks your functions. You save this unit tests somewhere, and then re-run them whenever you make changes to your code. Even if you don’t change some parts of your code, you re-run every unit test. Because you actually never know what may happen. Maybe changing a single line in one of your functions introduced some unforeseen consequences that breaks functionality some place else. When you change code, and <em>all</em> your unit tests still pass, then you can be confident that your code is correct (actually, don’t be too confident, because maybe you didn’t write enough unit tests to cover every case. But we will see how we can be sure there is enough <em>coverage</em>).</p>
-</div>
-<div id="general-recommendations-to-follow-this-book" class="section level2">
-<h2><span class="header-section-number">2.4</span> General recommendations to follow this book</h2>
-<p>You should follow the examples in this book as closely as possible. I advise you to use exactly the same names as I do, because I will sometimes refer to previous examples and if you use different names, you will then need to go back and waste time to change the names.</p>
+<div id="the-naive-approach" class="section level2">
+<h2><span class="header-section-number">4.2</span> The naive approach</h2>
+<p>Consider the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
+simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
+  dataset %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(col_name) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
+  <span class="kw">return</span>(dataset)
+}</code></pre></div>
+<p>When you try to run this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simple_function</span>(mtcars, <span class="st">&quot;cyl&quot;</span>)</code></pre></div>
+<p>This is the error you get:</p>
+<pre><code> Error in grouped_df_impl(data, unname(vars), drop) :
+  Column `col_name` is unknown</code></pre>
+<p>R is <em>literally</em> looking for a column called <code>col_name</code> in the <code>mtcars</code> dataset. How to solve this issue and make R understand to not take “cyl” literally as a string, but to interpret it? One way is to use the <code>quo()</code> function, in conjunction with the <code>!!</code> operator introduced with <code>dplyr</code> 0.7 (but actually part of the <code>rlang</code> package, which gets used by <code>dplyr</code> seamlessly). First let’s look at the solution and then I’ll explain how it works:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
+  col_name &lt;-<span class="st"> </span><span class="kw">enquo</span>(col_name)
+  dataset %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(!!col_name) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
+  <span class="kw">return</span>(dataset)
+}
+
+
+<span class="kw">simple_function</span>(mtcars, cyl)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##     cyl mean_mpg
+##   &lt;dbl&gt;    &lt;dbl&gt;
+## 1     4 26.66364
+## 2     6 19.74286
+## 3     8 15.10000</code></pre>
 
 </div>
 </div>
@@ -239,8 +235,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fprog.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fprog.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -269,7 +265,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-prog_tidy.Rmd",
 "text": "Edit"
 },
 "download": null,
