@@ -209,7 +209,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You can then use this function to get the square root of a number:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">16</span>, <span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 4.00122</code></pre>
-<p>We are using a <code>while</code> loop inside the body<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> of the function. In <em>pure</em> functional programming languages, like Haskell, you don’t have loops. How can you program without loops, you may ask? In functional programming, loops are replaced by recursion. Let’s rewrite our little example above with recursion:</p>
+<p>We are using a <code>while</code> loop inside the body. The <em>body</em> of a function are the instructions that define the function. You can get the body of a function with <code>body(some_func)</code>] of the function. In <em>pure</em> functional programming languages, like Haskell, you don’t have loops. How can you program without loops, you may ask? In functional programming, loops are replaced by recursion. Let’s rewrite our little example above with recursion:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_recur &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
     if(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &lt;<span class="st"> </span>eps){
         result &lt;-<span class="st"> </span>init
@@ -423,7 +423,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <p>I think that the following example illustrates the power of <code>Reduce()</code> well:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Reduce</span>(<span class="st">`</span><span class="dt">+</span><span class="st">`</span>, numbers, <span class="dt">init =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 271</code></pre>
-<p>Can you guess what happens? <code>Reduce()</code> takes a function as an argument, here the function <code>+</code><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> and then does the following computation:</p>
+<p>Can you guess what happens? <code>Reduce()</code> takes a function as an argument, here the function <code>+</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> and then does the following computation:</p>
 <pre><code>0 + numbers[1] + numbers[2] + numbers[3]...</code></pre>
 <p>It applies the user supplied function successively but has to start with something, so we give it the argument <code>init</code> also. This argument is actually optional, but I show it here because in some cases it might be useful to start the computations at another value than <code>0</code>. This function generalizes functions that only take two arguments. If you were to write a function that returns the minimum between two numbers:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_min &lt;-<span class="st"> </span>function(a, b){
@@ -791,8 +791,7 @@ remove_csv(dataset_names)
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>The <em>body</em> of a function are the instructions that define the function. You can get the body of a function with <code>body(some_func)</code><a href="fprog.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>This is simply the <code>+</code> operator you’re used to. Try this out: <code>`+`(1, 5)</code> and you’ll see <code>+</code> is a function like any other. You just have to write backticks around the plus symbol to make it work.<a href="fprog.html#fnref2">↩</a></p></li>
+<li id="fn1"><p>This is simply the <code>+</code> operator you’re used to. Try this out: <code>`+`(1, 5)</code> and you’ll see <code>+</code> is a function like any other. You just have to write backticks around the plus symbol to make it work.<a href="fprog.html#fnref1">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -833,7 +832,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-func_prog.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }

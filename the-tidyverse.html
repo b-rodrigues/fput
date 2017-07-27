@@ -194,11 +194,87 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="the-tidyverse" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> The <code id="tidyverse">tidyverse</code></h1>
-<p>The <code>tidyverse</code> is the name given to a certain number of packages, most of all (if not all?) developed by, or co-developed by Hadley Wickham. There’s a website that introduces them all: <a href="http://tidyverse.org/">The tidyverse</a>. In this chapter, we are going to learn about some functions of some of these packages. We already know a little bit about <code>purrr</code>; let’s discover what these other packages have to offer!</p>
+<p>The <code>tidyverse</code> is the name given to a certain number of packages, most of all (if not all?) developed by, or co-developed by, Hadley Wickham. There’s a website that introduces them all: <a href="http://tidyverse.org/">The tidyverse</a>. In this chapter, we are going to learn about some functions of some of these packages. We already know a little bit about <code>purrr</code>; let’s discover what these other packages have to offer!</p>
 <div id="getting-to-know-the-tidyverse" class="section level2">
 <h2><span class="header-section-number">4.1</span> Getting to know the <code>tidyverse</code></h2>
+<p>First of all, let’s install the <code>tidyverse</code> packages. You can install them one by one, or you can install the <code>tidyverse</code> meta-package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>I suggest you do just that, as we’re going to skim over all the packages. To start an analysis, we first have to import data into R.</p>
 <div id="getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></h3>
+<p><code>readr</code> allows you to import <code>*.csv</code> files as well as other files in plain text. The functions included in <code>readr</code> are fairly straightforward, but there is an aspect that I really like about them: if they fail to read your data you can get a report of what went wrong with the <code>reports()</code> function. I suggest you read the <a href="http://r4ds.had.co.nz/data-import.html">Data import chapter</a> of R for Data Science, to get to know <code>readr</code> better. But for our purposes, knowing the basic <code>read_csv()</code> function is enough.</p>
+<p><code>readxl</code> is very similar to <code>readr</code> but focuses on importing Excel sheets into R. Read more about it on the <a href="http://readxl.tidyverse.org/">tidyverse website</a>.</p>
+<p><code>haven</code> imports data from STATA, SAS and SPSS. I’m going into a bit more detail here, by showing an example with a STATA file. STATA files are usually labelled, and I’d like to show how to work with these labels using R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars_stata &lt;-<span class="st"> </span>haven::<span class="kw">read_dta</span>(<span class="st">&quot;mtcars.dta&quot;</span>)
+<span class="kw">head</span>(mtcars_stata)</code></pre></div>
+<pre><code>## # A tibble: 6 x 12
+##                 car   mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+##               &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1         Mazda RX4  21.0     6   160   110  3.90 2.620 16.46     0     1
+## 2     Mazda RX4 Wag  21.0     6   160   110  3.90 2.875 17.02     0     1
+## 3        Datsun 710  22.8     4   108    93  3.85 2.320 18.61     1     1
+## 4    Hornet 4 Drive  21.4     6   258   110  3.08 3.215 19.44     1     0
+## 5 Hornet Sportabout  18.7     8   360   175  3.15 3.440 17.02     0     0
+## 6           Valiant  18.1     6   225   105  2.76 3.460 20.22     1     0
+## # ... with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</code></pre>
+<p>You don’t see it here, but the columns are labelled. Try the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mtcars_stata$car)</code></pre></div>
+<pre><code>##  atomic [1:32] Mazda RX4 Mazda RX4 Wag Datsun 710 Hornet 4 Drive ...
+##  - attr(*, &quot;label&quot;)= chr &quot;Make and model of the car&quot;
+##  - attr(*, &quot;format.stata&quot;)= chr &quot;%19s&quot;</code></pre>
+<p>As you can see, the <code>car</code> column has the <code>label</code> attribute, which equals “Make and model of the car”. The other columns are also labelled:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mtcars_stata$cyl)</code></pre></div>
+<pre><code>##  atomic [1:32] 6 6 4 6 8 6 8 4 4 6 ...
+##  - attr(*, &quot;label&quot;)= chr &quot;Number of cylinders&quot;
+##  - attr(*, &quot;format.stata&quot;)= chr &quot;%8.0g&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mtcars_stata$am)</code></pre></div>
+<pre><code>##  atomic [1:32] 1 1 1 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;label&quot;)= chr &quot;Transmission (0 = automatic, 1 = manual)&quot;
+##  - attr(*, &quot;format.stata&quot;)= chr &quot;%8.0g&quot;</code></pre>
+<p>Another way to get the label is to use the <code>attr()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attr</span>(mtcars_stata$cyl, <span class="st">&quot;label&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Number of cylinders&quot;</code></pre>
+<p>Let’s use what we learned until now to get the labels of all the columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_labels &lt;-<span class="st"> </span>function(dataset){
+  <span class="kw">map</span>(dataset, function(col)(<span class="kw">attr</span>(col, <span class="st">&quot;label&quot;</span>)))
+}
+
+<span class="kw">show_labels</span>(mtcars_stata)</code></pre></div>
+<pre><code>## $car
+## [1] &quot;Make and model of the car&quot;
+## 
+## $mpg
+## [1] &quot;Miles/(US) gallon&quot;
+## 
+## $cyl
+## [1] &quot;Number of cylinders&quot;
+## 
+## $disp
+## [1] &quot;Displacement (cu.in.)&quot;
+## 
+## $hp
+## [1] &quot;Gross horsepower&quot;
+## 
+## $drat
+## [1] &quot;Rear axle ratio&quot;
+## 
+## $wt
+## [1] &quot;Weight (1000 lbs)&quot;
+## 
+## $qsec
+## [1] &quot;1/4 mile time&quot;
+## 
+## $vs
+## [1] &quot;V/S&quot;
+## 
+## $am
+## [1] &quot;Transmission (0 = automatic, 1 = manual)&quot;
+## 
+## $gear
+## [1] &quot;Number of forward gears&quot;
+## 
+## $carb
+## [1] &quot;Number of carburetors&quot;</code></pre>
 </div>
 <div id="transforming-your-data-with-dplyr-and-tidyr" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Transforming your data with <code>dplyr</code> and <code>tidyr</code></h3>
@@ -215,7 +291,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="naive-tidyverse" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> The naive approach</h3>
 <p>Functions are very powerful because by using them, we avoid repetition. This means that we must be able to write functions that allow the user to abstract over certain things, such as columns names of datasets. So for example, one would like to use a function that would look like that:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, column)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, colum
+)</code></pre></div>
 <p>and in this chapter we will learn together how to do that using <code>dplyr</code> (version 0.70 or above).</p>
 <p>I advise you to also read the “Programming with dplyr” vignette <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html">here</a>, which explains with great detail the concept I will only skim in this chapter!</p>
 <p>Consider the following code:</p>
@@ -306,7 +383,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-prog_tidy.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }
