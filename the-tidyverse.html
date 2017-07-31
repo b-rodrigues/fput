@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-07-28">
+<meta name="date" content="2017-07-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -199,7 +199,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <code>tidyverse</code> is the name given to a certain number of packages, most of all (if not all?) developed by, or co-developed by, Hadley Wickham. There’s a website that introduces them all: <a href="http://tidyverse.org/">The tidyverse</a>. In this chapter, we are going to learn about some functions of some of these packages. We already know a little bit about <code>purrr</code>; let’s discover what these other packages have to offer!</p>
 <div id="getting-to-know-the-tidyverse" class="section level2">
 <h2><span class="header-section-number">4.1</span> Getting to know the <code>tidyverse</code></h2>
-<p>Before reading everything that follows, I’d suggest you watch Hadley Wickham’s talk <a href="https://www.youtube.com/watch?v=1POb5fx_m3I">Expressing yourself with R</a>. R is a computer <em>language</em>, and as with any language we really are writing things that are supposed to be read and understood by others. This talk will put you in the right mindset for everything that follows!</p>
+<p>Before reading everything that follows, I’d suggest you watch Hadley Wickham’s talk <a href="https://www.youtube.com/watch?v=1POb5fx_m3I">Expressing yourself with R</a>. R is a computer <em>language</em>, and as with any language we really are writing things that are supposed to be read and understood by others, not just the computer. Even if you’re working alone, you owe it to your future self to write clean, easy to understand code. Using the tidyverse and adopting the principles presented in the talk will put you in the right mindset for everything that follows!</p>
 <p>First of all, let’s install the <code>tidyverse</code> packages. You can install them one by one, or you can install the <code>tidyverse</code> meta-package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <p>I suggest you do just that, as we’re going to skim over all the packages. To start an analysis, we first have to import data into R.</p>
@@ -209,7 +209,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>You probably know the following painting by René Magritte, <em>La trahison des images</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;assets/pas_une_pipe.png&quot;</span>)</code></pre></div>
 <p><img src="assets/pas_une_pipe.png" width="721" /></p>
-<p>It turns out there’s an R package from the <code>tidyverse</code> that is called <code>magrittr</code>. What does this package do? It brings <em>pipes</em> to R. Pipes are a concept from the Unix operating system (if you’re using a GNU+Linux distribution or macOS, you’re basically using a <em>modern</em> unix. (That’s an oversimplification, but I’m an economist by training, and outrageously oversimplifying is what we do, deal with it.)</p>
+<p>It turns out there’s an R package from the <code>tidyverse</code> that is called <code>magrittr</code>. What does this package do? It brings <em>pipes</em> to R. Pipes are a concept from the Unix operating system; if you’re using a GNU+Linux distribution or macOS, you’re basically using a <em>modern</em> unix. (That’s an oversimplification, but I’m an economist by training, and outrageously oversimplifying things is what we do, deal with it.)</p>
 <p>The idea of pipes is to take the output of a command, and <em>feed</em> it as the input of another command. The <code>magrittr</code> package brings pipes to R, by using the weird looking <code>%&gt;%</code>. Try the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">16</span> %&gt;%<span class="st"> </span>sqrt</code></pre></div>
@@ -493,7 +493,7 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <p>This is going to be long, so prepare some coffee, lock the door to your study, turn off your phone and buckle up.</p>
 <div id="filter-and-friends" class="section level4">
 <h4><span class="header-section-number">4.1.3.1</span> <code>filter()</code> and friends</h4>
-<p>We’re going to use the <code>Cigar</code> dataset from the <code>plm</code> package, so install that first:</p>
+<p>We’re going to use the <code>Gasoline</code> dataset from the <code>plm</code> package, so install that first:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;plm&quot;</span>)</code></pre></div>
 <p>Then load the required data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Gasoline, <span class="dt">package =</span> <span class="st">&quot;plm&quot;</span>)</code></pre></div>
@@ -559,6 +559,39 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 17     U.K.  1969 3.948058 -6.031953 -0.3833246  -8.468119
 ## 18   U.S.A.  1969 4.841383 -5.414374 -1.2231427  -7.792706</code></pre>
 <p>So <code>gasoline</code>, which is a <code>tibble</code> object, is passed as the first argument of the <code>filter()</code> function. Starting now, we’re only going to use these pipes. You will see why soon enough, so bear with me.</p>
+<p>You can also filter more than just one year, by using the <code>%in%</code> operator:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1969</span>, <span class="dv">1973</span>))</code></pre></div>
+<pre><code>## # A tibble: 90 x 6
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
+##  2 AUSTRIA  1970 4.080888 -6.081712 -0.5965612 -8.728200
+##  3 AUSTRIA  1971 4.106720 -6.043626 -0.6544591 -8.635898
+##  4 AUSTRIA  1972 4.128018 -5.981052 -0.5963318 -8.538338
+##  5 AUSTRIA  1973 4.199381 -5.895153 -0.5944468 -8.487289
+##  6 BELGIUM  1969 3.854601 -5.857532 -0.3548085 -8.521453
+##  7 BELGIUM  1970 3.870392 -5.797201 -0.3779404 -8.453043
+##  8 BELGIUM  1971 3.872245 -5.761050 -0.3992299 -8.409457
+##  9 BELGIUM  1972 3.905402 -5.710230 -0.3106458 -8.362588
+## 10 BELGIUM  1973 3.895996 -5.644145 -0.3730919 -8.314447
+## # ... with 80 more rows</code></pre>
+<p>or even non-consecutive years:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">1969</span>, <span class="dv">1973</span>, <span class="dv">1977</span>))</code></pre></div>
+<pre><code>## # A tibble: 54 x 6
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
+##  2 AUSTRIA  1973 4.199381 -5.895153 -0.5944468 -8.487289
+##  3 AUSTRIA  1977 3.931676 -5.833288 -0.4219156 -8.249563
+##  4 BELGIUM  1969 3.854601 -5.857532 -0.3548085 -8.521453
+##  5 BELGIUM  1973 3.895996 -5.644145 -0.3730919 -8.314447
+##  6 BELGIUM  1977 3.854311 -5.556697 -0.4316413 -8.138534
+##  7  CANADA  1969 4.864433 -5.560853 -1.0368639 -8.095113
+##  8  CANADA  1973 4.899694 -5.414753 -1.1331614 -7.942140
+##  9  CANADA  1977 4.810992 -5.336967 -1.0708445 -7.768793
+## 10 DENMARK  1969 4.173561 -5.722769 -0.4068792 -8.470459
+## # ... with 44 more rows</code></pre>
+<p><code>%in%</code> tests if an object is part of a set.</p>
 <p><code>filter()</code> is not the only <em>filtering</em> verb there is. Suppose that we have a condition that we want to use to filter out a lot of columns at once. For example, for every column that is of type <code>numeric</code>, keep only the lines where the condition <em>value &gt; -8</em> is satisfied. The next line does that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">filter_if</span>( ~<span class="kw">all</span>(<span class="kw">is.numeric</span>(.)), <span class="kw">all_vars</span>(. &gt;<span class="st"> </span>-<span class="dv">8</span>))</code></pre></div>
 <pre><code>## # A tibble: 30 x 6
@@ -763,9 +796,319 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 </div>
 <div id="group_by" class="section level4">
 <h4><span class="header-section-number">4.1.3.3</span> <code>group_by()</code></h4>
+<p><code>group_by()</code> is a very useful verb; as the name implies, it allows you to create groups and then, for example, compute descriptive statistics by groups. For example, let’s group our data by country:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">group_by</span>(country)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##  *  &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
+## # ... with 332 more rows</code></pre>
+<p>It looks like nothing much happened, but if you look at the second line of the output you can read the followi<code>{r} ## # Groups:   country [18]</code></p>
+<p>this means that the data is grouped, and every computation you will do now will take these groups into account. This will be clearer in the next subsection.</p>
+<p>It is also possible to group according to various variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">group_by</span>(country, year)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+## # Groups:   country, year [342]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##  *  &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
+## # ... with 332 more rows</code></pre>
+<p>and so on. You can then also ungroup:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">group_by</span>(country, year) %&gt;%<span class="st"> </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##  *  &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
+## # ... with 332 more rows</code></pre>
 </div>
 <div id="summarise" class="section level4">
 <h4><span class="header-section-number">4.1.3.4</span> <code>summarise()</code></h4>
+<p>Ok, now that we have learned the basic verbs, we can start to do more interesting stuff. For example, one might want to compute the average gasoline consumption per car in each country, for the whole period:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(lgaspcar))</code></pre></div>
+<pre><code>## # A tibble: 18 x 2
+##     country `mean(lgaspcar)`
+##      &lt;fctr&gt;            &lt;dbl&gt;
+##  1  AUSTRIA         4.056487
+##  2  BELGIUM         3.922286
+##  3   CANADA         4.862402
+##  4  DENMARK         4.189886
+##  5   FRANCE         3.815198
+##  6  GERMANY         3.893389
+##  7   GREECE         4.878679
+##  8  IRELAND         4.225560
+##  9    ITALY         3.729646
+## 10    JAPAN         4.699642
+## 11 NETHERLA         4.080338
+## 12   NORWAY         4.109773
+## 13    SPAIN         4.055314
+## 14   SWEDEN         4.006055
+## 15 SWITZERL         4.237586
+## 16   TURKEY         5.766355
+## 17     U.K.         3.984685
+## 18   U.S.A.         4.819075</code></pre>
+<p><code>mean()</code> was given as an argument to <code>summarise()</code>, which is a <code>dplyr</code> verb. What we get is another tibble, that contains the variable we used to group, as well as the average per country. We can also rename this column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gaspcar =</span> <span class="kw">mean</span>(lgaspcar))</code></pre></div>
+<pre><code>## # A tibble: 18 x 2
+##     country mean_gaspcar
+##      &lt;fctr&gt;        &lt;dbl&gt;
+##  1  AUSTRIA     4.056487
+##  2  BELGIUM     3.922286
+##  3   CANADA     4.862402
+##  4  DENMARK     4.189886
+##  5   FRANCE     3.815198
+##  6  GERMANY     3.893389
+##  7   GREECE     4.878679
+##  8  IRELAND     4.225560
+##  9    ITALY     3.729646
+## 10    JAPAN     4.699642
+## 11 NETHERLA     4.080338
+## 12   NORWAY     4.109773
+## 13    SPAIN     4.055314
+## 14   SWEDEN     4.006055
+## 15 SWITZERL     4.237586
+## 16   TURKEY     5.766355
+## 17     U.K.     3.984685
+## 18   U.S.A.     4.819075</code></pre>
+<p>and because the output is a <code>tibble</code>, we can contain to use <code>dplyr</code> verbs on it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gaspcar =</span> <span class="kw">mean</span>(lgaspcar)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;FRANCE&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   country mean_gaspcar
+##    &lt;fctr&gt;        &lt;dbl&gt;
+## 1  FRANCE     3.815198</code></pre>
+<p>Ok, let’s pause here. See what I did in the last example? I chained 3 <code>dplyr</code> verbs together with <code>%&gt;%</code>. Without using <code>%&gt;%</code> I would have written:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(
+  <span class="kw">summarise</span>(
+    <span class="kw">group_by</span>(gasoline, country),
+    <span class="dt">mean_gaspcar =</span> <span class="kw">mean</span>(lgaspcar)),
+  country ==<span class="st"> &quot;FRANCE&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   country mean_gaspcar
+##    &lt;fctr&gt;        &lt;dbl&gt;
+## 1  FRANCE     3.815198</code></pre>
+<p>I don’t know about you, but this is much more difficult to read than the version with <code>%&gt;%</code>. It is possible to work like that, of course, but personally, I would advise you bite the bullet and learn to love the pipe. It won’t give you cancer.</p>
+<p>Ok, back to <code>summarise()</code>. We can really do a lot of stuff with this verb. For example, we can compute several descriptive statistics at once:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gaspcar =</span> <span class="kw">mean</span>(lgaspcar), <span class="dt">sd_gaspcar =</span> <span class="kw">sd</span>(lgaspcar), <span class="dt">max_gaspcar =</span> <span class="kw">max</span>(lgaspcar), <span class="dt">min_gaspcar =</span> <span class="kw">min</span>(lgaspcar))</code></pre></div>
+<pre><code>## # A tibble: 18 x 5
+##     country mean_gaspcar sd_gaspcar max_gaspcar min_gaspcar
+##      &lt;fctr&gt;        &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1  AUSTRIA     4.056487 0.06929942    4.199381    3.922750
+##  2  BELGIUM     3.922286 0.10339189    4.164016    3.818230
+##  3   CANADA     4.862402 0.02618377    4.899694    4.810992
+##  4  DENMARK     4.189886 0.15819728    4.501986    4.000461
+##  5   FRANCE     3.815198 0.04986425    3.908116    3.749535
+##  6  GERMANY     3.893389 0.02389849    3.932402    3.848782
+##  7   GREECE     4.878679 0.25467445    5.381495    4.479956
+##  8  IRELAND     4.225560 0.04369894    4.325585    4.164896
+##  9    ITALY     3.729646 0.22001527    4.050728    3.380209
+## 10    JAPAN     4.699642 0.68411717    5.995287    3.948746
+## 11 NETHERLA     4.080338 0.28642682    4.646268    3.711384
+## 12   NORWAY     4.109773 0.12306866    4.435041    3.960331
+## 13    SPAIN     4.055314 0.31696784    4.749409    3.620444
+## 14   SWEDEN     4.006055 0.03639626    4.067373    3.913159
+## 15 SWITZERL     4.237586 0.10178743    4.441330    4.050048
+## 16   TURKEY     5.766355 0.32901391    6.156644    5.141255
+## 17     U.K.     3.984685 0.04787887    4.100244    3.912584
+## 18   U.S.A.     4.819075 0.02189802    4.860286    4.787895</code></pre>
+<p>Because the output is a <code>tibble</code>, you can save it in a variable of course:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">desc_gasoline &lt;-<span class="st"> </span>gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gaspcar =</span> <span class="kw">mean</span>(lgaspcar), <span class="dt">sd_gaspcar =</span> <span class="kw">sd</span>(lgaspcar), <span class="dt">max_gaspcar =</span> <span class="kw">max</span>(lgaspcar), <span class="dt">min_gaspcar =</span> <span class="kw">min</span>(lgaspcar))</code></pre></div>
+<p>And then you can answer questions such as, <em>which country has the maximum average gasoline consumption per car?</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">desc_gasoline %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">max</span>(mean_gaspcar) ==<span class="st"> </span>mean_gaspcar)</code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   country mean_gaspcar sd_gaspcar max_gaspcar min_gaspcar
+##    &lt;fctr&gt;        &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1  TURKEY     5.766355  0.3290139    6.156644    5.141255</code></pre>
+<p>Turns out it’s Turkey. What about the minimum consumption?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">desc_gasoline %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">min</span>(mean_gaspcar) ==<span class="st"> </span>mean_gaspcar)</code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   country mean_gaspcar sd_gaspcar max_gaspcar min_gaspcar
+##    &lt;fctr&gt;        &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1   ITALY     3.729646  0.2200153    4.050728    3.380209</code></pre>
+<p>Just like for <code>filter()</code> and <code>select()</code>, <code>summarise()</code> comes with scoped versions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;l&quot;</span>)), mean)</code></pre></div>
+<pre><code>## # A tibble: 18 x 5
+##     country lgaspcar  lincomep       lrpmg   lcarpcap
+##      &lt;fctr&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+##  1  AUSTRIA 4.056487 -6.119613 -0.48578185  -8.848114
+##  2  BELGIUM 3.922286 -5.852297 -0.32575856  -8.630392
+##  3   CANADA 4.862402 -5.576948 -1.04918735  -8.081975
+##  4  DENMARK 4.189886 -5.756725 -0.35761243  -8.583795
+##  5   FRANCE 3.815198 -5.866167 -0.25277821  -8.452957
+##  6  GERMANY 3.893389 -5.845314 -0.51718417  -8.506392
+##  7   GREECE 4.878679 -6.606373 -0.03391043 -10.782066
+##  8  IRELAND 4.225560 -6.441571 -0.34754288  -9.035927
+##  9    ITALY 3.729646 -6.350354 -0.15219273  -8.827179
+## 10    JAPAN 4.699642 -6.248629 -0.28662755  -9.945087
+## 11 NETHERLA 4.080338 -5.920132 -0.36977928  -8.817087
+## 12   NORWAY 4.109773 -5.753316 -0.27767861  -8.765066
+## 13    SPAIN 4.055314 -5.627756  0.73937888  -9.896247
+## 14   SWEDEN 4.006055 -7.816214 -2.70917074  -8.250729
+## 15 SWITZERL 4.237586 -5.927320 -0.90165998  -8.541029
+## 16   TURKEY 5.766355 -7.336992 -0.42151399 -12.458858
+## 17     U.K. 3.984685 -6.015377 -0.45929339  -8.548493
+## 18   U.S.A. 4.819075 -5.448560 -1.20756453  -7.781090</code></pre>
+<p>See how I managed to summarise every variable in one simple call to <code>summarise_at()</code>? Simply by using <code>vars()</code> and specifying that I was interested in the ones that started with “l” and then I specified the function I wanted. But what if I wanted to use more than one function to summarise the data? Very easy:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;l&quot;</span>)), <span class="kw">funs</span>(mean, sd, max, min))</code></pre></div>
+<pre><code>## # A tibble: 18 x 17
+##     country lgaspcar_mean lincomep_mean  lrpmg_mean lcarpcap_mean
+##      &lt;fctr&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+##  1  AUSTRIA      4.056487     -6.119613 -0.48578185     -8.848114
+##  2  BELGIUM      3.922286     -5.852297 -0.32575856     -8.630392
+##  3   CANADA      4.862402     -5.576948 -1.04918735     -8.081975
+##  4  DENMARK      4.189886     -5.756725 -0.35761243     -8.583795
+##  5   FRANCE      3.815198     -5.866167 -0.25277821     -8.452957
+##  6  GERMANY      3.893389     -5.845314 -0.51718417     -8.506392
+##  7   GREECE      4.878679     -6.606373 -0.03391043    -10.782066
+##  8  IRELAND      4.225560     -6.441571 -0.34754288     -9.035927
+##  9    ITALY      3.729646     -6.350354 -0.15219273     -8.827179
+## 10    JAPAN      4.699642     -6.248629 -0.28662755     -9.945087
+## 11 NETHERLA      4.080338     -5.920132 -0.36977928     -8.817087
+## 12   NORWAY      4.109773     -5.753316 -0.27767861     -8.765066
+## 13    SPAIN      4.055314     -5.627756  0.73937888     -9.896247
+## 14   SWEDEN      4.006055     -7.816214 -2.70917074     -8.250729
+## 15 SWITZERL      4.237586     -5.927320 -0.90165998     -8.541029
+## 16   TURKEY      5.766355     -7.336992 -0.42151399    -12.458858
+## 17     U.K.      3.984685     -6.015377 -0.45929339     -8.548493
+## 18   U.S.A.      4.819075     -5.448560 -1.20756453     -7.781090
+## # ... with 12 more variables: lgaspcar_sd &lt;dbl&gt;, lincomep_sd &lt;dbl&gt;,
+## #   lrpmg_sd &lt;dbl&gt;, lcarpcap_sd &lt;dbl&gt;, lgaspcar_max &lt;dbl&gt;,
+## #   lincomep_max &lt;dbl&gt;, lrpmg_max &lt;dbl&gt;, lcarpcap_max &lt;dbl&gt;,
+## #   lgaspcar_min &lt;dbl&gt;, lincomep_min &lt;dbl&gt;, lrpmg_min &lt;dbl&gt;,
+## #   lcarpcap_min &lt;dbl&gt;</code></pre>
+<p>But maybe you’re just interested in descriptive statistics for some variables, but not all those that start with “l”? What if you want to use another pattern? Easy to do with the <code>contains()</code> helper:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;car&quot;</span>)), <span class="kw">funs</span>(mean, sd, max, min))</code></pre></div>
+<pre><code>## # A tibble: 18 x 9
+##     country lgaspcar_mean lcarpcap_mean lgaspcar_sd lcarpcap_sd
+##      &lt;fctr&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1  AUSTRIA      4.056487     -8.848114  0.06929942   0.4728231
+##  2  BELGIUM      3.922286     -8.630392  0.10339189   0.4171514
+##  3   CANADA      4.862402     -8.081975  0.02618377   0.1953069
+##  4  DENMARK      4.189886     -8.583795  0.15819728   0.3486135
+##  5   FRANCE      3.815198     -8.452957  0.04986425   0.3436969
+##  6  GERMANY      3.893389     -8.506392  0.02389849   0.4060370
+##  7   GREECE      4.878679    -10.782066  0.25467445   0.8388589
+##  8  IRELAND      4.225560     -9.035927  0.04369894   0.3452272
+##  9    ITALY      3.729646     -8.827179  0.22001527   0.6389769
+## 10    JAPAN      4.699642     -9.945087  0.68411717   1.1969275
+## 11 NETHERLA      4.080338     -8.817087  0.28642682   0.6173209
+## 12   NORWAY      4.109773     -8.765066  0.12306866   0.4382484
+## 13    SPAIN      4.055314     -9.896247  0.31696784   0.9596034
+## 14   SWEDEN      4.006055     -8.250729  0.03639626   0.2422792
+## 15 SWITZERL      4.237586     -8.541029  0.10178743   0.3775211
+## 16   TURKEY      5.766355    -12.458858  0.32901391   0.7512506
+## 17     U.K.      3.984685     -8.548493  0.04787887   0.2812851
+## 18   U.S.A.      4.819075     -7.781090  0.02189802   0.1617998
+## # ... with 4 more variables: lgaspcar_max &lt;dbl&gt;, lcarpcap_max &lt;dbl&gt;,
+## #   lgaspcar_min &lt;dbl&gt;, lcarpcap_min &lt;dbl&gt;</code></pre>
+<p>There’s also <code>summarise_if()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise_if</span>(is.double, <span class="kw">funs</span>(mean, sd, min, max))</code></pre></div>
+<pre><code>## # A tibble: 18 x 17
+##     country lgaspcar_mean lincomep_mean  lrpmg_mean lcarpcap_mean
+##      &lt;fctr&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+##  1  AUSTRIA      4.056487     -6.119613 -0.48578185     -8.848114
+##  2  BELGIUM      3.922286     -5.852297 -0.32575856     -8.630392
+##  3   CANADA      4.862402     -5.576948 -1.04918735     -8.081975
+##  4  DENMARK      4.189886     -5.756725 -0.35761243     -8.583795
+##  5   FRANCE      3.815198     -5.866167 -0.25277821     -8.452957
+##  6  GERMANY      3.893389     -5.845314 -0.51718417     -8.506392
+##  7   GREECE      4.878679     -6.606373 -0.03391043    -10.782066
+##  8  IRELAND      4.225560     -6.441571 -0.34754288     -9.035927
+##  9    ITALY      3.729646     -6.350354 -0.15219273     -8.827179
+## 10    JAPAN      4.699642     -6.248629 -0.28662755     -9.945087
+## 11 NETHERLA      4.080338     -5.920132 -0.36977928     -8.817087
+## 12   NORWAY      4.109773     -5.753316 -0.27767861     -8.765066
+## 13    SPAIN      4.055314     -5.627756  0.73937888     -9.896247
+## 14   SWEDEN      4.006055     -7.816214 -2.70917074     -8.250729
+## 15 SWITZERL      4.237586     -5.927320 -0.90165998     -8.541029
+## 16   TURKEY      5.766355     -7.336992 -0.42151399    -12.458858
+## 17     U.K.      3.984685     -6.015377 -0.45929339     -8.548493
+## 18   U.S.A.      4.819075     -5.448560 -1.20756453     -7.781090
+## # ... with 12 more variables: lgaspcar_sd &lt;dbl&gt;, lincomep_sd &lt;dbl&gt;,
+## #   lrpmg_sd &lt;dbl&gt;, lcarpcap_sd &lt;dbl&gt;, lgaspcar_min &lt;dbl&gt;,
+## #   lincomep_min &lt;dbl&gt;, lrpmg_min &lt;dbl&gt;, lcarpcap_min &lt;dbl&gt;,
+## #   lgaspcar_max &lt;dbl&gt;, lincomep_max &lt;dbl&gt;, lrpmg_max &lt;dbl&gt;,
+## #   lcarpcap_max &lt;dbl&gt;</code></pre>
+<p>This allows you to summarise every column that contain real numbers (if you use <code>is.numeric()</code> instead, <code>year</code> will also be summarised, which is not really interesting).</p>
+<p>To go faster, you can also use <code>summarise_all()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">select</span>(-year) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">funs</span>(mean, sd, min, max))</code></pre></div>
+<pre><code>## # A tibble: 18 x 17
+##     country lgaspcar_mean lincomep_mean  lrpmg_mean lcarpcap_mean
+##      &lt;fctr&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+##  1  AUSTRIA      4.056487     -6.119613 -0.48578185     -8.848114
+##  2  BELGIUM      3.922286     -5.852297 -0.32575856     -8.630392
+##  3   CANADA      4.862402     -5.576948 -1.04918735     -8.081975
+##  4  DENMARK      4.189886     -5.756725 -0.35761243     -8.583795
+##  5   FRANCE      3.815198     -5.866167 -0.25277821     -8.452957
+##  6  GERMANY      3.893389     -5.845314 -0.51718417     -8.506392
+##  7   GREECE      4.878679     -6.606373 -0.03391043    -10.782066
+##  8  IRELAND      4.225560     -6.441571 -0.34754288     -9.035927
+##  9    ITALY      3.729646     -6.350354 -0.15219273     -8.827179
+## 10    JAPAN      4.699642     -6.248629 -0.28662755     -9.945087
+## 11 NETHERLA      4.080338     -5.920132 -0.36977928     -8.817087
+## 12   NORWAY      4.109773     -5.753316 -0.27767861     -8.765066
+## 13    SPAIN      4.055314     -5.627756  0.73937888     -9.896247
+## 14   SWEDEN      4.006055     -7.816214 -2.70917074     -8.250729
+## 15 SWITZERL      4.237586     -5.927320 -0.90165998     -8.541029
+## 16   TURKEY      5.766355     -7.336992 -0.42151399    -12.458858
+## 17     U.K.      3.984685     -6.015377 -0.45929339     -8.548493
+## 18   U.S.A.      4.819075     -5.448560 -1.20756453     -7.781090
+## # ... with 12 more variables: lgaspcar_sd &lt;dbl&gt;, lincomep_sd &lt;dbl&gt;,
+## #   lrpmg_sd &lt;dbl&gt;, lcarpcap_sd &lt;dbl&gt;, lgaspcar_min &lt;dbl&gt;,
+## #   lincomep_min &lt;dbl&gt;, lrpmg_min &lt;dbl&gt;, lcarpcap_min &lt;dbl&gt;,
+## #   lgaspcar_max &lt;dbl&gt;, lincomep_max &lt;dbl&gt;, lrpmg_max &lt;dbl&gt;,
+## #   lcarpcap_max &lt;dbl&gt;</code></pre>
+<p>I removed the <code>year</code> variable because it’s not a variable for which we want to have descriptive statistics.</p>
 </div>
 <div id="mutate-and-transmute" class="section level4">
 <h4><span class="header-section-number">4.1.3.5</span> <code>mutate()</code> and <code>transmute()</code></h4>
