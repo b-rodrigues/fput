@@ -1329,6 +1329,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 </div>
 <div id="helper-functions-for-mutate-and-transmute" class="section level4">
 <h4><span class="header-section-number">4.1.3.6</span> Helper functions for <code>mutate()</code> and <code>transmute()</code></h4>
+<div id="if_else-case_when-and-recode" class="section level5">
+<h5><span class="header-section-number">4.1.3.6.1</span> <code>if_else()</code>, <code>case_when()</code> and <code>recode()</code></h5>
 <p>The two helper functions I use the most are probably <code>if_else()</code> and <code>case_when</code>. These two functions, combined with <code>mutate()</code> make it easy to create a new variable conditonally on the values of other variables. For instance, we might want to have a dummy that equals <code>1</code> if a country in the European Union (to simplify, say as of 2017) and <code>0</code> if not. First let’s create a list of countries that are in the EU:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eu_countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;austria&quot;</span>, <span class="st">&quot;belgium&quot;</span>, <span class="st">&quot;bulgaria&quot;</span>, <span class="st">&quot;croatia&quot;</span>, <span class="st">&quot;republic of cyprus&quot;</span>,
                   <span class="st">&quot;czech republic&quot;</span>, <span class="st">&quot;denmark&quot;</span>, <span class="st">&quot;estonia&quot;</span>, <span class="st">&quot;finland&quot;</span>, <span class="st">&quot;france&quot;</span>, <span class="st">&quot;germany&quot;</span>,
@@ -1397,7 +1399,7 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">case_when</span>(
            country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;france&quot;</span>, <span class="st">&quot;italy&quot;</span>, <span class="st">&quot;turkey&quot;</span>, <span class="st">&quot;greece&quot;</span>, <span class="st">&quot;spain&quot;</span>) ~<span class="st"> &quot;mediterranean&quot;</span>,
            country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;germany&quot;</span>, <span class="st">&quot;austria&quot;</span>, <span class="st">&quot;switzerl&quot;</span>, <span class="st">&quot;belgium&quot;</span>, <span class="st">&quot;netherla&quot;</span>) ~<span class="st"> &quot;central europe&quot;</span>,
-           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;canada&quot;</span>, <span class="st">&quot;u.s.a&quot;</span>, <span class="st">&quot;u.k.&quot;</span>, <span class="st">&quot;ireland&quot;</span>) ~<span class="st"> &quot;anglosphere&quot;</span>,
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;canada&quot;</span>, <span class="st">&quot;u.s.a.&quot;</span>, <span class="st">&quot;u.k.&quot;</span>, <span class="st">&quot;ireland&quot;</span>) ~<span class="st"> &quot;anglosphere&quot;</span>,
            country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;denmark&quot;</span>, <span class="st">&quot;norway&quot;</span>, <span class="st">&quot;sweden&quot;</span>) ~<span class="st"> &quot;nordic&quot;</span>,
            country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;japan&quot;</span>) ~<span class="st"> &quot;asia&quot;</span>)) %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">1960</span>)</code></pre></div>
@@ -1421,7 +1423,21 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 15 switzerl  1960 4.397621 -6.156074 -0.82321833  -9.262400 central europe
 ## 16   turkey  1960 6.129553 -7.801144 -0.25340821 -13.475185  mediterranean
 ## 17     u.k.  1960 4.100244 -6.186849 -0.39108581  -9.117623    anglosphere
-## 18   u.s.a.  1960 4.823965 -5.698374 -1.12111489  -8.019458           &lt;NA&gt;</code></pre>
+## 18   u.s.a.  1960 4.823965 -5.698374 -1.12111489  -8.019458    anglosphere</code></pre>
+<p>If all you want is to recode values, you can use <code>recode()</code>. For example, the Netherlands is written as “NETHERLA” in the which is quite ugly. Same for Switzerland:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">recode</span>(country, <span class="st">&quot;netherla&quot;</span> =<span class="st"> &quot;netherlands&quot;</span>, <span class="st">&quot;switzerl&quot;</span> =<span class="st"> &quot;switzerland&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;netherlands&quot;</span>, <span class="st">&quot;switzerland&quot;</span>), year ==<span class="st"> </span><span class="dv">1960</span>)</code></pre></div>
+<pre><code>## # A tibble: 2 x 6
+##       country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##         &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 netherlands  1960 4.646268 -6.216365 -0.2014848 -9.998449
+## 2 switzerland  1960 4.397621 -6.156074 -0.8232183 -9.262400</code></pre>
+</div>
+<div id="lead-and-lag" class="section level5">
+<h5><span class="header-section-number">4.1.3.6.2</span> <code>lead()</code> and <code>lag()</code></h5>
+</div>
 </div>
 <div id="arrange" class="section level4">
 <h4><span class="header-section-number">4.1.3.7</span> <code>arrange()</code></h4>
