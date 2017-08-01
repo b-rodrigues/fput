@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-07-31">
+<meta name="date" content="2017-08-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -225,7 +225,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></h3>
-<p>You probably already know how to import data in R, but maybe you are not familiar with these packages. Using them is pretty straightforward, and I will only discuss <code>haven</code> a little bit more than <code>readr</code> or <code>readxl</code>. <code>readr</code> allows you to import <code>*.csv</code> files as well as other files in plain text. The functions included in <code>readr</code> are fairly straightforward, but there is an aspect that I really like about them: if they fail to read your data you can get a report of what went wrong with the <code>reports()</code> function. I suggest you read the <a href="http://r4ds.had.co.nz/data-import.html">Data import chapter</a> of R for Data Science, to get to know <code>readr</code> better. But for our purposes, knowing the basic <code>read_csv()</code> function is enough.</p>
+<p>You probably already know how to import data in R, but maybe you are not familiar with these packages. Using them is pretty straightforward, and I will only discuss <code>haven</code> a little bit more than <code>readr</code> or <code>readxl</code>. <code>readr</code> allows you to import <code>*.csv</code> files as well as other files in plain text. The functions included in <code>readr</code> are fairly straightforward, but there is an aspect that I really like about them: if they fail to read your data you can get a report of what went wrong with the <code>problems()</code> function. I suggest you read the <a href="http://r4ds.had.co.nz/data-import.html">Data import chapter</a> of R for Data Science, to get to know <code>readr</code> better. But for our purposes, knowing the basic <code>read_csv()</code> function is enough.</p>
 <p><code>readxl</code> is very similar to <code>readr</code> but focuses on importing Excel sheets into R. Read more about it on the <a href="http://readxl.tidyverse.org/">tidyverse website</a>.</p>
 <p><code>haven</code> imports data from STATA, SAS and SPSS. I’m going into a bit more detail here, by showing an example with a STATA file. STATA files are usually labelled, and I’d like to show how to work with these labels using R. We’re going to work with the <code>mtcars</code> dataset. I used STATA 14 to label the variables; so the dataset looks like one you could have to work with one day.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars_stata &lt;-<span class="st"> </span>haven::<span class="kw">read_dta</span>(<span class="st">&quot;assets/mtcars.dta&quot;</span>)
@@ -793,6 +793,93 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ##  9  1968 4.045507 -6.206894 -0.5224125 -8.847967
 ## 10  1969 4.046355 -6.153140 -0.5591105 -8.788686
 ## # ... with 332 more rows</code></pre>
+<p>Another verb, similar to <code>select()</code>, is <code>pull()</code>. Let’s compare the two:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">select</span>(lrpmg)</code></pre></div>
+<pre><code>## # A tibble: 342 x 1
+##         lrpmg
+##  *      &lt;dbl&gt;
+##  1 -0.3345476
+##  2 -0.3513276
+##  3 -0.3795177
+##  4 -0.4142514
+##  5 -0.4453354
+##  6 -0.4970607
+##  7 -0.4668377
+##  8 -0.5058834
+##  9 -0.5224125
+## 10 -0.5591105
+## # ... with 332 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">pull</span>(lrpmg)</code></pre></div>
+<pre><code>##   [1] -0.33454761 -0.35132761 -0.37951769 -0.41425139 -0.44533536
+##   [6] -0.49706066 -0.46683773 -0.50588340 -0.52241255 -0.55911051
+##  [11] -0.59656122 -0.65445914 -0.59633184 -0.59444681 -0.46602693
+##  [16] -0.45414221 -0.50008372 -0.42191563 -0.46960312 -0.16570961
+##  [21] -0.17173098 -0.22229138 -0.25046225 -0.27591057 -0.34493695
+##  [26] -0.23639770 -0.26699499 -0.31116076 -0.35480852 -0.37794044
+##  [31] -0.39922992 -0.31064584 -0.37309192 -0.36223563 -0.36430848
+##  [36] -0.37896584 -0.43164133 -0.59094964 -0.97210650 -0.97229024
+##  [41] -0.97860756 -1.01904791 -1.00285696 -1.01712549 -1.01694436
+##  [46] -1.02359713 -1.01984524 -1.03686389 -1.06733308 -1.05803676
+##  [51] -1.09966703 -1.13316142 -1.12379997 -1.18568427 -1.06179659
+##  [56] -1.07084448 -1.07495073 -0.19570260 -0.25361844 -0.21875400
+##  [61] -0.24800936 -0.30654923 -0.32701542 -0.39618846 -0.44257369
+##  [66] -0.35204752 -0.40687922 -0.44046082 -0.45473954 -0.49918863
+##  [71] -0.43257185 -0.42517720 -0.39395431 -0.35361534 -0.35690917
+##  [76] -0.29068135 -0.01959833 -0.02386000 -0.06892022 -0.13792900
+##  [81] -0.19784646 -0.23365325 -0.26427164 -0.29405795 -0.32316179
+##  [86] -0.31519087 -0.33384616 -0.37945667 -0.40781642 -0.47503429
+##  [91] -0.21698191 -0.25838174 -0.24651309 -0.22550681 -0.38075942
+##  [96] -0.18591078 -0.23095384 -0.34384171 -0.37464672 -0.39965256
+## [101] -0.43987825 -0.54000197 -0.54998139 -0.43824222 -0.58923137
+## [106] -0.63329520 -0.67176311 -0.71797458 -0.72587521 -0.56982876
+## [111] -0.56482380 -0.62481298 -0.59761210 -0.62817279 -0.08354740
+## [116] -0.10421997 -0.13320751 -0.15653576 -0.18051772 -0.07793999
+## [121] -0.11491900 -0.13775849 -0.15375883 -0.17986997 -0.20252426
+## [126] -0.06761078 -0.11973059 -0.05191029  0.31625351  0.20631574
+## [131]  0.19319312  0.23502961  0.16896037 -0.07648118 -0.12040874
+## [136] -0.14160039 -0.15232915 -0.24428212 -0.16899366 -0.21071901
+## [141] -0.17383533 -0.21339314 -0.27162842 -0.32069023 -0.36041067
+## [146] -0.42393131 -0.64567297 -0.55343875 -0.64126416 -0.66134256
+## [151] -0.56011483 -0.66277808  0.16507708 -0.08559038 -0.18351291
+## [156] -0.26541405 -0.42609643 -0.32712637 -0.24887418 -0.19160048
+## [161] -0.20616656 -0.24756681 -0.23271512 -0.14822267 -0.21508857
+## [166] -0.32508487 -0.22290860 -0.03270913  0.10292798  0.16418805
+## [171]  0.03482212 -0.14532271 -0.14874940 -0.18731459 -0.19996473
+## [176] -0.20386433 -0.23786571 -0.27411537 -0.33167240 -0.35126918
+## [181] -0.41685019 -0.46203546 -0.43941354 -0.52100094 -0.46270739
+## [186] -0.19090636 -0.15948473 -0.20726559 -0.21904447 -0.28707638
+## [191] -0.20148480 -0.21599265 -0.25968008 -0.29718661 -0.36929389
+## [196] -0.34197503 -0.34809007 -0.31232019 -0.44450431 -0.41694955
+## [201] -0.39954544 -0.43393029 -0.31903240 -0.42728193 -0.35253685
+## [206] -0.43426178 -0.42908393 -0.46474195 -0.55791459 -0.13968957
+## [211] -0.15790514 -0.19908809 -0.23263318 -0.26374731 -0.31593124
+## [216] -0.25011726 -0.26555763 -0.30036775 -0.33823045 -0.39072560
+## [221] -0.30127223 -0.26023925 -0.33880765 -0.15100924 -0.32726757
+## [226] -0.35308752 -0.38255762 -0.30765935  1.12531070  1.10956235
+## [231]  1.05700394  0.97683534  0.91532254  0.81666055  0.75671751
+## [236]  0.74130811  0.70386453  0.66948950  0.61217208  0.60699563
+## [241]  0.53716844  0.43377166  0.52492096  0.62955545  0.68385409
+## [246]  0.52627167  0.62141374 -2.52041588 -2.57148340 -2.53448158
+## [251] -2.60511224 -2.65801626 -2.64476790 -2.63901460 -2.65609762
+## [256] -2.67918662 -2.73190414 -2.73359211 -2.77884554 -2.77467537
+## [261] -2.84142900 -2.79840677 -2.76731461 -2.82294480 -2.82005896
+## [266] -2.89649671 -0.82321833 -0.86558473 -0.82218510 -0.86012004
+## [271] -0.86767682 -0.90528668 -0.85956665 -0.90656671 -0.87232520
+## [276] -0.91812162 -0.96344188 -1.03746081 -0.94015345 -0.86722756
+## [281] -0.88692306 -0.88475790 -0.90736205 -0.91147285 -1.03208811
+## [286] -0.25340821 -0.34252375 -0.40820484 -0.22499174 -0.25219448
+## [291] -0.29347614 -0.35640491 -0.33515022 -0.36507386 -0.29845417
+## [296] -0.39882648 -0.30461880 -0.54637424 -0.69162023 -0.33965308
+## [301] -0.53794675 -0.75141027 -0.95552413 -0.35290961 -0.39108581
+## [306] -0.45185308 -0.42287690 -0.46335147 -0.49577430 -0.42654915
+## [311] -0.47068145 -0.44118786 -0.46245080 -0.38332457 -0.41899030
+## [316] -0.46135978 -0.52777246 -0.56529718 -0.56641296 -0.20867428
+## [321] -0.27354010 -0.50886285 -0.78652911 -1.12111489 -1.14624034
+## [326] -1.16187449 -1.17991524 -1.20026222 -1.19428750 -1.19026054
+## [331] -1.18991215 -1.20730059 -1.22314272 -1.25176347 -1.28131560
+## [336] -1.33116930 -1.29066967 -1.23146686 -1.20037697 -1.15468197
+## [341] -1.17590974 -1.21206183</code></pre>
+<p><code>pull()</code>, unlike <code>select()</code>, does not return a <code>tibble</code>, but only the atomic vector.</p>
 </div>
 <div id="group_by" class="section level4">
 <h4><span class="header-section-number">4.1.3.3</span> <code>group_by()</code></h4>
@@ -1112,21 +1199,238 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 </div>
 <div id="mutate-and-transmute" class="section level4">
 <h4><span class="header-section-number">4.1.3.5</span> <code>mutate()</code> and <code>transmute()</code></h4>
+<p><code>mutate()</code> adds a column to the <code>tibble</code>, which can contain any transformation of any other variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap `n()`
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840    19
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622    19
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257    19
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155    19
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739    19
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903    19
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822    19
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403    19
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967    19
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
+## # ... with 332 more rows</code></pre>
+<p>Using <code>mutate()</code> I’ve added a column that counts how many times the country appears in the <code>tibble</code>, using <code>n()</code>, another <code>dplyr</code> function. It is also possible to rename the column on the fly:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">freq =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap  freq
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840    19
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622    19
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257    19
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155    19
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739    19
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903    19
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822    19
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403    19
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967    19
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
+## # ... with 332 more rows</code></pre>
+<p>It is possible to do any arbitrary operation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">spam =</span> <span class="kw">exp</span>(lgaspcar +<span class="st"> </span>lincomep))</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap       spam
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840 0.10015533
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622 0.09778181
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257 0.09689458
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155 0.09914524
+##  5 AUSTRIA  1964 4.037689 -6.322247 -0.4453354 -9.237739 0.10181905
+##  6 AUSTRIA  1965 4.033983 -6.294668 -0.4970607 -9.123903 0.10427907
+##  7 AUSTRIA  1966 4.047537 -6.252545 -0.4668377 -9.019822 0.11024954
+##  8 AUSTRIA  1967 4.052911 -6.234581 -0.5058834 -8.934403 0.11285291
+##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967 0.11516524
+## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686 0.12162839
+## # ... with 332 more rows</code></pre>
+<p><code>transmute()</code> is the same as <code>mutate()</code>, but only returns the created variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">spam =</span> <span class="kw">exp</span>(lgaspcar +<span class="st"> </span>lincomep))</code></pre></div>
+<pre><code>## Adding missing grouping variables: `country`</code></pre>
+<pre><code>## # A tibble: 342 x 2
+## # Groups:   country [18]
+##    country       spam
+##     &lt;fctr&gt;      &lt;dbl&gt;
+##  1 AUSTRIA 0.10015533
+##  2 AUSTRIA 0.09778181
+##  3 AUSTRIA 0.09689458
+##  4 AUSTRIA 0.09914524
+##  5 AUSTRIA 0.10181905
+##  6 AUSTRIA 0.10427907
+##  7 AUSTRIA 0.11024954
+##  8 AUSTRIA 0.11285291
+##  9 AUSTRIA 0.11516524
+## 10 AUSTRIA 0.12162839
+## # ... with 332 more rows</code></pre>
+<p><code>mutate()</code> and <code>transmute()</code> also come with scoped version:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate_if</span>(is.double, exp)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year lgaspcar    lincomep     lrpmg     lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 AUSTRIA  1960 64.92574 0.001542614 0.7156618 5.732123e-05
+##  2 AUSTRIA  1961 60.40000 0.001618904 0.7037532 6.714730e-05
+##  3 AUSTRIA  1962 58.74327 0.001649458 0.6841913 7.812062e-05
+##  4 AUSTRIA  1963 57.94586 0.001710998 0.6608348 8.756274e-05
+##  5 AUSTRIA  1964 56.69516 0.001795904 0.6406094 9.729730e-05
+##  6 AUSTRIA  1965 56.48546 0.001846122 0.6083161 1.090283e-04
+##  7 AUSTRIA  1966 57.25624 0.001925547 0.6269818 1.209877e-04
+##  8 AUSTRIA  1967 57.56477 0.001960451 0.6029727 1.317766e-04
+##  9 AUSTRIA  1968 57.14015 0.002015487 0.5930880 1.436735e-04
+## 10 AUSTRIA  1969 57.18861 0.002126794 0.5717174 1.524481e-04
+## # ... with 332 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;l&quot;</span>)), exp)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year lgaspcar    lincomep     lrpmg     lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 AUSTRIA  1960 64.92574 0.001542614 0.7156618 5.732123e-05
+##  2 AUSTRIA  1961 60.40000 0.001618904 0.7037532 6.714730e-05
+##  3 AUSTRIA  1962 58.74327 0.001649458 0.6841913 7.812062e-05
+##  4 AUSTRIA  1963 57.94586 0.001710998 0.6608348 8.756274e-05
+##  5 AUSTRIA  1964 56.69516 0.001795904 0.6406094 9.729730e-05
+##  6 AUSTRIA  1965 56.48546 0.001846122 0.6083161 1.090283e-04
+##  7 AUSTRIA  1966 57.25624 0.001925547 0.6269818 1.209877e-04
+##  8 AUSTRIA  1967 57.56477 0.001960451 0.6029727 1.317766e-04
+##  9 AUSTRIA  1968 57.14015 0.002015487 0.5930880 1.436735e-04
+## 10 AUSTRIA  1969 57.18861 0.002126794 0.5717174 1.524481e-04
+## # ... with 332 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate_all</span>(as.character)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year     lgaspcar     lincomep        lrpmg     lcarpcap
+##      &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;
+##  1 AUSTRIA  1960  4.173244195 -6.474277179 -0.334547613 -9.766839569
+##  2 AUSTRIA  1961 4.1009891049 -6.426005835 -0.351327614 -9.608621845
+##  3 AUSTRIA  1962 4.0731765511 -6.407308295 -0.379517692 -9.457256552
+##  4 AUSTRIA  1963 4.0595091239 -6.370678539 -0.414251392 -9.343154947
+##  5 AUSTRIA  1964  4.037688787 -6.322246805 -0.445335362 -9.237739346
+##  6 AUSTRIA  1965  4.033983285 -6.294667914 -0.497060662 -9.123903477
+##  7 AUSTRIA  1966 4.0475365589 -6.252545451 -0.466837731 -9.019822048
+##  8 AUSTRIA  1967 4.0529106939 -6.234580709 -0.505883405 -8.934402537
+##  9 AUSTRIA  1968  4.045507048 -6.206894403 -0.522412545 -8.847967407
+## 10 AUSTRIA  1969 4.0463547891 -6.153139668 -0.559110514 -8.788686207
+## # ... with 332 more rows</code></pre>
+<p>and there are a lot of useful functions that you can use within <code>mutate()</code> or <code>transmute()</code>: <code>lead()</code>, <code>lag()</code>, <code>dense_rank()</code>, <code>ntile()</code>, <code>cumsum()</code>, <code>cummax()</code>, coalesce(), <code>na_if()</code>, … We are going to study some of them in the next section.</p>
 </div>
-<div id="case_when-and-if_else" class="section level4">
-<h4><span class="header-section-number">4.1.3.6</span> <code>case_when()</code> and <code>if_else()</code></h4>
-</div>
-<div id="coalesce" class="section level4">
-<h4><span class="header-section-number">4.1.3.7</span> <code>coalesce()</code></h4>
+<div id="helper-functions-for-mutate-and-transmute" class="section level4">
+<h4><span class="header-section-number">4.1.3.6</span> Helper functions for <code>mutate()</code> and <code>transmute()</code></h4>
+<p>The two helper functions I use the most are probably <code>if_else()</code> and <code>case_when</code>. These two functions, combined with <code>mutate()</code> make it easy to create a new variable conditonally on the values of other variables. For instance, we might want to have a dummy that equals <code>1</code> if a country in the European Union (to simplify, say as of 2017) and <code>0</code> if not. First let’s create a list of countries that are in the EU:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eu_countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;austria&quot;</span>, <span class="st">&quot;belgium&quot;</span>, <span class="st">&quot;bulgaria&quot;</span>, <span class="st">&quot;croatia&quot;</span>, <span class="st">&quot;republic of cyprus&quot;</span>,
+                  <span class="st">&quot;czech republic&quot;</span>, <span class="st">&quot;denmark&quot;</span>, <span class="st">&quot;estonia&quot;</span>, <span class="st">&quot;finland&quot;</span>, <span class="st">&quot;france&quot;</span>, <span class="st">&quot;germany&quot;</span>,
+                  <span class="st">&quot;greece&quot;</span>, <span class="st">&quot;hungary&quot;</span>, <span class="st">&quot;ireland&quot;</span>, <span class="st">&quot;italy&quot;</span>, <span class="st">&quot;latvia&quot;</span>, <span class="st">&quot;lithuania&quot;</span>, <span class="st">&quot;luxembourg&quot;</span>,
+                  <span class="st">&quot;malta&quot;</span>, <span class="st">&quot;netherla&quot;</span>, <span class="st">&quot;poland&quot;</span>, <span class="st">&quot;portugal&quot;</span>, <span class="st">&quot;romania&quot;</span>, <span class="st">&quot;slovakia&quot;</span>, <span class="st">&quot;slovenia&quot;</span>,
+                  <span class="st">&quot;spain&quot;</span>, <span class="st">&quot;sweden&quot;</span>, <span class="st">&quot;u.k.&quot;</span>)</code></pre></div>
+<p>I’ve had to change “netherlands” to “netherla” because that’s how the country is called in the data. Now let’s create a dummy variable that equals <code>1</code> for EU countries, ind <code>0</code> for the others:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">in_eu =</span> <span class="kw">if_else</span>(country %in%<span class="st"> </span>eu_countries, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap in_eu
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+##  1 austria  1960 4.173244 -6.474277 -0.3345476 -9.766840     1
+##  2 austria  1961 4.100989 -6.426006 -0.3513276 -9.608622     1
+##  3 austria  1962 4.073177 -6.407308 -0.3795177 -9.457257     1
+##  4 austria  1963 4.059509 -6.370679 -0.4142514 -9.343155     1
+##  5 austria  1964 4.037689 -6.322247 -0.4453354 -9.237739     1
+##  6 austria  1965 4.033983 -6.294668 -0.4970607 -9.123903     1
+##  7 austria  1966 4.047537 -6.252545 -0.4668377 -9.019822     1
+##  8 austria  1967 4.052911 -6.234581 -0.5058834 -8.934403     1
+##  9 austria  1968 4.045507 -6.206894 -0.5224125 -8.847967     1
+## 10 austria  1969 4.046355 -6.153140 -0.5591105 -8.788686     1
+## # ... with 332 more rows</code></pre>
+<p>Instead of <code>1</code> and <code>0</code>, we can of course use strings (I add <code>filter(year == 1960)</code> at the end to have a better view of what happened):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">in_eu =</span> <span class="kw">if_else</span>(country %in%<span class="st"> </span>eu_countries, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">1960</span>)</code></pre></div>
+<pre><code>## # A tibble: 18 x 7
+##     country  year lgaspcar  lincomep       lrpmg   lcarpcap in_eu
+##       &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;
+##  1  austria  1960 4.173244 -6.474277 -0.33454761  -9.766840   yes
+##  2  belgium  1960 4.164016 -6.215091 -0.16570961  -9.405527   yes
+##  3   canada  1960 4.855238 -5.889713 -0.97210650  -8.378917    no
+##  4  denmark  1960 4.501986 -6.061726 -0.19570260  -9.326161   yes
+##  5   france  1960 3.907704 -6.264363 -0.01959833  -9.145706   yes
+##  6  germany  1960 3.916953 -6.159837 -0.18591078  -9.342481   yes
+##  7   greece  1960 5.037406 -7.164861 -0.08354740 -12.173814   yes
+##  8  ireland  1960 4.270421 -6.722466 -0.07648118  -9.698144   yes
+##  9    italy  1960 4.050728 -6.727487  0.16507708 -10.142098   yes
+## 10    japan  1960 5.995287 -6.986196 -0.14532271 -12.235079    no
+## 11 netherla  1960 4.646268 -6.216365 -0.20148480  -9.998449   yes
+## 12   norway  1960 4.435041 -6.090356 -0.13968957  -9.675052    no
+## 13    spain  1960 4.749409 -6.166085  1.12531070 -11.588403   yes
+## 14   sweden  1960 4.063010 -8.072524 -2.52041588  -8.742679   yes
+## 15 switzerl  1960 4.397621 -6.156074 -0.82321833  -9.262400    no
+## 16   turkey  1960 6.129553 -7.801144 -0.25340821 -13.475185    no
+## 17     u.k.  1960 4.100244 -6.186849 -0.39108581  -9.117623   yes
+## 18   u.s.a.  1960 4.823965 -5.698374 -1.12111489  -8.019458    no</code></pre>
+<p>I think that <code>if_else()</code> is fairly straightforward, especially if you know <code>ifelse()</code> already. You might be wondering what is the difference between these two. <code>if_else()</code> is stricter than <code>ifelse()</code> and does not do type conversion. Compare the two next lines:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="dv">1</span> ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;0&quot;</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] &quot;0&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">if_else</span>(<span class="dv">1</span> ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;0&quot;</span>, <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error:<span class="st"> `</span><span class="dt">false</span><span class="st">`</span> must be type string, not double</code></pre></div>
+<p>Type conversion, especially without a warning is very dangerous. <code>if_else()</code>’s behaviour which consists in failing as soon as possble avoids a lot of pain and suffering, especially when programming non-interactively.</p>
+<p><code>if_else()</code> also accepts an optional argument, that allows you to specify what should be returned in case of <code>NA</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">if_else</span>(<span class="dv">1</span> ==<span class="st"> </span><span class="ot">NA</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">999</span>)</code></pre></div>
+<pre><code>## [1] 999</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Or</span>
+<span class="kw">if_else</span>(<span class="dv">1</span> ==<span class="st"> </span><span class="ot">NA</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="ot">NA_real_</span>)</code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p><code>case_when()</code> can be seen as a generalization of <code>if_else()</code>. Whenever you want to use multiple <code>if_else()</code>s, that’s when you know you should use <code>case_when()</code> (I’m adding the filter at the end for the same reason as before, to see the output better):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">case_when</span>(
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;france&quot;</span>, <span class="st">&quot;italy&quot;</span>, <span class="st">&quot;turkey&quot;</span>, <span class="st">&quot;greece&quot;</span>, <span class="st">&quot;spain&quot;</span>) ~<span class="st"> &quot;mediterranean&quot;</span>,
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;germany&quot;</span>, <span class="st">&quot;austria&quot;</span>, <span class="st">&quot;switzerl&quot;</span>, <span class="st">&quot;belgium&quot;</span>, <span class="st">&quot;netherla&quot;</span>) ~<span class="st"> &quot;central europe&quot;</span>,
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;canada&quot;</span>, <span class="st">&quot;u.s.a&quot;</span>, <span class="st">&quot;u.k.&quot;</span>, <span class="st">&quot;ireland&quot;</span>) ~<span class="st"> &quot;anglosphere&quot;</span>,
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;denmark&quot;</span>, <span class="st">&quot;norway&quot;</span>, <span class="st">&quot;sweden&quot;</span>) ~<span class="st"> &quot;nordic&quot;</span>,
+           country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;japan&quot;</span>) ~<span class="st"> &quot;asia&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">1960</span>)</code></pre></div>
+<pre><code>## # A tibble: 18 x 7
+##     country  year lgaspcar  lincomep       lrpmg   lcarpcap         region
+##       &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;          &lt;chr&gt;
+##  1  austria  1960 4.173244 -6.474277 -0.33454761  -9.766840 central europe
+##  2  belgium  1960 4.164016 -6.215091 -0.16570961  -9.405527 central europe
+##  3   canada  1960 4.855238 -5.889713 -0.97210650  -8.378917    anglosphere
+##  4  denmark  1960 4.501986 -6.061726 -0.19570260  -9.326161         nordic
+##  5   france  1960 3.907704 -6.264363 -0.01959833  -9.145706  mediterranean
+##  6  germany  1960 3.916953 -6.159837 -0.18591078  -9.342481 central europe
+##  7   greece  1960 5.037406 -7.164861 -0.08354740 -12.173814  mediterranean
+##  8  ireland  1960 4.270421 -6.722466 -0.07648118  -9.698144    anglosphere
+##  9    italy  1960 4.050728 -6.727487  0.16507708 -10.142098  mediterranean
+## 10    japan  1960 5.995287 -6.986196 -0.14532271 -12.235079           asia
+## 11 netherla  1960 4.646268 -6.216365 -0.20148480  -9.998449 central europe
+## 12   norway  1960 4.435041 -6.090356 -0.13968957  -9.675052         nordic
+## 13    spain  1960 4.749409 -6.166085  1.12531070 -11.588403  mediterranean
+## 14   sweden  1960 4.063010 -8.072524 -2.52041588  -8.742679         nordic
+## 15 switzerl  1960 4.397621 -6.156074 -0.82321833  -9.262400 central europe
+## 16   turkey  1960 6.129553 -7.801144 -0.25340821 -13.475185  mediterranean
+## 17     u.k.  1960 4.100244 -6.186849 -0.39108581  -9.117623    anglosphere
+## 18   u.s.a.  1960 4.823965 -5.698374 -1.12111489  -8.019458           &lt;NA&gt;</code></pre>
 </div>
 <div id="arrange" class="section level4">
-<h4><span class="header-section-number">4.1.3.8</span> <code>arrange()</code></h4>
+<h4><span class="header-section-number">4.1.3.7</span> <code>arrange()</code></h4>
 </div>
 <div id="sample_n-and-sample_frac" class="section level4">
-<h4><span class="header-section-number">4.1.3.9</span> <code>sample_n()</code> and <code>sample_frac()</code></h4>
+<h4><span class="header-section-number">4.1.3.8</span> <code>sample_n()</code> and <code>sample_frac()</code></h4>
 </div>
 <div id="joining-tibbles-with-full_join-left_join-right_join-and-all-the-others" class="section level4">
-<h4><span class="header-section-number">4.1.3.10</span> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</h4>
+<h4><span class="header-section-number">4.1.3.9</span> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</h4>
 </div>
 </div>
 <div id="functional-programming-with-purrr-and-purrrlyr" class="section level3">
