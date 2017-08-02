@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-01">
+<meta name="date" content="2017-08-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -445,7 +445,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 </div>
 <div id="mapping-and-reducing-the-purrr-way" class="section level2">
 <h2><span class="header-section-number">3.3</span> Mapping and Reducing: the <code>purrr</code> way</h2>
-<p>Hadley Wickham developed a package called <code>purrr</code> which contains a lot of very useful functions. I will show some of them, but will only scratch the surface. Take the time to read <code>purrr</code>’s documentation! You can read more about <code>purrr</code> in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span>.</p>
+<p>Hadley Wickham developed a package called <code>purrr</code> which contains a lot of very useful functions. I will show some of them here, but in the next chapter, we are going to study <code>purrr</code> in greater depth. Also, take the time to read <code>purrr</code>’s documentation, and of course you can read more about <code>purrr</code> in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span>.</p>
 <div id="the-map-family-of-functions" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> The <code>map*()</code> family of functions</h3>
 <p>In the previous section we saw how to map a function to each element of a list. Each version of an <code>*apply()</code> function has a different purpose, but it is not very easy to remember which one returns a list, which other one returns an atomic vector and so on. If you’re working on data frames you can use <code>apply()</code> to sum (for example) over columns or rows, because you can specify which <code>MARGIN</code> you want to sum over. But you do not get a data frame back. In the <code>purrr</code> package, each of the functions that do mapping have a similar name. The first part of these functions’ names all start with <code>map_</code> and the second part tells you what this function is going to output. For example, if you want <code>double</code>s out, you would use <code>map_dbl()</code>. If you are working on data frames want a data frame back, you would use <code>map_df()</code>. These are much more intuitive and easier to remember. There are also other interesting variants, such as <code>map_if()</code>:</p>

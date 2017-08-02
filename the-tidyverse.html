@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-01">
+<meta name="date" content="2017-08-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -208,7 +208,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The title of this section might sound weird at first, but by the end of it, you’ll get this (terrible) pun.</p>
 <p>You probably know the following painting by René Magritte, <em>La trahison des images</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;assets/pas_une_pipe.png&quot;</span>)</code></pre></div>
-<p><img src="assets/pas_une_pipe.png" width="721" /></p>
+<p><img src="assets/pas_une_pipe.png" width="350" /></p>
 <p>It turns out there’s an R package from the <code>tidyverse</code> that is called <code>magrittr</code>. What does this package do? It brings <em>pipes</em> to R. Pipes are a concept from the Unix operating system; if you’re using a GNU+Linux distribution or macOS, you’re basically using a <em>modern</em> unix. (That’s an oversimplification, but I’m an economist by training, and outrageously oversimplifying things is what we do, deal with it.)</p>
 <p>The idea of pipes is to take the output of a command, and <em>feed</em> it as the input of another command. The <code>magrittr</code> package brings pipes to R, by using the weird looking <code>%&gt;%</code>. Try the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)</code></pre></div>
@@ -1437,10 +1437,157 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 </div>
 <div id="lead-and-lag" class="section level5">
 <h5><span class="header-section-number">4.1.3.6.2</span> <code>lead()</code> and <code>lag()</code></h5>
+<p><code>lead()</code> and <code>lag()</code> are especially useful in econometrics. When I was doing my masters, in 4 B.d. (<em>Before dplyr</em>) lagging variables in panel data was quite tricky. Now, with <code>dplyr</code> it’s really very easy:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lag_lgaspcar =</span> <span class="kw">lag</span>(lgaspcar)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lead_lgaspcar =</span> <span class="kw">lead</span>(lgaspcar)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1960</span>, <span class="dv">1963</span>))</code></pre></div>
+<pre><code>## # A tibble: 72 x 8
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap lag_lgaspcar
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840           NA
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622     4.173244
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257     4.100989
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155     4.073177
+##  5 BELGIUM  1960 4.164016 -6.215091 -0.1657096 -9.405527           NA
+##  6 BELGIUM  1961 4.124356 -6.176843 -0.1717310 -9.303149     4.164016
+##  7 BELGIUM  1962 4.075962 -6.129638 -0.2222914 -9.218070     4.124356
+##  8 BELGIUM  1963 4.001266 -6.094019 -0.2504623 -9.114932     4.075962
+##  9  CANADA  1960 4.855238 -5.889713 -0.9721065 -8.378917           NA
+## 10  CANADA  1961 4.826555 -5.884344 -0.9722902 -8.346729     4.855238
+## # ... with 62 more rows, and 1 more variables: lead_lgaspcar &lt;dbl&gt;</code></pre>
+<p>To lag every variable, remember that you can use <code>mutate_if()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate_if</span>(is.double, lag) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1960</span>, <span class="dv">1963</span>))</code></pre></div>
+<pre><code>## # A tibble: 72 x 6
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1960       NA        NA         NA        NA
+##  2 AUSTRIA  1961 4.173244 -6.474277 -0.3345476 -9.766840
+##  3 AUSTRIA  1962 4.100989 -6.426006 -0.3513276 -9.608622
+##  4 AUSTRIA  1963 4.073177 -6.407308 -0.3795177 -9.457257
+##  5 BELGIUM  1960       NA        NA         NA        NA
+##  6 BELGIUM  1961 4.164016 -6.215091 -0.1657096 -9.405527
+##  7 BELGIUM  1962 4.124356 -6.176843 -0.1717310 -9.303149
+##  8 BELGIUM  1963 4.075962 -6.129638 -0.2222914 -9.218070
+##  9  CANADA  1960       NA        NA         NA        NA
+## 10  CANADA  1961 4.855238 -5.889713 -0.9721065 -8.378917
+## # ... with 62 more rows</code></pre>
+<p>you can replace <code>lag()</code> with <code>lead()</code>, but just keep in mind that the columns get transformed in place.</p>
+</div>
+<div id="ntile" class="section level5">
+<h5><span class="header-section-number">4.1.3.6.3</span> <code>ntile()</code></h5>
+<p>The last helper function I will discuss is <code>ntile()</code>. There are some other, so do read <code>mutate()</code>’s documentation with <code>help(mutate)</code>!</p>
+<p>If you need quantiles, you need <code>ntile()</code>. Let’s see how it works:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">quintile =</span> <span class="kw">ntile</span>(lgaspcar, <span class="dv">5</span>)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decile =</span> <span class="kw">ntile</span>(lgaspcar, <span class="dv">10</span>)) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(country, year, lgaspcar, quintile, decile)</code></pre></div>
+<pre><code>## # A tibble: 342 x 5
+##    country  year lgaspcar quintile decile
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;  &lt;int&gt;
+##  1 AUSTRIA  1960 4.173244        3      6
+##  2 AUSTRIA  1961 4.100989        3      6
+##  3 AUSTRIA  1962 4.073177        3      5
+##  4 AUSTRIA  1963 4.059509        3      5
+##  5 AUSTRIA  1964 4.037689        3      5
+##  6 AUSTRIA  1965 4.033983        3      5
+##  7 AUSTRIA  1966 4.047537        3      5
+##  8 AUSTRIA  1967 4.052911        3      5
+##  9 AUSTRIA  1968 4.045507        3      5
+## 10 AUSTRIA  1969 4.046355        3      5
+## # ... with 332 more rows</code></pre>
+<p><code>quintile</code> and <code>decile</code> do not hold the values but the quantile the value lies in. If you want to have a column that contains the median for instance, you can use good ol’ <code>quantile()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">median =</span> <span class="kw">quantile</span>(lgaspcar, <span class="fl">0.5</span>)) %&gt;%<span class="st"> </span><span class="co"># quantile(x, 0.5) is equivalent to median(x)</span>
+<span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">1960</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(country, year, median)</code></pre></div>
+<pre><code>## # A tibble: 18 x 3
+## # Groups:   country [18]
+##     country  year   median
+##      &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;
+##  1  AUSTRIA  1960 4.047537
+##  2  BELGIUM  1960 3.877778
+##  3   CANADA  1960 4.855846
+##  4  DENMARK  1960 4.161687
+##  5   FRANCE  1960 3.807995
+##  6  GERMANY  1960 3.889362
+##  7   GREECE  1960 4.894773
+##  8  IRELAND  1960 4.221146
+##  9    ITALY  1960 3.737389
+## 10    JAPAN  1960 4.518290
+## 11 NETHERLA  1960 3.987689
+## 12   NORWAY  1960 4.084607
+## 13    SPAIN  1960 3.994103
+## 14   SWEDEN  1960 4.002557
+## 15 SWITZERL  1960 4.259159
+## 16   TURKEY  1960 5.722105
+## 17     U.K.  1960 3.976781
+## 18   U.S.A.  1960 4.811032</code></pre>
 </div>
 </div>
 <div id="arrange" class="section level4">
 <h4><span class="header-section-number">4.1.3.7</span> <code>arrange()</code></h4>
+<p><code>arrange()</code> re-orders the whole <code>tibble</code> according to values of the supplied variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(lgaspcar)</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year lgaspcar  lincomep       lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1   ITALY  1977 3.380209 -6.104541  0.16418805 -8.145660
+##  2   ITALY  1978 3.394504 -6.083685  0.03482212 -8.112852
+##  3   ITALY  1976 3.427629 -6.119222  0.10292798 -8.167756
+##  4   ITALY  1974 3.499470 -6.125844 -0.22290860 -8.262256
+##  5   ITALY  1975 3.515680 -6.170100 -0.03270913 -8.217666
+##  6   SPAIN  1978 3.620444 -5.285959  0.62141374 -8.634697
+##  7   ITALY  1972 3.629243 -6.205654 -0.21508857 -8.380176
+##  8   ITALY  1971 3.648205 -6.222602 -0.14822267 -8.470968
+##  9   SPAIN  1977 3.650735 -5.299089  0.52627167 -8.727218
+## 10   ITALY  1973 3.652263 -6.157297 -0.32508487 -8.316705
+## # ... with 332 more rows</code></pre>
+<p>If you want to re-order the <code>tibble</code> in descending order of the variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(lgaspcar))</code></pre></div>
+<pre><code>## # A tibble: 342 x 6
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1  TURKEY  1966 6.156644 -7.510895 -0.3564049 -12.95114
+##  2  TURKEY  1960 6.129553 -7.801144 -0.2534082 -13.47518
+##  3  TURKEY  1961 6.106213 -7.786727 -0.3425237 -13.38473
+##  4  TURKEY  1962 6.084587 -7.836272 -0.4082048 -13.24594
+##  5  TURKEY  1968 6.076595 -7.421201 -0.3650739 -12.80735
+##  6  TURKEY  1963 6.075129 -7.631193 -0.2249917 -13.25505
+##  7  TURKEY  1964 6.064601 -7.626898 -0.2521945 -13.21031
+##  8  TURKEY  1967 6.044479 -7.460810 -0.3351502 -12.80185
+##  9   JAPAN  1960 5.995287 -6.986196 -0.1453227 -12.23508
+## 10  TURKEY  1965 5.823046 -7.622027 -0.2934761 -12.87934
+## # ... with 332 more rows</code></pre>
+<p><code>arrange</code>’s documentation alerts the user that re-ording by group is only possible by explicitely specifying an option:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1960</span>, <span class="dv">1963</span>)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(lgaspcar), <span class="dt">.by_group =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## # A tibble: 72 x 6
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
+##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840
+##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622
+##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257
+##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155
+##  5 BELGIUM  1960 4.164016 -6.215091 -0.1657096 -9.405527
+##  6 BELGIUM  1961 4.124356 -6.176843 -0.1717310 -9.303149
+##  7 BELGIUM  1962 4.075962 -6.129638 -0.2222914 -9.218070
+##  8 BELGIUM  1963 4.001266 -6.094019 -0.2504623 -9.114932
+##  9  CANADA  1960 4.855238 -5.889713 -0.9721065 -8.378917
+## 10  CANADA  1962 4.850533 -5.844552 -0.9786076 -8.320512
+## # ... with 62 more rows</code></pre>
 </div>
 <div id="sample_n-and-sample_frac" class="section level4">
 <h4><span class="header-section-number">4.1.3.8</span> <code>sample_n()</code> and <code>sample_frac()</code></h4>
