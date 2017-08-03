@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-02">
+<meta name="date" content="2017-08-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -499,17 +499,6 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Gasoline, <span class="dt">package =</span> <span class="st">&quot;plm&quot;</span>)</code></pre></div>
 <p>and load dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
-## 
-##     contains, order_by</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <p>This dataset gives the consumption of gasoline for 18 countries from 1960 to 1978. When you load the data like this, it is a standard <code>data.frame</code>. <code>dplyr</code> functions can be used on standard <code>data.frame</code> objects, but just because we learned about <code>tibble</code>’s, let’s convert the data to a <code>tibble</code> and change its name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Gasoline)</code></pre></div>
 <p><code>filter()</code> is pretty straightforward. What if you would like to subset the data to focus on the year 1969? Simple:</p>
@@ -1109,7 +1098,7 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <p>But maybe you’re just interested in descriptive statistics for some variables, but not all those that start with “l”? What if you want to use another pattern? Easy to do with the <code>contains()</code> helper:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
-<span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;car&quot;</span>)), <span class="kw">funs</span>(mean, sd, max, min))</code></pre></div>
+<span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dplyr::<span class="kw">contains</span>(<span class="st">&quot;car&quot;</span>)), <span class="kw">funs</span>(mean, sd, max, min))</code></pre></div>
 <pre><code>## # A tibble: 18 x 9
 ##     country lgaspcar_mean lcarpcap_mean lgaspcar_sd lcarpcap_sd
 ##      &lt;fctr&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -1133,6 +1122,7 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 18   U.S.A.      4.819075     -7.781090  0.02189802   0.1617998
 ## # ... with 4 more variables: lgaspcar_max &lt;dbl&gt;, lcarpcap_max &lt;dbl&gt;,
 ## #   lgaspcar_min &lt;dbl&gt;, lcarpcap_min &lt;dbl&gt;</code></pre>
+<p>I used <code>dplyr::contains()</code> instead of simply <code>contains()</code> because there’s also a <code>purrr::contains()</code>. If you load <code>purrr</code> after <code>dplyr</code>, <code>contains()</code> will actually be <code>purrr::contains()</code> and not <code>dplyr::contains()</code> which causes the above code to fail.</p>
 <p>There’s also <code>summarise_if()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
@@ -1218,7 +1208,7 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ##  9 AUSTRIA  1968 4.045507 -6.206894 -0.5224125 -8.847967    19
 ## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
 ## # ... with 332 more rows</code></pre>
-<p>Using <code>mutate()</code> I’ve added a column that counts how many times the country appears in the <code>tibble</code>, using <code>n()</code>, another <code>dplyr</code> function. It is also possible to rename the column on the fly:</p>
+<p>Using <code>mutate()</code> I’ve added a column that counts how many times the country appears in the <code>tibble</code>, using <code>n()</code>, another <code>dplyr</code> function. There’s also <code>count()</code> and <code>tally()</code>, which we are going to see further down. It is also possible to rename the column on the fly:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">freq =</span> <span class="kw">n</span>())</code></pre></div>
@@ -1425,9 +1415,11 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 17     u.k.  1960 4.100244 -6.186849 -0.39108581  -9.117623    anglosphere
 ## 18   u.s.a.  1960 4.823965 -5.698374 -1.12111489  -8.019458    anglosphere</code></pre>
 <p>If all you want is to recode values, you can use <code>recode()</code>. For example, the Netherlands is written as “NETHERLA” in the which is quite ugly. Same for Switzerland:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline &lt;-<span class="st"> </span>gasoline %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country)) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">recode</span>(country, <span class="st">&quot;netherla&quot;</span> =<span class="st"> &quot;netherlands&quot;</span>, <span class="st">&quot;switzerl&quot;</span> =<span class="st"> &quot;switzerland&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">recode</span>(country, <span class="st">&quot;netherla&quot;</span> =<span class="st"> &quot;netherlands&quot;</span>, <span class="st">&quot;switzerl&quot;</span> =<span class="st"> &quot;switzerland&quot;</span>))</code></pre></div>
+<p>I saved the data with these changes as they will become useful in the future. Let’s take a look at the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;netherlands&quot;</span>, <span class="st">&quot;switzerland&quot;</span>), year ==<span class="st"> </span><span class="dv">1960</span>)</code></pre></div>
 <pre><code>## # A tibble: 2 x 6
 ##       country  year lgaspcar  lincomep      lrpmg  lcarpcap
@@ -1446,17 +1438,17 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <pre><code>## # A tibble: 72 x 8
 ## # Groups:   country [18]
 ##    country  year lgaspcar  lincomep      lrpmg  lcarpcap lag_lgaspcar
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840           NA
-##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622     4.173244
-##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257     4.100989
-##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155     4.073177
-##  5 BELGIUM  1960 4.164016 -6.215091 -0.1657096 -9.405527           NA
-##  6 BELGIUM  1961 4.124356 -6.176843 -0.1717310 -9.303149     4.164016
-##  7 BELGIUM  1962 4.075962 -6.129638 -0.2222914 -9.218070     4.124356
-##  8 BELGIUM  1963 4.001266 -6.094019 -0.2504623 -9.114932     4.075962
-##  9  CANADA  1960 4.855238 -5.889713 -0.9721065 -8.378917           NA
-## 10  CANADA  1961 4.826555 -5.884344 -0.9722902 -8.346729     4.855238
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 austria  1960 4.173244 -6.474277 -0.3345476 -9.766840           NA
+##  2 austria  1961 4.100989 -6.426006 -0.3513276 -9.608622     4.173244
+##  3 austria  1962 4.073177 -6.407308 -0.3795177 -9.457257     4.100989
+##  4 austria  1963 4.059509 -6.370679 -0.4142514 -9.343155     4.073177
+##  5 belgium  1960 4.164016 -6.215091 -0.1657096 -9.405527           NA
+##  6 belgium  1961 4.124356 -6.176843 -0.1717310 -9.303149     4.164016
+##  7 belgium  1962 4.075962 -6.129638 -0.2222914 -9.218070     4.124356
+##  8 belgium  1963 4.001266 -6.094019 -0.2504623 -9.114932     4.075962
+##  9  canada  1960 4.855238 -5.889713 -0.9721065 -8.378917           NA
+## 10  canada  1961 4.826555 -5.884344 -0.9722902 -8.346729     4.855238
 ## # ... with 62 more rows, and 1 more variables: lead_lgaspcar &lt;dbl&gt;</code></pre>
 <p>To lag every variable, remember that you can use <code>mutate_if()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
@@ -1466,17 +1458,17 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <pre><code>## # A tibble: 72 x 6
 ## # Groups:   country [18]
 ##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-##  1 AUSTRIA  1960       NA        NA         NA        NA
-##  2 AUSTRIA  1961 4.173244 -6.474277 -0.3345476 -9.766840
-##  3 AUSTRIA  1962 4.100989 -6.426006 -0.3513276 -9.608622
-##  4 AUSTRIA  1963 4.073177 -6.407308 -0.3795177 -9.457257
-##  5 BELGIUM  1960       NA        NA         NA        NA
-##  6 BELGIUM  1961 4.164016 -6.215091 -0.1657096 -9.405527
-##  7 BELGIUM  1962 4.124356 -6.176843 -0.1717310 -9.303149
-##  8 BELGIUM  1963 4.075962 -6.129638 -0.2222914 -9.218070
-##  9  CANADA  1960       NA        NA         NA        NA
-## 10  CANADA  1961 4.855238 -5.889713 -0.9721065 -8.378917
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 austria  1960       NA        NA         NA        NA
+##  2 austria  1961 4.173244 -6.474277 -0.3345476 -9.766840
+##  3 austria  1962 4.100989 -6.426006 -0.3513276 -9.608622
+##  4 austria  1963 4.073177 -6.407308 -0.3795177 -9.457257
+##  5 belgium  1960       NA        NA         NA        NA
+##  6 belgium  1961 4.164016 -6.215091 -0.1657096 -9.405527
+##  7 belgium  1962 4.124356 -6.176843 -0.1717310 -9.303149
+##  8 belgium  1963 4.075962 -6.129638 -0.2222914 -9.218070
+##  9  canada  1960       NA        NA         NA        NA
+## 10  canada  1961 4.855238 -5.889713 -0.9721065 -8.378917
 ## # ... with 62 more rows</code></pre>
 <p>you can replace <code>lag()</code> with <code>lead()</code>, but just keep in mind that the columns get transformed in place.</p>
 </div>
@@ -1490,17 +1482,17 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <span class="st">  </span><span class="kw">select</span>(country, year, lgaspcar, quintile, decile)</code></pre></div>
 <pre><code>## # A tibble: 342 x 5
 ##    country  year lgaspcar quintile decile
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;  &lt;int&gt;
-##  1 AUSTRIA  1960 4.173244        3      6
-##  2 AUSTRIA  1961 4.100989        3      6
-##  3 AUSTRIA  1962 4.073177        3      5
-##  4 AUSTRIA  1963 4.059509        3      5
-##  5 AUSTRIA  1964 4.037689        3      5
-##  6 AUSTRIA  1965 4.033983        3      5
-##  7 AUSTRIA  1966 4.047537        3      5
-##  8 AUSTRIA  1967 4.052911        3      5
-##  9 AUSTRIA  1968 4.045507        3      5
-## 10 AUSTRIA  1969 4.046355        3      5
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;  &lt;int&gt;
+##  1 austria  1960 4.173244        3      6
+##  2 austria  1961 4.100989        3      6
+##  3 austria  1962 4.073177        3      5
+##  4 austria  1963 4.059509        3      5
+##  5 austria  1964 4.037689        3      5
+##  6 austria  1965 4.033983        3      5
+##  7 austria  1966 4.047537        3      5
+##  8 austria  1967 4.052911        3      5
+##  9 austria  1968 4.045507        3      5
+## 10 austria  1969 4.046355        3      5
 ## # ... with 332 more rows</code></pre>
 <p><code>quintile</code> and <code>decile</code> do not hold the values but the quantile the value lies in. If you want to have a column that contains the median for instance, you can use good ol’ <code>quantile()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
@@ -1510,26 +1502,26 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <span class="st">  </span><span class="kw">select</span>(country, year, median)</code></pre></div>
 <pre><code>## # A tibble: 18 x 3
 ## # Groups:   country [18]
-##     country  year   median
-##      &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;
-##  1  AUSTRIA  1960 4.047537
-##  2  BELGIUM  1960 3.877778
-##  3   CANADA  1960 4.855846
-##  4  DENMARK  1960 4.161687
-##  5   FRANCE  1960 3.807995
-##  6  GERMANY  1960 3.889362
-##  7   GREECE  1960 4.894773
-##  8  IRELAND  1960 4.221146
-##  9    ITALY  1960 3.737389
-## 10    JAPAN  1960 4.518290
-## 11 NETHERLA  1960 3.987689
-## 12   NORWAY  1960 4.084607
-## 13    SPAIN  1960 3.994103
-## 14   SWEDEN  1960 4.002557
-## 15 SWITZERL  1960 4.259159
-## 16   TURKEY  1960 5.722105
-## 17     U.K.  1960 3.976781
-## 18   U.S.A.  1960 4.811032</code></pre>
+##        country  year   median
+##          &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;
+##  1     austria  1960 4.047537
+##  2     belgium  1960 3.877778
+##  3      canada  1960 4.855846
+##  4     denmark  1960 4.161687
+##  5      france  1960 3.807995
+##  6     germany  1960 3.889362
+##  7      greece  1960 4.894773
+##  8     ireland  1960 4.221146
+##  9       italy  1960 3.737389
+## 10       japan  1960 4.518290
+## 11 netherlands  1960 3.987689
+## 12      norway  1960 4.084607
+## 13       spain  1960 3.994103
+## 14      sweden  1960 4.002557
+## 15 switzerland  1960 4.259159
+## 16      turkey  1960 5.722105
+## 17        u.k.  1960 3.976781
+## 18      u.s.a.  1960 4.811032</code></pre>
 </div>
 </div>
 <div id="arrange" class="section level4">
@@ -1539,34 +1531,34 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <span class="st">  </span><span class="kw">arrange</span>(lgaspcar)</code></pre></div>
 <pre><code>## # A tibble: 342 x 6
 ##    country  year lgaspcar  lincomep       lrpmg  lcarpcap
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
-##  1   ITALY  1977 3.380209 -6.104541  0.16418805 -8.145660
-##  2   ITALY  1978 3.394504 -6.083685  0.03482212 -8.112852
-##  3   ITALY  1976 3.427629 -6.119222  0.10292798 -8.167756
-##  4   ITALY  1974 3.499470 -6.125844 -0.22290860 -8.262256
-##  5   ITALY  1975 3.515680 -6.170100 -0.03270913 -8.217666
-##  6   SPAIN  1978 3.620444 -5.285959  0.62141374 -8.634697
-##  7   ITALY  1972 3.629243 -6.205654 -0.21508857 -8.380176
-##  8   ITALY  1971 3.648205 -6.222602 -0.14822267 -8.470968
-##  9   SPAIN  1977 3.650735 -5.299089  0.52627167 -8.727218
-## 10   ITALY  1973 3.652263 -6.157297 -0.32508487 -8.316705
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1   italy  1977 3.380209 -6.104541  0.16418805 -8.145660
+##  2   italy  1978 3.394504 -6.083685  0.03482212 -8.112852
+##  3   italy  1976 3.427629 -6.119222  0.10292798 -8.167756
+##  4   italy  1974 3.499470 -6.125844 -0.22290860 -8.262256
+##  5   italy  1975 3.515680 -6.170100 -0.03270913 -8.217666
+##  6   spain  1978 3.620444 -5.285959  0.62141374 -8.634697
+##  7   italy  1972 3.629243 -6.205654 -0.21508857 -8.380176
+##  8   italy  1971 3.648205 -6.222602 -0.14822267 -8.470968
+##  9   spain  1977 3.650735 -5.299089  0.52627167 -8.727218
+## 10   italy  1973 3.652263 -6.157297 -0.32508487 -8.316705
 ## # ... with 332 more rows</code></pre>
 <p>If you want to re-order the <code>tibble</code> in descending order of the variable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(lgaspcar))</code></pre></div>
 <pre><code>## # A tibble: 342 x 6
 ##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-##  1  TURKEY  1966 6.156644 -7.510895 -0.3564049 -12.95114
-##  2  TURKEY  1960 6.129553 -7.801144 -0.2534082 -13.47518
-##  3  TURKEY  1961 6.106213 -7.786727 -0.3425237 -13.38473
-##  4  TURKEY  1962 6.084587 -7.836272 -0.4082048 -13.24594
-##  5  TURKEY  1968 6.076595 -7.421201 -0.3650739 -12.80735
-##  6  TURKEY  1963 6.075129 -7.631193 -0.2249917 -13.25505
-##  7  TURKEY  1964 6.064601 -7.626898 -0.2521945 -13.21031
-##  8  TURKEY  1967 6.044479 -7.460810 -0.3351502 -12.80185
-##  9   JAPAN  1960 5.995287 -6.986196 -0.1453227 -12.23508
-## 10  TURKEY  1965 5.823046 -7.622027 -0.2934761 -12.87934
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1  turkey  1966 6.156644 -7.510895 -0.3564049 -12.95114
+##  2  turkey  1960 6.129553 -7.801144 -0.2534082 -13.47518
+##  3  turkey  1961 6.106213 -7.786727 -0.3425237 -13.38473
+##  4  turkey  1962 6.084587 -7.836272 -0.4082048 -13.24594
+##  5  turkey  1968 6.076595 -7.421201 -0.3650739 -12.80735
+##  6  turkey  1963 6.075129 -7.631193 -0.2249917 -13.25505
+##  7  turkey  1964 6.064601 -7.626898 -0.2521945 -13.21031
+##  8  turkey  1967 6.044479 -7.460810 -0.3351502 -12.80185
+##  9   japan  1960 5.995287 -6.986196 -0.1453227 -12.23508
+## 10  turkey  1965 5.823046 -7.622027 -0.2934761 -12.87934
 ## # ... with 332 more rows</code></pre>
 <p><code>arrange</code>’s documentation alerts the user that re-ording by group is only possible by explicitely specifying an option:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
@@ -1576,24 +1568,333 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <pre><code>## # A tibble: 72 x 6
 ## # Groups:   country [18]
 ##    country  year lgaspcar  lincomep      lrpmg  lcarpcap
-##     &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-##  1 AUSTRIA  1960 4.173244 -6.474277 -0.3345476 -9.766840
-##  2 AUSTRIA  1961 4.100989 -6.426006 -0.3513276 -9.608622
-##  3 AUSTRIA  1962 4.073177 -6.407308 -0.3795177 -9.457257
-##  4 AUSTRIA  1963 4.059509 -6.370679 -0.4142514 -9.343155
-##  5 BELGIUM  1960 4.164016 -6.215091 -0.1657096 -9.405527
-##  6 BELGIUM  1961 4.124356 -6.176843 -0.1717310 -9.303149
-##  7 BELGIUM  1962 4.075962 -6.129638 -0.2222914 -9.218070
-##  8 BELGIUM  1963 4.001266 -6.094019 -0.2504623 -9.114932
-##  9  CANADA  1960 4.855238 -5.889713 -0.9721065 -8.378917
-## 10  CANADA  1962 4.850533 -5.844552 -0.9786076 -8.320512
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 austria  1960 4.173244 -6.474277 -0.3345476 -9.766840
+##  2 austria  1961 4.100989 -6.426006 -0.3513276 -9.608622
+##  3 austria  1962 4.073177 -6.407308 -0.3795177 -9.457257
+##  4 austria  1963 4.059509 -6.370679 -0.4142514 -9.343155
+##  5 belgium  1960 4.164016 -6.215091 -0.1657096 -9.405527
+##  6 belgium  1961 4.124356 -6.176843 -0.1717310 -9.303149
+##  7 belgium  1962 4.075962 -6.129638 -0.2222914 -9.218070
+##  8 belgium  1963 4.001266 -6.094019 -0.2504623 -9.114932
+##  9  canada  1960 4.855238 -5.889713 -0.9721065 -8.378917
+## 10  canada  1962 4.850533 -5.844552 -0.9786076 -8.320512
 ## # ... with 62 more rows</code></pre>
 </div>
-<div id="sample_n-and-sample_frac" class="section level4">
-<h4><span class="header-section-number">4.1.3.8</span> <code>sample_n()</code> and <code>sample_frac()</code></h4>
+<div id="tally-and-count" class="section level4">
+<h4><span class="header-section-number">4.1.3.8</span> <code>tally()</code> and <code>count()</code></h4>
+<p><code>tally()</code> and <code>count()</code> count the number of observations in your data. I believe <code>count()</code> is the more useful of the two, as it counts the number of observations within a group that you can provide:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">count</span>(country)</code></pre></div>
+<pre><code>## # A tibble: 18 x 2
+##        country     n
+##          &lt;chr&gt; &lt;int&gt;
+##  1     austria    19
+##  2     belgium    19
+##  3      canada    19
+##  4     denmark    19
+##  5      france    19
+##  6     germany    19
+##  7      greece    19
+##  8     ireland    19
+##  9       italy    19
+## 10       japan    19
+## 11 netherlands    19
+## 12      norway    19
+## 13       spain    19
+## 14      sweden    19
+## 15 switzerland    19
+## 16      turkey    19
+## 17        u.k.    19
+## 18      u.s.a.    19</code></pre>
+<p>There’s also <code>add_count()</code> which adds the column to the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">add_count</span>(country)</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap     n
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 austria  1960 4.173244 -6.474277 -0.3345476 -9.766840    19
+##  2 austria  1961 4.100989 -6.426006 -0.3513276 -9.608622    19
+##  3 austria  1962 4.073177 -6.407308 -0.3795177 -9.457257    19
+##  4 austria  1963 4.059509 -6.370679 -0.4142514 -9.343155    19
+##  5 austria  1964 4.037689 -6.322247 -0.4453354 -9.237739    19
+##  6 austria  1965 4.033983 -6.294668 -0.4970607 -9.123903    19
+##  7 austria  1966 4.047537 -6.252545 -0.4668377 -9.019822    19
+##  8 austria  1967 4.052911 -6.234581 -0.5058834 -8.934403    19
+##  9 austria  1968 4.045507 -6.206894 -0.5224125 -8.847967    19
+## 10 austria  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
+## # ... with 332 more rows</code></pre>
+<p><code>add_count()</code> is a shortcut for the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 342 x 7
+## # Groups:   country [18]
+##    country  year lgaspcar  lincomep      lrpmg  lcarpcap     n
+##      &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 austria  1960 4.173244 -6.474277 -0.3345476 -9.766840    19
+##  2 austria  1961 4.100989 -6.426006 -0.3513276 -9.608622    19
+##  3 austria  1962 4.073177 -6.407308 -0.3795177 -9.457257    19
+##  4 austria  1963 4.059509 -6.370679 -0.4142514 -9.343155    19
+##  5 austria  1964 4.037689 -6.322247 -0.4453354 -9.237739    19
+##  6 austria  1965 4.033983 -6.294668 -0.4970607 -9.123903    19
+##  7 austria  1966 4.047537 -6.252545 -0.4668377 -9.019822    19
+##  8 austria  1967 4.052911 -6.234581 -0.5058834 -8.934403    19
+##  9 austria  1968 4.045507 -6.206894 -0.5224125 -8.847967    19
+## 10 austria  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
+## # ... with 332 more rows</code></pre>
+<p>where <code>n()</code> is a <code>dplyr</code> function that can only be used within <code>summarise()</code>, <code>mutate()</code> and <code>filter()</code>.</p>
 </div>
 <div id="joining-tibbles-with-full_join-left_join-right_join-and-all-the-others" class="section level4">
 <h4><span class="header-section-number">4.1.3.9</span> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</h4>
+<p>I will end this section on <code>dplyr</code> with the very useful verbs: the <code>*_join()</code> verbs. Let’s first start by loading another dataset from the <code>plm</code> package. <code>SumHes</code> and let’s convert it to <code>tibble</code> and rename it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;SumHes&quot;</span>)
+
+pwt &lt;-<span class="st"> </span>SumHes %&gt;%
+<span class="st">  </span><span class="kw">as_tibble</span>() %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">tolower</span>(country))</code></pre></div>
+<p>Let’s take a quick look at the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(pwt)</code></pre></div>
+<pre><code>## Observations: 3,250
+## Variables: 7
+## $ year    &lt;int&gt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, ...
+## $ country &lt;chr&gt; &quot;algeria&quot;, &quot;algeria&quot;, &quot;algeria&quot;, &quot;algeria&quot;, &quot;algeria&quot;,...
+## $ opec    &lt;fctr&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, n...
+## $ com     &lt;fctr&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, n...
+## $ pop     &lt;int&gt; 10800, 11016, 11236, 11460, 11690, 11923, 12267, 12622...
+## $ gdp     &lt;int&gt; 1723, 1599, 1275, 1517, 1589, 1584, 1548, 1600, 1758, ...
+## $ sr      &lt;dbl&gt; 19.9, 21.1, 15.0, 13.9, 10.6, 11.0, 8.3, 11.3, 15.1, 1...</code></pre>
+<p>We can merge both <code>gasoline</code> and <code>pwt</code> by country and year, as these two variables are common to both datasets. There are more countries and years in the <code>pwt</code> dataset, so when merging both, and depending on which function you use, you will either have <code>NA</code>’s for the variables where there is no match, or rows that will be dropped. Let’s start with <code>full_join</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_full &lt;-<span class="st"> </span>gasoline %&gt;%
+<span class="st">  </span><span class="kw">full_join</span>(pwt, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</code></pre></div>
+<p>Let’s see which countries and years are included:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_full %&gt;%
+<span class="st">  </span><span class="kw">count</span>(country, year)</code></pre></div>
+<pre><code>## # A tibble: 3,269 x 3
+##    country  year     n
+##      &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+##  1 algeria  1960     1
+##  2 algeria  1961     1
+##  3 algeria  1962     1
+##  4 algeria  1963     1
+##  5 algeria  1964     1
+##  6 algeria  1965     1
+##  7 algeria  1966     1
+##  8 algeria  1967     1
+##  9 algeria  1968     1
+## 10 algeria  1969     1
+## # ... with 3,259 more rows</code></pre>
+<p>As you see, every country and year was included, but what happened for, say, the U.S.S.R? This country is in <code>pwt</code> but not in <code>gasoline</code> at all:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_full %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;u.s.s.r.&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 26 x 11
+##     country  year lgaspcar lincomep lrpmg lcarpcap   opec    com    pop
+##       &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;fctr&gt; &lt;fctr&gt;  &lt;int&gt;
+##  1 u.s.s.r.  1960       NA       NA    NA       NA     no    yes 214400
+##  2 u.s.s.r.  1961       NA       NA    NA       NA     no    yes 217896
+##  3 u.s.s.r.  1962       NA       NA    NA       NA     no    yes 221449
+##  4 u.s.s.r.  1963       NA       NA    NA       NA     no    yes 225060
+##  5 u.s.s.r.  1964       NA       NA    NA       NA     no    yes 227571
+##  6 u.s.s.r.  1965       NA       NA    NA       NA     no    yes 230109
+##  7 u.s.s.r.  1966       NA       NA    NA       NA     no    yes 232676
+##  8 u.s.s.r.  1967       NA       NA    NA       NA     no    yes 235272
+##  9 u.s.s.r.  1968       NA       NA    NA       NA     no    yes 237896
+## 10 u.s.s.r.  1969       NA       NA    NA       NA     no    yes 240550
+## # ... with 16 more rows, and 2 more variables: gdp &lt;int&gt;, sr &lt;dbl&gt;</code></pre>
+<p>As you probably guessed, the variables from <code>gasoline</code> that are not included in <code>pwt</code> are filled with <code>NA</code>s. One could remove all these lines and only keep countries for which these variables are not <code>NA</code> everywhere with <code>filter()</code>, but there is a simpler solution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_inner &lt;-<span class="st"> </span>gasoline %&gt;%
+<span class="st">  </span><span class="kw">inner_join</span>(pwt, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))
+
+gas_pwt_inner %&gt;%
+<span class="st">  </span><span class="kw">tabyl</span>(country)</code></pre></div>
+<pre><code>##        country  n    percent
+## 1      austria 19 0.05882353
+## 2      belgium 19 0.05882353
+## 3       canada 19 0.05882353
+## 4      denmark 19 0.05882353
+## 5       france 19 0.05882353
+## 6       greece 19 0.05882353
+## 7      ireland 19 0.05882353
+## 8        italy 19 0.05882353
+## 9        japan 19 0.05882353
+## 10 netherlands 19 0.05882353
+## 11      norway 19 0.05882353
+## 12       spain 19 0.05882353
+## 13      sweden 19 0.05882353
+## 14 switzerland 19 0.05882353
+## 15      turkey 19 0.05882353
+## 16        u.k. 19 0.05882353
+## 17      u.s.a. 19 0.05882353</code></pre>
+<p>Only countries with values in both datasets were returned. It’s almost every country from <code>gasoline</code>, apart from Germany (called “germany west” in <code>pwt</code> and “germany” in <code>gasoline</code>. I left it as is to provide an example of a country not in <code>pwt</code>). Let’s also look at the variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(gas_pwt_inner)</code></pre></div>
+<pre><code>## Observations: 323
+## Variables: 11
+## $ country  &lt;chr&gt; &quot;austria&quot;, &quot;austria&quot;, &quot;austria&quot;, &quot;austria&quot;, &quot;austria&quot;...
+## $ year     &lt;int&gt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968,...
+## $ lgaspcar &lt;dbl&gt; 4.173244, 4.100989, 4.073177, 4.059509, 4.037689, 4.0...
+## $ lincomep &lt;dbl&gt; -6.474277, -6.426006, -6.407308, -6.370679, -6.322247...
+## $ lrpmg    &lt;dbl&gt; -0.3345476, -0.3513276, -0.3795177, -0.4142514, -0.44...
+## $ lcarpcap &lt;dbl&gt; -9.766840, -9.608622, -9.457257, -9.343155, -9.237739...
+## $ opec     &lt;fctr&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, ...
+## $ com      &lt;fctr&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, ...
+## $ pop      &lt;int&gt; 7048, 7087, 7130, 7172, 7215, 7255, 7308, 7338, 7362,...
+## $ gdp      &lt;int&gt; 5143, 5388, 5481, 5688, 5978, 6144, 6437, 6596, 6847,...
+## $ sr       &lt;dbl&gt; 24.3, 24.5, 23.3, 22.9, 25.2, 25.2, 26.7, 25.6, 25.7,...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_left &lt;-<span class="st"> </span>gasoline %&gt;%
+<span class="st">  </span><span class="kw">left_join</span>(pwt, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</code></pre></div>
+<p>Let’s take a look at the included countries:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_left %&gt;%
+<span class="st">  </span><span class="kw">tabyl</span>(country)</code></pre></div>
+<pre><code>##        country  n    percent
+## 1      austria 19 0.05555556
+## 2      belgium 19 0.05555556
+## 3       canada 19 0.05555556
+## 4      denmark 19 0.05555556
+## 5       france 19 0.05555556
+## 6      germany 19 0.05555556
+## 7       greece 19 0.05555556
+## 8      ireland 19 0.05555556
+## 9        italy 19 0.05555556
+## 10       japan 19 0.05555556
+## 11 netherlands 19 0.05555556
+## 12      norway 19 0.05555556
+## 13       spain 19 0.05555556
+## 14      sweden 19 0.05555556
+## 15 switzerland 19 0.05555556
+## 16      turkey 19 0.05555556
+## 17        u.k. 19 0.05555556
+## 18      u.s.a. 19 0.05555556</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_right &lt;-<span class="st"> </span>gasoline %&gt;%
+<span class="st">  </span><span class="kw">right_join</span>(pwt, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</code></pre></div>
+<p>Let’s take a look at the included countries:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gas_pwt_right %&gt;%
+<span class="st">  </span><span class="kw">tabyl</span>(country)</code></pre></div>
+<pre><code>##             country  n percent
+## 1           algeria 26   0.008
+## 2            angola 26   0.008
+## 3         argentina 26   0.008
+## 4         australia 26   0.008
+## 5           austria 26   0.008
+## 6        bangladesh 26   0.008
+## 7          barbados 26   0.008
+## 8           belgium 26   0.008
+## 9             benin 26   0.008
+## 10          bolivia 26   0.008
+## 11         botswana 26   0.008
+## 12           brazil 26   0.008
+## 13     burkina faso 26   0.008
+## 14          burundi 26   0.008
+## 15         cameroon 26   0.008
+## 16           canada 26   0.008
+## 17   cape verde is. 26   0.008
+## 18   central afr.r. 26   0.008
+## 19             chad 26   0.008
+## 20            chile 26   0.008
+## 21            china 26   0.008
+## 22         colombia 26   0.008
+## 23          comoros 26   0.008
+## 24            congo 26   0.008
+## 25       costa rica 26   0.008
+## 26           cyprus 26   0.008
+## 27   czechoslovakia 26   0.008
+## 28          denmark 26   0.008
+## 29   dominican rep. 26   0.008
+## 30          ecuador 26   0.008
+## 31            egypt 26   0.008
+## 32      el salvador 26   0.008
+## 33         ethiopia 26   0.008
+## 34             fiji 26   0.008
+## 35          finland 26   0.008
+## 36           france 26   0.008
+## 37            gabon 26   0.008
+## 38           gambia 26   0.008
+## 39     germany west 26   0.008
+## 40            ghana 26   0.008
+## 41           greece 26   0.008
+## 42        guatemala 26   0.008
+## 43           guinea 26   0.008
+## 44      guinea-biss 26   0.008
+## 45           guyana 26   0.008
+## 46            haiti 26   0.008
+## 47         honduras 26   0.008
+## 48        hong kong 26   0.008
+## 49          iceland 26   0.008
+## 50            india 26   0.008
+## 51        indonesia 26   0.008
+## 52             iran 26   0.008
+## 53             iraq 26   0.008
+## 54          ireland 26   0.008
+## 55           israel 26   0.008
+## 56            italy 26   0.008
+## 57      ivory coast 26   0.008
+## 58          jamaica 26   0.008
+## 59            japan 26   0.008
+## 60           jordan 26   0.008
+## 61            kenya 26   0.008
+## 62            korea 26   0.008
+## 63          lesotho 26   0.008
+## 64          liberia 26   0.008
+## 65       luxembourg 26   0.008
+## 66       madagascar 26   0.008
+## 67           malawi 26   0.008
+## 68         malaysia 26   0.008
+## 69             mali 26   0.008
+## 70            malta 26   0.008
+## 71       mauritania 26   0.008
+## 72        mauritius 26   0.008
+## 73           mexico 26   0.008
+## 74          morocco 26   0.008
+## 75       mozambique 26   0.008
+## 76          myanmar 26   0.008
+## 77          namibia 26   0.008
+## 78            nepal 26   0.008
+## 79      netherlands 26   0.008
+## 80      new zealand 26   0.008
+## 81        nicaragua 26   0.008
+## 82            niger 26   0.008
+## 83          nigeria 26   0.008
+## 84           norway 26   0.008
+## 85         pakistan 26   0.008
+## 86           panama 26   0.008
+## 87  papua n.guinea  26   0.008
+## 88         paraguay 26   0.008
+## 89             peru 26   0.008
+## 90      philippines 26   0.008
+## 91         portugal 26   0.008
+## 92      puerto rico 26   0.008
+## 93          reunion 26   0.008
+## 94          romania 26   0.008
+## 95           rwanda 26   0.008
+## 96     saudi arabia 26   0.008
+## 97          senegal 26   0.008
+## 98       seychelles 26   0.008
+## 99        singapore 26   0.008
+## 100         somalia 26   0.008
+## 101    south africa 26   0.008
+## 102           spain 26   0.008
+## 103       sri lanka 26   0.008
+## 104        suriname 26   0.008
+## 105       swaziland 26   0.008
+## 106          sweden 26   0.008
+## 107     switzerland 26   0.008
+## 108           syria 26   0.008
+## 109          taiwan 26   0.008
+## 110        tanzania 26   0.008
+## 111        thailand 26   0.008
+## 112            togo 26   0.008
+## 113 trinidad&amp;tobago 26   0.008
+## 114         tunisia 26   0.008
+## 115          turkey 26   0.008
+## 116          uganda 26   0.008
+## 117            u.k. 26   0.008
+## 118         uruguay 26   0.008
+## 119          u.s.a. 26   0.008
+## 120        u.s.s.r. 26   0.008
+## 121       venezuela 26   0.008
+## 122      yugoslavia 26   0.008
+## 123           zaire 26   0.008
+## 124          zambia 26   0.008
+## 125        zimbabwe 26   0.008</code></pre>
 </div>
 </div>
 <div id="functional-programming-with-purrr-and-purrrlyr" class="section level3">
