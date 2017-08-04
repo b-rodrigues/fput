@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-03">
+<meta name="date" content="2017-08-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="fprog.html">
-<link rel="next" href="unit-testing.html">
+<link rel="next" href="programming-with-the-tidyverse.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,27 +103,87 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Functional programming and unit testing for data munging</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.4</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#general-recommendations-to-follow-this-book"><i class="fa fa-check"></i><b>2.4</b> General recommendations to follow this book</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
+<li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-base-way"><i class="fa fa-check"></i><b>3.2</b> Mapping and Reducing: the <em>base</em> way</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#mapping-with-map-and-the-apply-family-of-functions"><i class="fa fa-check"></i><b>3.2.1</b> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#map_reduce_purrr"><i class="fa fa-check"></i><b>3.3</b> Mapping and Reducing: the <code>purrr</code> way</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="fprog.html"><a href="fprog.html#the-map-family-of-functions"><i class="fa fa-check"></i><b>3.3.1</b> The <code>map*()</code> family of functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#basic-anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Basic anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code id="tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-to-know-the-tidyverse"><i class="fa fa-check"></i><b>4.1</b> Getting to know the <code>tidyverse</code></a><ul>
-<li class="chapter" data-level="4.1.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#smoking-is-bad-for-you-but-pipes-are-your-friend"><i class="fa fa-check"></i><b>4.1.1</b> Smoking is bad for you, but pipes are your friend</a></li>
-<li class="chapter" data-level="4.1.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.1.2</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
-<li class="chapter" data-level="4.1.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr-and-tidyr"><i class="fa fa-check"></i><b>4.1.3</b> Transforming your data with <code>dplyr</code> and <code>tidyr</code></a></li>
-<li class="chapter" data-level="4.1.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.1.4</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a></li>
-<li class="chapter" data-level="4.1.5" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.1.5</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
+<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#smoking-is-bad-for-you-but-pipes-are-your-friend"><i class="fa fa-check"></i><b>4.1</b> Smoking is bad for you, but pipes are your friend</a></li>
+<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.2</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
+<li class="chapter" data-level="4.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr"><i class="fa fa-check"></i><b>4.3</b> Transforming your data with <code>dplyr</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#filter-and-friends"><i class="fa fa-check"></i><b>4.3.1</b> <code>filter()</code> and friends</a></li>
+<li class="chapter" data-level="4.3.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#select-and-its-helpers"><i class="fa fa-check"></i><b>4.3.2</b> <code>select()</code> and its helpers</a></li>
+<li class="chapter" data-level="4.3.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#group_by"><i class="fa fa-check"></i><b>4.3.3</b> <code>group_by()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#summarise"><i class="fa fa-check"></i><b>4.3.4</b> <code>summarise()</code></a></li>
+<li class="chapter" data-level="4.3.5" data-path="the-tidyverse.html"><a href="the-tidyverse.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.3.5</b> <code>mutate()</code> and <code>transmute()</code></a></li>
+<li class="chapter" data-level="4.3.6" data-path="the-tidyverse.html"><a href="the-tidyverse.html#tally-and-count"><i class="fa fa-check"></i><b>4.3.6</b> <code>tally()</code> and <code>count()</code></a></li>
+<li class="chapter" data-level="4.3.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#joining-tibbles-with-full_join-left_join-right_join-and-all-the-others"><i class="fa fa-check"></i><b>4.3.7</b> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#programming-with-the-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.2.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>4.2.1</b> The naive approach</a></li>
-<li class="chapter" data-level="4.2.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>4.2.2</b> Getting serious with <code>rlang</code></a></li>
+<li class="chapter" data-level="4.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#tidy-your-data-with-tidyr"><i class="fa fa-check"></i><b>4.4</b> Tidy your data with <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.5" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.5</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a><ul>
+<li class="chapter" data-level="4.5.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#mapping-and-reducing-with-purrr-continued"><i class="fa fa-check"></i><b>4.5.1</b> Mapping and reducing with <code>purrr</code>, continued</a></li>
+<li class="chapter" data-level="4.5.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#safely-and-possibly"><i class="fa fa-check"></i><b>4.5.2</b> <code>safely()</code> and <code>possibly()</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transposing-lists"><i class="fa fa-check"></i><b>4.5.3</b> «Transposing lists»</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#exercises"><i class="fa fa-check"></i><b>4.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.6</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
+<li class="chapter" data-level="4.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>5</b> Unit testing</a></li>
-<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a></li>
-<li class="chapter" data-level="7" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>7</b> Putting it all together: writing a package to work on data</a></li>
-<li class="chapter" data-level="8" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>8</b> Placeholder</a></li>
+<li class="chapter" data-level="5" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive approach</a></li>
+<li class="chapter" data-level="5.2" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
+<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
+<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>6.3</b> Writing documentation for your functions</a></li>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>6.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>6.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>6.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>6.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>6.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#wrap-up-1"><i class="fa fa-check"></i><b>6.7</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>7</b> Unit testing</a><ul>
+<li class="chapter" data-level="7.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>7.2</b> Unit testing with the <code>testthat</code> package</a></li>
+<li class="chapter" data-level="7.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>7.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="7.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-2"><i class="fa fa-check"></i><b>7.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="7.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-2"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>8</b> Putting it all together: writing a package to work on data</a><ul>
+<li class="chapter" data-level="8.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>8.1</b> Getting the data</a></li>
+<li class="chapter" data-level="8.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>8.2</b> Your first data munging package: <code>prepareData</code></a><ul>
+<li class="chapter" data-level="8.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>8.2.1</b> Reading a lot of datasets at once</a></li>
+<li class="chapter" data-level="8.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>8.2.2</b> Treating the columns of your datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -147,14 +207,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="the-tidyverse" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> The <code id="tidyverse">tidyverse</code></h1>
 <p>The <code>tidyverse</code> is the name given to a certain number of packages, most of all (if not all?) developed by, or co-developed by, Hadley Wickham. There’s a website that introduces them all: <a href="http://tidyverse.org/">The tidyverse</a>. In this chapter, we are going to learn about some functions of some of these packages. We already know a little bit about <code>purrr</code>; let’s discover what these other packages have to offer!</p>
-<div id="getting-to-know-the-tidyverse" class="section level2">
-<h2><span class="header-section-number">4.1</span> Getting to know the <code>tidyverse</code></h2>
-<p>Before reading everything that follows, I’d suggest you watch Hadley Wickham’s talk <a href="https://www.youtube.com/watch?v=1POb5fx_m3I">Expressing yourself with R</a>. R is a computer <em>language</em>, and as with any language we really are writing things that are supposed to be read and understood by others, not just the computer. Even if you’re working alone, you owe it to your future self to write clean, easy to understand code. Using the tidyverse and adopting the principles presented in the talk will put you in the right mindset for everything that follows!</p>
+<p>However, before reading everything that follows, I’d suggest you watch Hadley Wickham’s talk <a href="https://www.youtube.com/watch?v=1POb5fx_m3I">Expressing yourself with R</a>. R is a computer <em>language</em>, and as with any language we really are writing things that are supposed to be read and understood by others, not just the computer. Even if you’re working alone, you owe it to your future self to write clean, easy to understand code. Using the tidyverse and adopting the principles presented in the talk will put you in the right mindset for everything that follows!</p>
 <p>First of all, let’s install the <code>tidyverse</code> packages. You can install them one by one, or you can install the <code>tidyverse</code> meta-package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <p>I suggest you do just that, as we’re going to skim over all the packages. To start an analysis, we first have to import data into R.</p>
-<div id="smoking-is-bad-for-you-but-pipes-are-your-friend" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Smoking is bad for you, but pipes are your friend</h3>
+<div id="smoking-is-bad-for-you-but-pipes-are-your-friend" class="section level2">
+<h2><span class="header-section-number">4.1</span> Smoking is bad for you, but pipes are your friend</h2>
 <p>The title of this section might sound weird at first, but by the end of it, you’ll get this (terrible) pun.</p>
 <p>You probably know the following painting by René Magritte, <em>La trahison des images</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;assets/pas_une_pipe.png&quot;</span>)</code></pre></div>
@@ -173,8 +231,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>It might not be very clear right now why this is useful, but the <code>%&gt;%</code> is probably one of the best things that R has, because when using packages from the <code>tidyverse</code>, you will naturally want to chain a lot of functions together. Without the <code>%&gt;%</code> it would become messy very fast.</p>
 <p><code>%&gt;%</code> is not the only pipe operator in <code>magrittr</code>. There’s <code>%T%</code>, <code>%&lt;&gt;%</code> and <code>%$%</code>. All have their uses, but are basically shortcuts to some common tasks with <code>%&gt;%</code> plus another function. Which means that you can live without them, and because of this, I will only discuss them briefly once we’ll have learned about the other <code>tidyverse</code> packages.</p>
 </div>
-<div id="getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></h3>
+<div id="getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles" class="section level2">
+<h2><span class="header-section-number">4.2</span> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></h2>
 <p>You probably already know how to import data in R, but maybe you are not familiar with these packages. Using them is pretty straightforward, and I will only discuss <code>haven</code> a little bit more than <code>readr</code> or <code>readxl</code>. <code>readr</code> allows you to import <code>*.csv</code> files as well as other files in plain text. The functions included in <code>readr</code> are fairly straightforward, but there is an aspect that I really like about them: if they fail to read your data you can get a report of what went wrong with the <code>problems()</code> function. I suggest you read the <a href="http://r4ds.had.co.nz/data-import.html">Data import chapter</a> of R for Data Science, to get to know <code>readr</code> better. But for our purposes, knowing the basic <code>read_csv()</code> function is enough.</p>
 <p><code>readxl</code> is very similar to <code>readr</code> but focuses on importing Excel sheets into R. Read more about it on the <a href="http://readxl.tidyverse.org/">tidyverse website</a>.</p>
 <p><code>haven</code> imports data from STATA, SAS and SPSS. I’m going into a bit more detail here, by showing an example with a STATA file. STATA files are usually labelled, and I’d like to show how to work with these labels using R. We’re going to work with the <code>mtcars</code> dataset. I used STATA 14 to label the variables; so the dataset looks like one you could have to work with one day.</p>
@@ -437,18 +495,29 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 3    10</code></pre>
 <p>There are a lot of other functions in the <code>tibble</code> package that you might find useful. I suggest you take a look at all of them and see what you can integrate in your workflow!</p>
 </div>
-<div id="transforming-your-data-with-dplyr-and-tidyr" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> Transforming your data with <code>dplyr</code> and <code>tidyr</code></h3>
+<div id="transforming-your-data-with-dplyr" class="section level2">
+<h2><span class="header-section-number">4.3</span> Transforming your data with <code>dplyr</code></h2>
 <p>You may have never heard of the <code>tidyverse</code>, but you most certainly heard about <code>dplyr</code> and <code>tidyr</code>. Both these packages are probably the most popular packages of the tidyverse. Even if you know these packages already, you might not be using some more advanced functions, I’m talking about the <em>scoped</em> version of the usual <code>dplyr</code> <em>verbs</em> (<code>dplyr</code> <em>verbs</em> is how Hadley Wickham refers to the functions included in the package: <code>group_by()</code>, <code>select()</code>, etc).</p>
 <p>This is going to be long, so prepare some coffee, lock the door to your study, turn off your phone and buckle up.</p>
-<div id="filter-and-friends" class="section level4">
-<h4><span class="header-section-number">4.1.3.1</span> <code>filter()</code> and friends</h4>
+<div id="filter-and-friends" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> <code>filter()</code> and friends</h3>
 <p>We’re going to use the <code>Gasoline</code> dataset from the <code>plm</code> package, so install that first:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;plm&quot;</span>)</code></pre></div>
 <p>Then load the required data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Gasoline, <span class="dt">package =</span> <span class="st">&quot;plm&quot;</span>)</code></pre></div>
 <p>and load dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     contains, order_by</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <p>This dataset gives the consumption of gasoline for 18 countries from 1960 to 1978. When you load the data like this, it is a standard <code>data.frame</code>. <code>dplyr</code> functions can be used on standard <code>data.frame</code> objects, but just because we learned about <code>tibble</code>’s, let’s convert the data to a <code>tibble</code> and change its name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Gasoline)</code></pre></div>
 <p><code>filter()</code> is pretty straightforward. What if you would like to subset the data to focus on the year 1969? Simple:</p>
@@ -568,8 +637,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <p><code>filter_all()</code>, as the name implies, considers all variables for the filtering step.</p>
 <p><code>filter_if()</code> and <code>filter_at()</code> are very useful when you have very large datasets with a lot of variables and you want to apply a filtering function only to a subset of them. <code>filter_all()</code> is useful if, for example, you only want to keep the positive values for all the columns.</p>
 </div>
-<div id="select-and-its-helpers" class="section level4">
-<h4><span class="header-section-number">4.1.3.2</span> <code>select()</code> and its helpers</h4>
+<div id="select-and-its-helpers" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> <code>select()</code> and its helpers</h3>
 <p>While <code>filter()</code> and its scoped versions allow you to keep or discard rows of data, <code>select()</code> (and its scoped versions) allow you to keep or discard entire columns. To keep columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">select</span>(country, year, lrpmg)</code></pre></div>
 <pre><code>## # A tibble: 342 x 3
@@ -820,8 +889,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## [341] -1.17590974 -1.21206183</code></pre>
 <p><code>pull()</code>, unlike <code>select()</code>, does not return a <code>tibble</code>, but only the atomic vector.</p>
 </div>
-<div id="group_by" class="section level4">
-<h4><span class="header-section-number">4.1.3.3</span> <code>group_by()</code></h4>
+<div id="group_by" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> <code>group_by()</code></h3>
 <p><code>group_by()</code> is a very useful verb; as the name implies, it allows you to create groups and then, for example, compute descriptive statistics by groups. For example, let’s group our data by country:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%<span class="st"> </span><span class="kw">group_by</span>(country)</code></pre></div>
 <pre><code>## # A tibble: 342 x 6
@@ -875,8 +944,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686
 ## # ... with 332 more rows</code></pre>
 </div>
-<div id="summarise" class="section level4">
-<h4><span class="header-section-number">4.1.3.4</span> <code>summarise()</code></h4>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> <code>summarise()</code></h3>
 <p>Ok, now that we have learned the basic verbs, we can start to do more interesting stuff. For example, one might want to compute the average gasoline consumption per car in each country, for the whole period:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
@@ -1137,8 +1206,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## #   lcarpcap_max &lt;dbl&gt;</code></pre>
 <p>I removed the <code>year</code> variable because it’s not a variable for which we want to have descriptive statistics.</p>
 </div>
-<div id="mutate-and-transmute" class="section level4">
-<h4><span class="header-section-number">4.1.3.5</span> <code>mutate()</code> and <code>transmute()</code></h4>
+<div id="mutate-and-transmute" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> <code>mutate()</code> and <code>transmute()</code></h3>
 <p><code>mutate()</code> adds a column to the <code>tibble</code>, which can contain any transformation of any other variable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
@@ -1266,11 +1335,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 10 AUSTRIA  1969 4.0463547891 -6.153139668 -0.559110514 -8.788686207
 ## # ... with 332 more rows</code></pre>
 <p>and there are a lot of useful functions that you can use within <code>mutate()</code> or <code>transmute()</code>: <code>lead()</code>, <code>lag()</code>, <code>dense_rank()</code>, <code>ntile()</code>, <code>cumsum()</code>, <code>cummax()</code>, coalesce(), <code>na_if()</code>, … We are going to study some of them in the next section.</p>
-</div>
-<div id="helper-functions-for-mutate-and-transmute" class="section level4">
-<h4><span class="header-section-number">4.1.3.6</span> Helper functions for <code>mutate()</code> and <code>transmute()</code></h4>
-<div id="if_else-case_when-and-recode" class="section level5">
-<h5><span class="header-section-number">4.1.3.6.1</span> <code>if_else()</code>, <code>case_when()</code> and <code>recode()</code></h5>
+<div id="if_else-case_when-and-recode" class="section level4">
+<h4><span class="header-section-number">4.3.5.1</span> <code>if_else()</code>, <code>case_when()</code> and <code>recode()</code></h4>
 <p>The two helper functions I use the most are probably <code>if_else()</code> and <code>case_when</code>. These two functions, combined with <code>mutate()</code> make it easy to create a new variable conditonally on the values of other variables. For instance, we might want to have a dummy that equals <code>1</code> if a country in the European Union (to simplify, say as of 2017) and <code>0</code> if not. First let’s create a list of countries that are in the EU:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eu_countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;austria&quot;</span>, <span class="st">&quot;belgium&quot;</span>, <span class="st">&quot;bulgaria&quot;</span>, <span class="st">&quot;croatia&quot;</span>, <span class="st">&quot;republic of cyprus&quot;</span>,
                   <span class="st">&quot;czech republic&quot;</span>, <span class="st">&quot;denmark&quot;</span>, <span class="st">&quot;estonia&quot;</span>, <span class="st">&quot;finland&quot;</span>, <span class="st">&quot;france&quot;</span>, <span class="st">&quot;germany&quot;</span>,
@@ -1377,8 +1443,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 1 netherlands  1960 4.646268 -6.216365 -0.2014848 -9.998449
 ## 2 switzerland  1960 4.397621 -6.156074 -0.8232183 -9.262400</code></pre>
 </div>
-<div id="lead-and-lag" class="section level5">
-<h5><span class="header-section-number">4.1.3.6.2</span> <code>lead()</code> and <code>lag()</code></h5>
+<div id="lead-and-lag" class="section level4">
+<h4><span class="header-section-number">4.3.5.2</span> <code>lead()</code> and <code>lag()</code></h4>
 <p><code>lead()</code> and <code>lag()</code> are especially useful in econometrics. When I was doing my masters, in 4 B.d. (<em>Before dplyr</em>) lagging variables in panel data was quite tricky. Now, with <code>dplyr</code> it’s really very easy:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(country) %&gt;%
@@ -1422,8 +1488,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## # ... with 62 more rows</code></pre>
 <p>you can replace <code>lag()</code> with <code>lead()</code>, but just keep in mind that the columns get transformed in place.</p>
 </div>
-<div id="ntile" class="section level5">
-<h5><span class="header-section-number">4.1.3.6.3</span> <code>ntile()</code></h5>
+<div id="ntile" class="section level4">
+<h4><span class="header-section-number">4.3.5.3</span> <code>ntile()</code></h4>
 <p>The last helper function I will discuss is <code>ntile()</code>. There are some other, so do read <code>mutate()</code>’s documentation with <code>help(mutate)</code>!</p>
 <p>If you need quantiles, you need <code>ntile()</code>. Let’s see how it works:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
@@ -1473,9 +1539,8 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 17        u.k.  1960 3.976781
 ## 18      u.s.a.  1960 4.811032</code></pre>
 </div>
-</div>
 <div id="arrange" class="section level4">
-<h4><span class="header-section-number">4.1.3.7</span> <code>arrange()</code></h4>
+<h4><span class="header-section-number">4.3.5.4</span> <code>arrange()</code></h4>
 <p><code>arrange()</code> re-orders the whole <code>tibble</code> according to values of the supplied variable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">arrange</span>(lgaspcar)</code></pre></div>
@@ -1531,8 +1596,9 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## 10  canada  1962 4.850533 -5.844552 -0.9786076 -8.320512
 ## # ... with 62 more rows</code></pre>
 </div>
-<div id="tally-and-count" class="section level4">
-<h4><span class="header-section-number">4.1.3.8</span> <code>tally()</code> and <code>count()</code></h4>
+</div>
+<div id="tally-and-count" class="section level3">
+<h3><span class="header-section-number">4.3.6</span> <code>tally()</code> and <code>count()</code></h3>
 <p><code>tally()</code> and <code>count()</code> count the number of observations in your data. I believe <code>count()</code> is the more useful of the two, as it counts the number of observations within a group that you can provide:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline %&gt;%
 <span class="st">  </span><span class="kw">count</span>(country)</code></pre></div>
@@ -1595,10 +1661,10 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 ## # ... with 332 more rows</code></pre>
 <p>where <code>n()</code> is a <code>dplyr</code> function that can only be used within <code>summarise()</code>, <code>mutate()</code> and <code>filter()</code>.</p>
 </div>
-<div id="joining-tibbles-with-full_join-left_join-right_join-and-all-the-others" class="section level4">
-<h4><span class="header-section-number">4.1.3.9</span> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</h4>
+<div id="joining-tibbles-with-full_join-left_join-right_join-and-all-the-others" class="section level3">
+<h3><span class="header-section-number">4.3.7</span> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</h3>
 <p>I will end this section on <code>dplyr</code> with the very useful verbs: the <code>*_join()</code> verbs. Let’s first start by loading another dataset from the <code>plm</code> package. <code>SumHes</code> and let’s convert it to <code>tibble</code> and rename it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(SumHes)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(SumHes, <span class="dt">package =</span> <span class="st">&quot;plm&quot;</span>)
 
 pwt &lt;-<span class="st"> </span>SumHes %&gt;%
 <span class="st">  </span><span class="kw">as_tibble</span>() %&gt;%
@@ -1934,67 +2000,322 @@ gas_pwt_right %&gt;%
 <span class="st">  </span><span class="kw">tabyl</span>(country)</code></pre></div>
 <pre><code>##   country  n percent
 ## 1 germany 19       1</code></pre>
-<p><code>gas_pwt_anti</code> has the columns the <code>gasoline</code> dataset as well as the only country from <code>gasoline</code> that is not in <code>pwt</code>: “germany.</p>
+<p><code>gas_pwt_anti</code> has the columns the <code>gasoline</code> dataset as well as the only country from <code>gasoline</code> that is not in <code>pwt</code>: “germany”.</p>
 </div>
 </div>
-<div id="functional-programming-with-purrr-and-purrrlyr" class="section level3">
-<h3><span class="header-section-number">4.1.4</span> Functional programming with <code>purrr</code> and <code>purrrlyr</code></h3>
+<div id="tidy-your-data-with-tidyr" class="section level2">
+<h2><span class="header-section-number">4.4</span> Tidy your data with <code>tidyr</code></h2>
 </div>
-<div id="special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr" class="section level3">
-<h3><span class="header-section-number">4.1.5</span> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></h3>
-</div>
-</div>
-<div id="programming-with-the-tidyverse" class="section level2">
-<h2><span class="header-section-number">4.2</span> Programming with the <code id="prog-tidyverse">tidyverse</code></h2>
-<div id="naive-tidyverse" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> The naive approach</h3>
-<p>Functions are very powerful because by using them, we avoid repetition. This means that we must be able to write functions that allow the user to abstract over certain things, such as columns names of datasets. So for example, one would like to write a function that would look like that:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, column)</code></pre></div>
-<p>and in this chapter we will learn together how to do that using <code>dplyr</code> (version 0.70 or above).</p>
-<p>I advise you to also read the “Programming with dplyr” vignette <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html">here</a>, which explains with great detail the concept I will only skim in this chapter!</p>
-<p>Consider the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
-simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
-  dataset %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(col_name) %&gt;%
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
-  <span class="kw">return</span>(dataset)
-}</code></pre></div>
-<p>When you try to run this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simple_function</span>(mtcars, <span class="st">&quot;cyl&quot;</span>)</code></pre></div>
-<p>This is the error you get:</p>
-<pre><code> Error in grouped_df_impl(data, unname(vars), drop) :
-  Column `col_name` is unknown</code></pre>
-<p>R is <em>literally</em> looking for a column called <code>col_name</code> in the <code>mtcars</code> dataset. How to solve this issue and make R understand to not take “cyl” literally as a string, but to interpret it?</p>
-</div>
-<div id="getting-serious-with-rlang" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Getting serious with <code>rlang</code></h3>
-<p>One way is to use the <code>quo()</code> function, in conjunction with the <code>!!</code> operator introduced with <code>dplyr</code> 0.7 (but actually part of the <code>rlang</code> package, which gets used by <code>dplyr</code> seamlessly). First let’s look at the solution and then I’ll explain how it works:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-
-simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
-  col_name &lt;-<span class="st"> </span><span class="kw">enquo</span>(col_name)
-  dataset %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(!!col_name) %&gt;%
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
-  <span class="kw">return</span>(dataset)
+<div id="functional-programming-with-purrr-and-purrrlyr" class="section level2">
+<h2><span class="header-section-number">4.5</span> Functional programming with <code>purrr</code> and <code>purrrlyr</code></h2>
+<div id="mapping-and-reducing-with-purrr-continued" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Mapping and reducing with <code>purrr</code>, continued</h3>
+<p>We’ve already seen how to map functions to elements of lists and how to reduce lists to a single value in <a href="fprog.html#map_reduce_purrr">Mapping and Reducing: the <code>purrr</code> way</a>, and in this section we’re going to dig a little deeper into the <code>purrr</code> package. We know the standard <code>map()</code> function, which returns a list, but there are a number of variants of this function. <code>map_dbl()</code> returns an atomic vector of doubles:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_dbl</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 4.000001 5.000023 6.000253 7.000000 8.000002 9.000011</code></pre>
+<p><code>map_chr()</code> returns an atomic vector of strings:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_chr</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] &quot;4.000001&quot; &quot;5.000023&quot; &quot;6.000253&quot; &quot;7.000000&quot; &quot;8.000002&quot; &quot;9.000011&quot;</code></pre>
+<p><code>map_lgl()</code> returns an atomic vector of <code>TRUE</code> or <code>FALSE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">divisible &lt;-<span class="st"> </span>function(x, y){
+  <span class="kw">if_else</span>(x %%<span class="st"> </span>y ==<span class="st"> </span><span class="dv">0</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
 }
 
+<span class="kw">map_lgl</span>(<span class="kw">seq</span>(<span class="dv">1</span>:<span class="dv">100</span>), divisible, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   [1] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [12]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
+##  [23] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [34] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [45]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
+##  [56] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [67] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [78]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
+##  [89] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+## [100] FALSE</code></pre>
+<p>There are also other interesting variants, such as <code>map_if()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
 
-<span class="kw">simple_function</span>(mtcars, cyl)</code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##     cyl mean_mpg
-##   &lt;dbl&gt;    &lt;dbl&gt;
-## 1     4 26.66364
-## 2     6 19.74286
-## 3     8 15.10000</code></pre>
+<span class="kw">map_if</span>(a, (function(x) <span class="kw">divisible</span>(x, <span class="dv">2</span>)), sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 1.414214
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 2
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 2.44949
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 2.828427
+## 
+## [[9]]
+## [1] 9
+## 
+## [[10]]
+## [1] 3.162278</code></pre>
+<p>I used <code>map_if()</code> to take the square root of only those numbers in vector <code>a</code> that are divisble by 2, by using an anonymous function that checks if a number is divisible by 2 (by wrapping <code>divisible()</code>).</p>
+<p><code>map_at()</code> is similar to <code>map_if()</code> but maps the function at a position specified by the user:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_at</span>(numbers, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] 25
+## 
+## [[3]]
+## [1] 6
+## 
+## [[4]]
+## [1] 49
+## 
+## [[5]]
+## [1] 64
+## 
+## [[6]]
+## [1] 81</code></pre>
+<p>or if you have a named list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">recipe &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;spam&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;eggs&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;bacon&quot;</span> =<span class="st"> </span><span class="dv">10</span>)
+
+<span class="kw">map_at</span>(recipe, <span class="st">&quot;bacon&quot;</span>, <span class="st">`</span><span class="dt">*</span><span class="st">`</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## $spam
+## [1] 1
+## 
+## $eggs
+## [1] 3
+## 
+## $bacon
+## [1] 20</code></pre>
+<p>I used <code>map_at()</code> to double the quantity of bacon in the recipe (by using the <code>*</code> function, and specifying its second argument, <code>2</code>. Try the following in the command prompt: <code>`*`(3, 4)</code>).</p>
+<p><code>map2()</code> is the equivalent of <code>mapply()</code> and <code>pmap()</code> is the generalisation of <code>map2()</code> for more than 2 arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(a)</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)
+
+<span class="kw">print</span>(b)</code></pre></div>
+<pre><code>##  [1] 1.000000 1.111111 1.222222 1.333333 1.444444 1.555556 1.666667
+##  [8] 1.777778 1.888889 2.000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map2</span>(a, b, <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2.222222
+## 
+## [[3]]
+## [1] 3.666667
+## 
+## [[4]]
+## [1] 5.333333
+## 
+## [[5]]
+## [1] 7.222222
+## 
+## [[6]]
+## [1] 9.333333
+## 
+## [[7]]
+## [1] 11.66667
+## 
+## [[8]]
+## [1] 14.22222
+## 
+## [[9]]
+## [1] 17
+## 
+## [[10]]
+## [1] 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>:<span class="dv">10</span>)
+
+<span class="kw">pmap</span>(<span class="kw">list</span>(a, b, n), rnorm)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1.553918
+## 
+## [[2]]
+## [1] 0.9872877 0.4991858
+## 
+## [[3]]
+## [1]  0.08080922 -0.86189871  0.59847039
+## 
+## [[4]]
+## [1] -3.728252 10.009157  6.165181 -3.159101
+## 
+## [[5]]
+## [1] -0.5699797 -0.8888323  5.3442700  1.0275991  2.7110370
+## 
+## [[6]]
+## [1]  1.3842750  1.2983328  9.7671693  0.2009296 10.6543792 -7.7369613
+## 
+## [[7]]
+## [1]  5.758963  2.533646  3.178258  4.324143 -1.849598 -0.665785 -5.463361
+## 
+## [[8]]
+## [1]  -6.796552   4.206007   5.363456   2.201812   9.155918  18.178455
+## [7]  -2.150472 -16.695573
+## 
+## [[9]]
+## [1] 10.9405356 -4.4939180 -4.3031887 11.1190312 -0.6740682 -9.0975705
+## [7]  3.5206202  0.6388666  1.9407666
+## 
+## [[10]]
+##  [1]  5.8528040 -1.7066003  8.4437655 -0.2048656  5.3178196 12.9683901
+##  [7]  6.3518149 -1.2593159 13.4880762 11.9350386</code></pre>
+</div>
+<div id="safely-and-possibly" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> <code>safely()</code> and <code>possibly()</code></h3>
+<p><code>safely()</code> and <code>possibly()</code> are very useful functions. Consider the following situation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+
+<span class="kw">sqrt</span>(a)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">sqrt</span>(a) :<span class="st"> </span>non-numeric argument to mathematical function</code></pre></div>
+<p>Using <code>map()</code> or <code>Map()</code> will result in a similar error. <code>safely()</code> is an higher-order function that takes one function as an argument and executes it… <em>safely</em>, meaning the execution of the function will not stop if there is an error. The error message gets captured alongside valid results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+
+safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
+
+<span class="kw">map</span>(a, safe_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [[1]]$result
+## NULL
+## 
+## [[1]]$error
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 2
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 2.236068
+## 
+## [[3]]$error
+## NULL</code></pre>
+<p><code>possibly()</code> works similarly, but also allows you to specify a return value in case of an error:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">possible_sqrt &lt;-<span class="st"> </span><span class="kw">possibly</span>(sqrt, <span class="dt">otherwise =</span> <span class="ot">NA_real_</span>)
+
+<span class="kw">map</span>(a, possible_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 2.236068</code></pre>
+<p>Of course, in this particular example, the same effect could be obtained way more easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">as.numeric</span>(a))</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1]       NA 2.000000 2.236068</code></pre>
+<p>However, in some situations, this trick does not work as intended (or at all), so <code>possibly()</code> and <code>safely()</code> are the way to go.</p>
+</div>
+<div id="transposing-lists" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> «Transposing lists»</h3>
+<p>Another interesting function is <code>transpose()</code>. It is not an alternative to the function <code>t()</code> from <code>base</code> but, has a similar effect. <code>transpose()</code> works on lists. Let’s take a look at the example from before:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt, <span class="dt">otherwise =</span> <span class="ot">NA_real_</span>)
+
+<span class="kw">map</span>(a, safe_sqrt)</code></pre></div>
+<pre><code>## [[1]]
+## [[1]]$result
+## [1] NA
+## 
+## [[1]]$error
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 2
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 2.236068
+## 
+## [[3]]$error
+## NULL</code></pre>
+<p>The output is a list with the first element being a list with a result and an error message. One might want to have all the results in a single list, and all the error messages in another list. This is safe with transpose:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">transpose</span>(<span class="kw">map</span>(a, safe_sqrt))</code></pre></div>
+<pre><code>## $result
+## $result[[1]]
+## [1] NA
+## 
+## $result[[2]]
+## [1] 2
+## 
+## $result[[3]]
+## [1] 2.236068
+## 
+## 
+## $error
+## $error[[1]]
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;
+## 
+## $error[[2]]
+## NULL
+## 
+## $error[[3]]
+## NULL</code></pre>
 </div>
 </div>
-<div id="exercises" class="section level2">
-<h2><span class="header-section-number">4.3</span> Exercises</h2>
+<div id="special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr" class="section level2">
+<h2><span class="header-section-number">4.6</span> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></h2>
+</div>
+<div id="exercises-1" class="section level2">
+<h2><span class="header-section-number">4.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Suppose you have an Excel workbook that contains data on three sheets. Create a function that reads entire workbooks, and that returns a list of tibbles, where each tibble is the data of one sheet (download the example Excel workbook, <code>example_workbook.xlsx</code>, from the <code>assets</code> folder on the books github).</li>
+<li><p>Suppose you have an Excel workbook that contains data on three sheets. Create a function that reads entire workbooks, and that returns a list of tibbles, where each tibble is the data of one sheet (download the example Excel workbook, <code>example_workbook.xlsx</code>, from the <code>assets</code> folder on the books github).</p></li>
+<li><p>Use one of the <code>map()</code> functions to combine two lists into one. Consider the following two lists:</p></li>
 </ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mediterranean &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;meal_1&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;humous&quot;</span>, <span class="st">&quot;lasagna&quot;</span>), <span class="st">&quot;meal_2&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sardines&quot;</span>, <span class="st">&quot;olives&quot;</span>))
+
+continental &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;starters&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;pea soup&quot;</span>, <span class="st">&quot;terrine&quot;</span>), <span class="st">&quot;dishes&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;frikadelle&quot;</span>, <span class="st">&quot;sauerkraut&quot;</span>))</code></pre></div>
+<p>The result we’d like to have would look like this: <!-- map2(mediterranean, continental, append) --></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">$starters
+$starters[[<span class="dv">1</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;humous&quot;</span>
+
+$starters[[<span class="dv">2</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;olives&quot;</span>
+
+$starters[[<span class="dv">3</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;pea soup&quot;</span>
+
+$starters[[<span class="dv">4</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;terrine&quot;</span>
+
+
+$dishes
+$dishes[[<span class="dv">1</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;sardines&quot;</span>
+
+$dishes[[<span class="dv">2</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;lasagna&quot;</span>
+
+$dishes[[<span class="dv">3</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;frikadelle&quot;</span>
+
+$dishes[[<span class="dv">4</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;sauerkraut&quot;</span></code></pre></div>
 
 </div>
 </div>
@@ -2004,7 +2325,7 @@ simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
         </div>
       </div>
 <a href="fprog.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="unit-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="programming-with-the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -2033,7 +2354,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-prog_tidy.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-tidyverse.Rmd",
 "text": "Edit"
 },
 "download": ["fp_tdd_data.pdf"],
