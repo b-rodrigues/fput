@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-04">
+<meta name="date" content="2017-08-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,10 +104,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.4</b> License</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#important-notice"><i class="fa fa-check"></i><b>1.1</b> Important notice</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.2</b> Motivation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.3</b> Who am I?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.4</b> Thanks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
@@ -2286,7 +2287,7 @@ safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
 <li><p>Suppose you have an Excel workbook that contains data on three sheets. Create a function that reads entire workbooks, and that returns a list of tibbles, where each tibble is the data of one sheet (download the example Excel workbook, <code>example_workbook.xlsx</code>, from the <code>assets</code> folder on the books github).</p></li>
 <li><p>Use one of the <code>map()</code> functions to combine two lists into one. Consider the following two lists:</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mediterranean &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;meal_1&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;humous&quot;</span>, <span class="st">&quot;lasagna&quot;</span>), <span class="st">&quot;meal_2&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sardines&quot;</span>, <span class="st">&quot;olives&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mediterranean &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;starters&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;humous&quot;</span>, <span class="st">&quot;lasagna&quot;</span>), <span class="st">&quot;dishes&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sardines&quot;</span>, <span class="st">&quot;olives&quot;</span>))
 
 continental &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;starters&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;pea soup&quot;</span>, <span class="st">&quot;terrine&quot;</span>), <span class="st">&quot;dishes&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;frikadelle&quot;</span>, <span class="st">&quot;sauerkraut&quot;</span>))</code></pre></div>
 <p>The result we’d like to have would look like this: <!-- map2(mediterranean, continental, append) --></p>

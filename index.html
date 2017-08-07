@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-04">
+<meta name="date" content="2017-08-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,10 +104,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.2</b> Who am I?</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.3</b> Thanks</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.4</b> License</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#important-notice"><i class="fa fa-check"></i><b>1.1</b> Important notice</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.2</b> Motivation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.3</b> Who am I?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.4</b> Thanks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
@@ -207,29 +208,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Functional programming and unit testing for data munging with R</h1>
 <h4 class="author"><em>Bruno Rodrigues</em></h4>
-<h4 class="date"><em>2017-08-04</em></h4>
+<h4 class="date"><em>2017-08-07</em></h4>
 </div>
 <div id="why-this-book" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Why this book?</h1>
+<div id="important-notice" class="section level2">
+<h2><span class="header-section-number">1.1</span> Important notice</h2>
+<p>This book is still being written, some chapters are not finished yet, and there might be (there are) some typos. Don’t hesitate to write me if you notice something weird.</p>
+<p>You can purchase a digital copy of this book at <a href="www.leanpub.com/fput">leanpub</a>.</p>
 <p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R. If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a><a href="#ref-wickham2014">a</a>)</span>, <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> and <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
 <p>This book is not an introduction to R either. I will assume that you have intermediate knowledge of R.</p>
+</div>
 <div id="motivation" class="section level2">
-<h2><span class="header-section-number">1.1</span> Motivation</h2>
+<h2><span class="header-section-number">1.2</span> Motivation</h2>
 <p>Functional programming has very nice features that make working on data sets much more pleasant. It is common that you have to repeat the same instructions over and over again for different data sets that look very similar (for example, same, or similar column names). Of course, it is possible to loop over these data sets and repeat a set of instructions that change these data sets. However, we will see why a functional programming approach is to be preferred.</p>
 <p>Unit testing then allows you to make sure that the functions you want to apply to your data sets actually do what you really want them to do. Knowing and applying these two concepts together will make you hopefully a better data analyst. Then we will learn to develop our own packages; not with the goal of publishing them in CRAN, but with the goal of making programming more streamlined.</p>
 </div>
 <div id="who-am-i" class="section level2">
-<h2><span class="header-section-number">1.2</span> Who am I?</h2>
+<h2><span class="header-section-number">1.3</span> Who am I?</h2>
 <p>I use R daily at my current job, and discovered R some years ago while I was at the <a href="http://www.unistra.fr/index.php?id=accueil">University of Strasbourg</a>. I’m not an R developer, and don’t have a CS background. Most, if not everything, that I know about R is self-taught. I hope however that you will find this book useful. You can <a href="https://twitter.com/brodriguesco">follow me on twitter</a> or check <a href="http://brodrigues.co">my blog</a>.</p>
 </div>
 <div id="thanks" class="section level2">
-<h2><span class="header-section-number">1.3</span> Thanks</h2>
+<h2><span class="header-section-number">1.4</span> Thanks</h2>
 <p>I’d like to thank <a href="https://www.stat.auckland.ac.nz/~ihaka/">Ross Ihaka</a> and <a href="https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)">Robert Gentleman</a> for developing the R programming language. Many thanks to <a href="http://hadley.nz/">Hadley Wickham</a> for all the wonderful packages he developed that make R much more pleasant to use. Thanks to <a href="http://yihui.name/">Yihui Yie</a> for <code>bookdown</code> without which this book would not exist (at least not in this very nice format).</p>
 <p>Thanks to <a href="https://www.iame.uni-bonn.de/people/hm-gaudecker">Hans-Martin von Gaudecker</a> for introducing me to unit testing and writing elegant code. The PEP 8 style guidelines will forever remain etched in my brain.</p>
 <p>Finally I have to thank my wife for putting up with my endless rants against people not using functional programming nor testing their code (or worse, using proprietary software!).</p>
 </div>
 <div id="license" class="section level2">
-<h2><span class="header-section-number">1.4</span> License</h2>
+<h2><span class="header-section-number">1.5</span> License</h2>
 <p>This book is licensed under the GNU Free Documentation License, version 1.3. A copy of the license is available on the repo, or you can read it <a href="https://www.gnu.org/licenses/fdl-1.3.txt">online</a>.</p>
 
 </div>
