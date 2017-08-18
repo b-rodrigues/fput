@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-07">
+<meta name="date" content="2017-08-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -155,7 +155,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive approach</a></li>
+<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
 <li class="chapter" data-level="5.2" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
@@ -208,10 +208,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="programming-with-the-tidyverse" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Programming with the <code id="prog-tidyverse">tidyverse</code></h1>
 <div id="naive-tidyverse" class="section level2">
-<h2><span class="header-section-number">5.1</span> The naive approach</h2>
+<h2><span class="header-section-number">5.1</span> The naive (and wrong) approach</h2>
 <p>Functions are very powerful because by using them, we avoid repetition. This means that we must be able to write functions that allow the user to abstract over certain things, such as columns names of datasets. So for example, one would like to write a function that would look like that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, column)</code></pre></div>
-<p>and in this chapter we will learn together how to do that using <code>dplyr</code> (version 0.70 or above).</p>
+<p>and in this chapter we will learn how to do that using <code>dplyr</code> (version 0.70 or above).</p>
 <p>I advise you to also read the “Programming with dplyr” vignette <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html">here</a>, which explains with great detail the concept I will only skim in this chapter!</p>
 <p>Consider the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
@@ -249,6 +249,7 @@ simple_function &lt;-<span class="st"> </span>function(dataset, col_name){
 ## 1     4 26.66364
 ## 2     6 19.74286
 ## 3     8 15.10000</code></pre>
+<p>In the above example, I wanted the mean of <code>mpg</code> but first by grouping by <code>cyl</code>.</p>
 
 </div>
 </div>

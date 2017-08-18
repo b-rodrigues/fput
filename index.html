@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-07">
+<meta name="date" content="2017-08-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -155,7 +155,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive approach</a></li>
+<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
 <li class="chapter" data-level="5.2" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
@@ -208,15 +208,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Functional programming and unit testing for data munging with R</h1>
 <h4 class="author"><em>Bruno Rodrigues</em></h4>
-<h4 class="date"><em>2017-08-07</em></h4>
+<h4 class="date"><em>2017-08-18</em></h4>
 </div>
 <div id="why-this-book" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Why this book?</h1>
 <div id="important-notice" class="section level2">
 <h2><span class="header-section-number">1.1</span> Important notice</h2>
-<p>This book is still being written, some chapters are not finished yet, and there might be (there are) some typos. Don’t hesitate to write me if you notice something weird.</p>
-<p>You can purchase a digital copy of this book at <a href="https://www.leanpub.com/fput">leanpub</a>. The version on leanpub will not always be uptodate, I only update it when I made very big changes (new chapters, etc). But once this book will be finished, both version are going to be the same.</p>
-<p>This short book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R. If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a><a href="#ref-wickham2014">a</a>)</span>, <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> and <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
+<p>This book is still being written, some chapters are not finished yet, and there might be (there are) some typos. Don’t hesitate to write to me if you notice something weird.</p>
+<p>You can purchase a digital copy of this book at <a href="https://www.leanpub.com/fput">leanpub</a>. The version on Leanpub will not always be up-to-date, I only update it when I made very big changes (new chapters, etc). But once this book will be finished, both version are going to be the same.</p>
+<p>This book serves to show how functional programming and unit testing can be useful for the task of data munging. This book is not an in-depth guide to functional programming, nor unit testing with R. If you want to have an in-depth understanding of the concepts presented in these books, I can’t but recommend <span class="citation">Wickham (<a href="#ref-wickham2014">2014</a><a href="#ref-wickham2014">a</a>)</span>, <span class="citation">Wickham (<a href="#ref-wickham2015">2015</a>)</span> and <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span> enough. Here, I will only briefly present functional programming, unit testing and building your own R packages. Just enough to get you (hopefully) interested and going.</p>
 <p>This book is not an introduction to R either. I will assume that you have intermediate knowledge of R.</p>
 </div>
 <div id="motivation" class="section level2">
