@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-18">
+<meta name="date" content="2017-08-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="intro.html">
-<link rel="next" href="the-tidyverse.html">
+<link rel="next" href="tidyverse.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -133,30 +133,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
 <li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code id="tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#smoking-is-bad-for-you-but-pipes-are-your-friend"><i class="fa fa-check"></i><b>4.1</b> Smoking is bad for you, but pipes are your friend</a></li>
-<li class="chapter" data-level="4.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.2</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
-<li class="chapter" data-level="4.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transforming-your-data-with-dplyr"><i class="fa fa-check"></i><b>4.3</b> Transforming your data with <code>dplyr</code></a><ul>
-<li class="chapter" data-level="4.3.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#filter-and-friends"><i class="fa fa-check"></i><b>4.3.1</b> <code>filter()</code> and friends</a></li>
-<li class="chapter" data-level="4.3.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#select-and-its-helpers"><i class="fa fa-check"></i><b>4.3.2</b> <code>select()</code> and its helpers</a></li>
-<li class="chapter" data-level="4.3.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#group_by"><i class="fa fa-check"></i><b>4.3.3</b> <code>group_by()</code></a></li>
-<li class="chapter" data-level="4.3.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#summarise"><i class="fa fa-check"></i><b>4.3.4</b> <code>summarise()</code></a></li>
-<li class="chapter" data-level="4.3.5" data-path="the-tidyverse.html"><a href="the-tidyverse.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.3.5</b> <code>mutate()</code> and <code>transmute()</code></a></li>
-<li class="chapter" data-level="4.3.6" data-path="the-tidyverse.html"><a href="the-tidyverse.html#tally-and-count"><i class="fa fa-check"></i><b>4.3.6</b> <code>tally()</code> and <code>count()</code></a></li>
-<li class="chapter" data-level="4.3.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#joining-tibbles-with-full_join-left_join-right_join-and-all-the-others"><i class="fa fa-check"></i><b>4.3.7</b> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</a></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#smoking-is-bad-for-you-but-pipes-are-your-friend"><i class="fa fa-check"></i><b>4.1</b> Smoking is bad for you, but pipes are your friend</a></li>
+<li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.2</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#transforming-your-data-with-dplyr"><i class="fa fa-check"></i><b>4.3</b> Transforming your data with <code>dplyr</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#filter-and-friends"><i class="fa fa-check"></i><b>4.3.1</b> <code>filter()</code> and friends</a></li>
+<li class="chapter" data-level="4.3.2" data-path="tidyverse.html"><a href="tidyverse.html#select-and-its-helpers"><i class="fa fa-check"></i><b>4.3.2</b> <code>select()</code> and its helpers</a></li>
+<li class="chapter" data-level="4.3.3" data-path="tidyverse.html"><a href="tidyverse.html#group_by"><i class="fa fa-check"></i><b>4.3.3</b> <code>group_by()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="tidyverse.html"><a href="tidyverse.html#summarise"><i class="fa fa-check"></i><b>4.3.4</b> <code>summarise()</code></a></li>
+<li class="chapter" data-level="4.3.5" data-path="tidyverse.html"><a href="tidyverse.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.3.5</b> <code>mutate()</code> and <code>transmute()</code></a></li>
+<li class="chapter" data-level="4.3.6" data-path="tidyverse.html"><a href="tidyverse.html#tally-and-count"><i class="fa fa-check"></i><b>4.3.6</b> <code>tally()</code> and <code>count()</code></a></li>
+<li class="chapter" data-level="4.3.7" data-path="tidyverse.html"><a href="tidyverse.html#joining-tibbles-with-full_join-left_join-right_join-and-all-the-others"><i class="fa fa-check"></i><b>4.3.7</b> Joining <code>tibble</code>s with <code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code> and all the others</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="the-tidyverse.html"><a href="the-tidyverse.html#tidy-your-data-with-tidyr"><i class="fa fa-check"></i><b>4.4</b> Tidy your data with <code>tidyr</code></a></li>
-<li class="chapter" data-level="4.5" data-path="the-tidyverse.html"><a href="the-tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.5</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a><ul>
-<li class="chapter" data-level="4.5.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#mapping-and-reducing-with-purrr-continued"><i class="fa fa-check"></i><b>4.5.1</b> Mapping and reducing with <code>purrr</code>, continued</a></li>
-<li class="chapter" data-level="4.5.2" data-path="the-tidyverse.html"><a href="the-tidyverse.html#safely-and-possibly"><i class="fa fa-check"></i><b>4.5.2</b> <code>safely()</code> and <code>possibly()</code></a></li>
-<li class="chapter" data-level="4.5.3" data-path="the-tidyverse.html"><a href="the-tidyverse.html#transposing-lists"><i class="fa fa-check"></i><b>4.5.3</b> «Transposing lists»</a></li>
+<li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#tidy-your-data-with-tidyr"><i class="fa fa-check"></i><b>4.4</b> Tidy your data with <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.5" data-path="tidyverse.html"><a href="tidyverse.html#functional-programming-with-purrr-and-purrrlyr"><i class="fa fa-check"></i><b>4.5</b> Functional programming with <code>purrr</code> and <code>purrrlyr</code></a><ul>
+<li class="chapter" data-level="4.5.1" data-path="tidyverse.html"><a href="tidyverse.html#mapping-and-reducing-with-purrr-continued"><i class="fa fa-check"></i><b>4.5.1</b> Mapping and reducing with <code>purrr</code>, continued</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidyverse.html"><a href="tidyverse.html#safely-and-possibly"><i class="fa fa-check"></i><b>4.5.2</b> <code>safely()</code> and <code>possibly()</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidyverse.html"><a href="tidyverse.html#transposing-lists"><i class="fa fa-check"></i><b>4.5.3</b> «Transposing lists»</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="the-tidyverse.html"><a href="the-tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.6</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
-<li class="chapter" data-level="4.7" data-path="the-tidyverse.html"><a href="the-tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.6</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a><ul>
+<li class="chapter" data-level="4.6.1" data-path="tidyverse.html"><a href="tidyverse.html#section"><i class="fa fa-check"></i><b>4.6.1</b> 🐈🐈🐈🐈</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code id="prog-tidyverse">tidyverse</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
-<li class="chapter" data-level="5.2" data-path="programming-with-the-tidyverse.html"><a href="programming-with-the-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
+<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
+<li class="chapter" data-level="5.2" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
@@ -213,9 +215,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.1.1</span> Function definitions</h3>
 <p>As mentioned in the <a href="#funcprog_overview">functional programming overview</a> functional programming is one of the numerous ways to write code. In functional programming, you write functions that do the computations and then as the user, you call these functions to work for you.</p>
 <p>You should be familiar with function definitions in R. For example, suppose you want to compute the square root of a number and want to do so using Newton’s algorithm:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
-    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
-        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span><span class="cf">function</span>(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="cf">while</span>(<span class="kw">abs</span>(init<span class="op">**</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>a) <span class="op">&gt;</span><span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span>(init <span class="op">+</span><span class="st"> </span>a<span class="op">/</span>init)
     }
     <span class="kw">return</span>(init)
 }</code></pre></div>
@@ -223,11 +225,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt_newton</span>(<span class="dv">16</span>, <span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 4.00122</code></pre>
 <p>We are using a <code>while</code> loop inside the body. The <em>body</em> of a function are the instructions that define the function. You can get the body of a function with <code>body(some_func)</code>] of the function. In <em>pure</em> functional programming languages, like Haskell, you don’t have loops. How can you program without loops, you may ask? In functional programming, loops are replaced by recursion. Let’s rewrite our little example above with recursion:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_recur &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
-    if(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &lt;<span class="st"> </span>eps){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_recur &lt;-<span class="st"> </span><span class="cf">function</span>(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="cf">if</span>(<span class="kw">abs</span>(init<span class="op">**</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>a) <span class="op">&lt;</span><span class="st"> </span>eps){
         result &lt;-<span class="st"> </span>init
-    } else {
-        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *<span class="st"> </span>(init +<span class="st"> </span>a/init)
+    } <span class="cf">else</span> {
+        init &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(init <span class="op">+</span><span class="st"> </span>a<span class="op">/</span>init)
         result &lt;-<span class="st"> </span><span class="kw">sqrt_newton_recur</span>(a, init, eps)
     }
     <span class="kw">return</span>(result)
@@ -240,8 +242,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.1.2</span> Properties of functions</h3>
 <p>Mathematical functions have a nice property: we always get the same output for a given input. This is called referential transparency and we should aim to write our R functions in such a way.</p>
 <p>For example, the following function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment &lt;-<span class="st"> </span>function(x){
-    <span class="kw">return</span>(x +<span class="st"> </span><span class="dv">1</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
 }</code></pre></div>
 <p>Is a referential transparent function. We always get the same result for any <code>x</code> that we give to this function.</p>
 <p>This:</p>
@@ -249,8 +251,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## [1] 11</code></pre>
 <p>will always produce <code>11</code>.</p>
 <p>However, this one:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_opaque &lt;-<span class="st"> </span>function(x){
-    <span class="kw">return</span>(x +<span class="st"> </span>spam)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_opaque &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>spam)
 }</code></pre></div>
 <p>is not a referential transparent function, because its value depends on the global variable <code>spam</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spam &lt;-<span class="st"> </span><span class="dv">1</span>
@@ -263,8 +265,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">increment_opaque</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## [1] 29</code></pre>
 <p>To make <code>increment_opaque()</code> a referential transparent function, it is enough to make <code>spam</code> an argument:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_not_opaque &lt;-<span class="st"> </span>function(x, spam){
-    <span class="kw">return</span>(x +<span class="st"> </span>spam)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">increment_not_opaque &lt;-<span class="st"> </span><span class="cf">function</span>(x, spam){
+    <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>spam)
 }</code></pre></div>
 <p>Now even if there is a global variable called <code>spam</code>, this will not influence our function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spam &lt;-<span class="st"> </span><span class="dv">19</span>
@@ -276,10 +278,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>For example this function (which is not a referential transparent function):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count_iter &lt;-<span class="st"> </span><span class="dv">0</span>
 
-sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
-    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
-        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
-        count_iter &lt;&lt;-<span class="st"> </span>count_iter +<span class="st"> </span><span class="dv">1</span> <span class="co"># The &quot;&lt;&lt;-&quot; symbol means that we assign the</span>
+sqrt_newton_side_effect &lt;-<span class="st"> </span><span class="cf">function</span>(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="cf">while</span>(<span class="kw">abs</span>(init<span class="op">**</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>a) <span class="op">&gt;</span><span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span>(init <span class="op">+</span><span class="st"> </span>a<span class="op">/</span>init)
+        count_iter &lt;&lt;-<span class="st"> </span>count_iter <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="co"># The &quot;&lt;&lt;-&quot; symbol means that we assign the</span>
     }                                 <span class="co"># RHS value in a variable in the global environment</span>
     <span class="kw">return</span>(init)
 }</code></pre></div>
@@ -289,10 +291,10 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(count_iter)</code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p>If you check the value of <code>count_iter</code> now, you will see that it increased! This is a side effect, because the function changed something outside its scope. It changed a value in the global environment. In general, it is good practice to avoid side-effects. For example, we could make the above function not have any side effects like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_count &lt;-<span class="st"> </span>function(a, init, <span class="dt">count_iter =</span> <span class="dv">0</span>, <span class="dt">eps =</span> <span class="fl">0.01</span>){
-    while(<span class="kw">abs</span>(init**<span class="dv">2</span> -<span class="st"> </span>a) &gt;<span class="st"> </span>eps){
-        init &lt;-<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *(init +<span class="st"> </span>a/init)
-        count_iter &lt;-<span class="st"> </span>count_iter +<span class="st"> </span><span class="dv">1</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_count &lt;-<span class="st"> </span><span class="cf">function</span>(a, init, <span class="dt">count_iter =</span> <span class="dv">0</span>, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+    <span class="cf">while</span>(<span class="kw">abs</span>(init<span class="op">**</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>a) <span class="op">&gt;</span><span class="st"> </span>eps){
+        init &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span>(init <span class="op">+</span><span class="st"> </span>a<span class="op">/</span>init)
+        count_iter &lt;-<span class="st"> </span>count_iter <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
     }
     <span class="kw">return</span>(<span class="kw">c</span>(init, count_iter))
 }</code></pre></div>
@@ -353,7 +355,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 ## [1] 9.000011</code></pre>
 <p><code>Map()</code> applies a function to every element of a list and returns a list.</p>
 <p>We could then write a wrapper around <code>Map()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span>function(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span><span class="cf">function</span>(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
     <span class="kw">return</span>(<span class="kw">Map</span>(sqrt_newton, numbers, init, eps))
 }
 
@@ -403,7 +405,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 4.000001 5.000023 6.000253 7.000000 8.000002 9.000011</code></pre>
 <p>We could rewrite <code>sqrt_newton_vec()</code> with <code>sapply()</code> which would return a better looking result (a list of numbers instead of a list of lists):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span>function(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton_vec &lt;-<span class="st"> </span><span class="cf">function</span>(numbers, init, <span class="dt">eps =</span> <span class="fl">0.01</span>){
     <span class="kw">return</span>(<span class="kw">sapply</span>(numbers, sqrt_newton, init, eps))
 }
 
@@ -439,10 +441,10 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <p>Can you guess what happens? <code>Reduce()</code> takes a function as an argument, here the function <code>+</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> and then does the following computation:</p>
 <pre><code>0 + numbers[1] + numbers[2] + numbers[3]...</code></pre>
 <p>It applies the user supplied function successively but has to start with something, so we give it the argument <code>init</code> also. This argument is actually optional, but I show it here because in some cases it might be useful to start the computations at another value than <code>0</code>. This function generalizes functions that only take two arguments. If you were to write a function that returns the minimum between two numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_min &lt;-<span class="st"> </span>function(a, b){
-    if(a &lt;<span class="st"> </span>b){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_min &lt;-<span class="st"> </span><span class="cf">function</span>(a, b){
+    <span class="cf">if</span>(a <span class="op">&lt;</span><span class="st"> </span>b){
         <span class="kw">return</span>(a)
-    } else {
+    } <span class="cf">else</span> {
         <span class="kw">return</span>(b)
     }
 }</code></pre></div>
@@ -459,7 +461,7 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 <p>Hadley Wickham developed a package called <code>purrr</code> which contains a lot of very useful functions. I will show some of them here, but in the next chapter, we are going to study <code>purrr</code> in greater depth. Also, take the time to read <code>purrr</code>’s documentation, and of course you can read more about <code>purrr</code> in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016">2016</a>)</span>.</p>
 <div id="the-map-family-of-functions" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> The <code>map*()</code> family of functions</h3>
-<p>In the previous section we saw how to map a function to each element of a list. Each version of an <code>*apply()</code> function has a different purpose, but it is not very easy to remember which one returns a list, which other one returns an atomic vector and so on. If you’re working on data frames you can use <code>apply()</code> to sum (for example) over columns or rows, because you can specify which <code>MARGIN</code> you want to sum over. But you do not get a data frame back. In the <code>purrr</code> package, each of the functions that do mapping have a similar name. The first part of these functions’ names all start with <code>map_</code> and the second part tells you what this function is going to output. For example, if you want <code>double</code>s out, you would use <code>map_dbl()</code>. If you are working on data frames want a data frame back, you would use <code>map_df()</code>. These are much more intuitive and easier to remember and we’re going to learn how to use them in the chapter about <a href="the-tidyverse.html#tidyverse">The Tidyverse</a>. For now, let’s just focus on the basic functions, <code>map()</code> and <code>reduce()</code> (and some variants of <code>reduce()</code>). To map a function to every element of a list, simply use <code>map()</code>:</p>
+<p>In the previous section we saw how to map a function to each element of a list. Each version of an <code>*apply()</code> function has a different purpose, but it is not very easy to remember which one returns a list, which other one returns an atomic vector and so on. If you’re working on data frames you can use <code>apply()</code> to sum (for example) over columns or rows, because you can specify which <code>MARGIN</code> you want to sum over. But you do not get a data frame back. In the <code>purrr</code> package, each of the functions that do mapping have a similar name. The first part of these functions’ names all start with <code>map_</code> and the second part tells you what this function is going to output. For example, if you want <code>double</code>s out, you would use <code>map_dbl()</code>. If you are working on data frames want a data frame back, you would use <code>map_df()</code>. These are much more intuitive and easier to remember and we’re going to learn how to use them in the chapter about <a href="tidyverse.html#tidyverse">The Tidyverse</a>. For now, let’s just focus on the basic functions, <code>map()</code> and <code>reduce()</code> (and some variants of <code>reduce()</code>). To map a function to every element of a list, simply use <code>map()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;purrr&quot;</span>)
 <span class="kw">map</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [[1]]
@@ -507,17 +509,17 @@ sqrt_newton_side_effect &lt;-<span class="st"> </span>function(a, init, <span cl
 
 mtcars2000 &lt;-<span class="st"> </span>mtcars
 mtcars2001 &lt;-<span class="st"> </span>mtcars
-mtcars2001$cyl &lt;-<span class="st"> </span>mtcars2001$cyl<span class="dv">+3</span>
+mtcars2001<span class="op">$</span>cyl &lt;-<span class="st"> </span>mtcars2001<span class="op">$</span>cyl<span class="op">+</span><span class="dv">3</span>
 datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;mtcars2000&quot;</span> =<span class="st"> </span>mtcars2000,
 <span class="st">&quot;mtcars2001&quot;</span> =<span class="st"> </span>mtcars2001)</code></pre></div>
 <p>In the next chapters we will learn how to load a lot of datasets at once and store them in a list. So it is important to know how to work with datasets that are stored on lists. Now suppose you want to use <code>purrr::map()</code> to plot a histogram of variable <code>cyl</code> for each dataset that is contained in your list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, hist, cyl)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist.default</span>(.x[[i]], ...) :<span class="st"> &#39;x&#39;</span> must be numeric</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error <span class="cf">in</span> <span class="kw">hist.default</span>(.x[[i]], ...) <span class="op">:</span><span class="st"> &#39;x&#39;</span> must be numeric</code></pre></div>
 <p>Maybe try this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, <span class="kw">hist</span>(cyl))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error in <span class="kw">hist</span>(cyl) :<span class="st"> </span>object <span class="st">&#39;cyl&#39;</span> not found</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Error <span class="cf">in</span> <span class="kw">hist</span>(cyl) <span class="op">:</span><span class="st"> </span>object <span class="st">&#39;cyl&#39;</span> not found</code></pre></div>
 <p>So how can we solve this issue? One way is to use an anonymous function. Anonymous functions are functions that get declared on the fly and do not have names. These are especially useful inside higher order functions such as <code>purrr::map()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, (function(x) <span class="kw">hist</span>(x$cyl)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map</span>(datasets, (<span class="cf">function</span>(x) <span class="kw">hist</span>(x<span class="op">$</span>cyl)))</code></pre></div>
 <p><img src="fp_tdd_data_files/figure-html/histograms_of_cyl-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/histograms_of_cyl-2.png" width="672" /></p>
 <pre><code>## $mtcars2000
 ## $breaks
@@ -566,7 +568,7 @@ datasets &lt;-<span class="st"> </span><span class="kw">list</span>(<span class=
 <p>We can also write anonymous functions that are more complex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map2</span>(
 <span class="dt">.x =</span> datasets, <span class="dt">.y =</span> <span class="kw">names</span>(datasets),
-(function(.x, .y) <span class="kw">hist</span>(.x$cyl, <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Histogram of cyl in&quot;</span>, .y)))
+(<span class="cf">function</span>(.x, .y) <span class="kw">hist</span>(.x<span class="op">$</span>cyl, <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Histogram of cyl in&quot;</span>, .y)))
 )</code></pre></div>
 <p><img src="fp_tdd_data_files/figure-html/histograms_of_cyl2-1.png" width="672" /><img src="fp_tdd_data_files/figure-html/histograms_of_cyl2-2.png" width="672" /></p>
 <pre><code>## $mtcars2000
@@ -675,7 +677,7 @@ remove_csv(dataset_names)
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -707,7 +709,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-func_prog.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

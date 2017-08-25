@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Functional programming and unit testing for data munging with R</title>
   <meta name="description" content="This book is an introduction to functional programming and unit testing with the R programming language, for the purpose of data muning">
-  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Functional programming and unit testing for data munging with R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-18">
+<meta name="date" content="2017-08-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -103,9 +103,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Functional programming and unit testing for data munging</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why this book?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#important-notice"><i class="fa fa-check"></i><b>1.1</b> Important notice</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.2</b> Motivation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#who-am-i"><i class="fa fa-check"></i><b>1.3</b> Who am I?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i><b>1.4</b> Thanks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#get_r"><i class="fa fa-check"></i><b>2.1</b> Getting R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#fprog_overview"><i class="fa fa-check"></i><b>2.2</b> A short overview of functional programming</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#unit_overview"><i class="fa fa-check"></i><b>2.3</b> A short overview of unit testing</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#general-recommendations-to-follow-this-book"><i class="fa fa-check"></i><b>2.4</b> General recommendations to follow this book</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fprog.html"><a href="fprog.html"><i class="fa fa-check"></i><b>3</b> Functional Programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="fprog.html"><a href="fprog.html#fprog_intro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fprog.html"><a href="fprog.html#function-definitions"><i class="fa fa-check"></i><b>3.1.1</b> Function definitions</a></li>
+<li class="chapter" data-level="3.1.2" data-path="fprog.html"><a href="fprog.html#properties-of-functions"><i class="fa fa-check"></i><b>3.1.2</b> Properties of functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fprog.html"><a href="fprog.html#mapping-and-reducing-the-base-way"><i class="fa fa-check"></i><b>3.2</b> Mapping and Reducing: the <em>base</em> way</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="fprog.html"><a href="fprog.html#mapping-with-map-and-the-apply-family-of-functions"><i class="fa fa-check"></i><b>3.2.1</b> Mapping with <code>Map()</code> and the <code>*apply()</code> family of functions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="fprog.html"><a href="fprog.html#reduce"><i class="fa fa-check"></i><b>3.2.2</b> <code>Reduce()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fprog.html"><a href="fprog.html#map_reduce_purrr"><i class="fa fa-check"></i><b>3.3</b> Mapping and Reducing: the <code>purrr</code> way</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="fprog.html"><a href="fprog.html#the-map-family-of-functions"><i class="fa fa-check"></i><b>3.3.1</b> The <code>map*()</code> family of functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="fprog.html"><a href="fprog.html#reducing-with-purrr"><i class="fa fa-check"></i><b>3.3.2</b> Reducing with <code>purrr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="fprog.html"><a href="fprog.html#basic-anonymous-functions"><i class="fa fa-check"></i><b>3.4</b> Basic anonymous functions</a></li>
+<li class="chapter" data-level="3.5" data-path="fprog.html"><a href="fprog.html#wrap-up"><i class="fa fa-check"></i><b>3.5</b> Wrap-up</a></li>
+<li class="chapter" data-level="3.6" data-path="fprog.html"><a href="fprog.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> The <code>tidyverse</code></a><ul>
 <li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#smoking-is-bad-for-you-but-pipes-are-your-friend"><i class="fa fa-check"></i><b>4.1</b> Smoking is bad for you, but pipes are your friend</a></li>
 <li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#getting-data-into-r-with-readr-readxl-haven-and-what-are-tibbles"><i class="fa fa-check"></i><b>4.2</b> Getting data into R with <code>readr</code>, <code>readxl</code>, <code>haven</code> and what are <em>tibbles</em></a></li>
@@ -124,14 +151,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5.2" data-path="tidyverse.html"><a href="tidyverse.html#safely-and-possibly"><i class="fa fa-check"></i><b>4.5.2</b> <code>safely()</code> and <code>possibly()</code></a></li>
 <li class="chapter" data-level="4.5.3" data-path="tidyverse.html"><a href="tidyverse.html#transposing-lists"><i class="fa fa-check"></i><b>4.5.3</b> «Transposing lists»</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.6</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a></li>
-<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#exercises"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr"><i class="fa fa-check"></i><b>4.6</b> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></a><ul>
+<li class="chapter" data-level="4.6.1" data-path="tidyverse.html"><a href="tidyverse.html#section"><i class="fa fa-check"></i><b>4.6.1</b> 🐈🐈🐈🐈</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a></li>
-<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a></li>
-<li class="chapter" data-level="7" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>7</b> Unit testing</a></li>
-<li class="chapter" data-level="8" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>8</b> Putting it all together: writing a package to work on data</a></li>
-<li class="chapter" data-level="9" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>9</b> Placeholder</a></li>
+<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
+<li class="chapter" data-level="5.2" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
+<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
+<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#writing-documentation-for-your-functions"><i class="fa fa-check"></i><b>6.3</b> Writing documentation for your functions</a></li>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#extra-files-inside-your-package-and-dependencies"><i class="fa fa-check"></i><b>6.4</b> Extra files inside your package and dependencies</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#the-namespace-file"><i class="fa fa-check"></i><b>6.4.1</b> The <code>NAMESPACE</code> file</a></li>
+<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#how-can-you-use-functions-from-other-packages-inside-your-package"><i class="fa fa-check"></i><b>6.4.2</b> How can you use functions from other packages inside your package?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#unit-test-your-package"><i class="fa fa-check"></i><b>6.5</b> Unit test your package</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#checking-the-coverage-of-your-unit-tests-with-covr"><i class="fa fa-check"></i><b>6.6</b> Checking the coverage of your unit tests with <code>covr</code></a></li>
+<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#wrap-up-1"><i class="fa fa-check"></i><b>6.7</b> Wrap-up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="unit-testing.html"><a href="unit-testing.html"><i class="fa fa-check"></i><b>7</b> Unit testing</a><ul>
+<li class="chapter" data-level="7.1" data-path="unit-testing.html"><a href="unit-testing.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="unit-testing.html"><a href="unit-testing.html#unit-testing-with-the-testthat-package"><i class="fa fa-check"></i><b>7.2</b> Unit testing with the <code>testthat</code> package</a></li>
+<li class="chapter" data-level="7.3" data-path="unit-testing.html"><a href="unit-testing.html#actually-running-your-tests"><i class="fa fa-check"></i><b>7.3</b> Actually running your tests</a></li>
+<li class="chapter" data-level="7.4" data-path="unit-testing.html"><a href="unit-testing.html#wrap-up-2"><i class="fa fa-check"></i><b>7.4</b> Wrap-up</a></li>
+<li class="chapter" data-level="7.5" data-path="unit-testing.html"><a href="unit-testing.html#exercises-2"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html"><i class="fa fa-check"></i><b>8</b> Putting it all together: writing a package to work on data</a><ul>
+<li class="chapter" data-level="8.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#getting-the-data"><i class="fa fa-check"></i><b>8.1</b> Getting the data</a></li>
+<li class="chapter" data-level="8.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#your-first-data-munging-package-preparedata"><i class="fa fa-check"></i><b>8.2</b> Your first data munging package: <code>prepareData</code></a><ul>
+<li class="chapter" data-level="8.2.1" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#reading-a-lot-of-datasets-at-once"><i class="fa fa-check"></i><b>8.2.1</b> Reading a lot of datasets at once</a></li>
+<li class="chapter" data-level="8.2.2" data-path="putting-it-all-together-writing-a-package-to-work-on-data.html"><a href="putting-it-all-together-writing-a-package-to-work-on-data.html#treating-the-columns-of-your-datasets"><i class="fa fa-check"></i><b>8.2.2</b> Treating the columns of your datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -164,7 +219,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The title of this section might sound weird at first, but by the end of it, you’ll get this (terrible) pun.</p>
 <p>You probably know the following painting by René Magritte, <em>La trahison des images</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;assets/pas_une_pipe.png&quot;</span>)</code></pre></div>
-<p><img src="assets/pas_une_pipe.png" width="350" /></p>
+<p><img src="assets/pas_une_pipe.png" /><!-- --></p>
 <p>It turns out there’s an R package from the <code>tidyverse</code> that is called <code>magrittr</code>. What does this package do? It brings <em>pipes</em> to R. Pipes are a concept from the Unix operating system; if you’re using a GNU+Linux distribution or macOS, you’re basically using a <em>modern</em> unix. (That’s an oversimplification, but I’m an economist by training, and outrageously oversimplifying things is what we do, deal with it.)</p>
 <p>The idea of pipes is to take the output of a command, and <em>feed</em> it as the input of another command. The <code>magrittr</code> package brings pipes to R, by using the weird looking <code>%&gt;%</code>. Try the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)</code></pre></div>
@@ -262,7 +317,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 haven<span class="op">::</span><span class="kw">write_dta</span>(cars, <span class="st">&quot;assets/cars.dta&quot;</span>)</code></pre></div>
 <p>Below you see that <code>cars.dta</code> file opened in STATA:</p>
-<p><img src="assets/cars_dta.png" width="262" /></p>
+<p><img src="assets/cars_dta.png" /><!-- --></p>
 <p>When you use any of the discussed packages to import data, the resulting object is a <code>tibble</code>. <code>tibble</code>s are modern day ‘data.frame’s. The first thing you might have noticed is when you print a <code>tibble</code> vs a ’data.frame’:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
 
@@ -455,6 +510,14 @@ example &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Gasoline, <span class="dt">package =</span> <span class="st">&quot;plm&quot;</span>)</code></pre></div>
 <p>and load dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <p>This dataset gives the consumption of gasoline for 18 countries from 1960 to 1978. When you load the data like this, it is a standard <code>data.frame</code>. <code>dplyr</code> functions can be used on standard <code>data.frame</code> objects, but just because we learned about <code>tibble</code>’s, let’s convert the data to a <code>tibble</code> and change its name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gasoline &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Gasoline)</code></pre></div>
 <p><code>filter()</code> is pretty straightforward. What if you would like to subset the data to focus on the year 1969? Simple:</p>
@@ -1917,11 +1980,11 @@ gas_pwt_right <span class="op">%&gt;%</span>
 ## 113 trinidad&amp;tobago 26   0.008
 ## 114         tunisia 26   0.008
 ## 115          turkey 26   0.008
-## 116          uganda 26   0.008
-## 117            u.k. 26   0.008
-## 118         uruguay 26   0.008
-## 119          u.s.a. 26   0.008
-## 120        u.s.s.r. 26   0.008
+## 116            u.k. 26   0.008
+## 117          u.s.a. 26   0.008
+## 118        u.s.s.r. 26   0.008
+## 119          uganda 26   0.008
+## 120         uruguay 26   0.008
 ## 121       venezuela 26   0.008
 ## 122      yugoslavia 26   0.008
 ## 123           zaire 26   0.008
@@ -1954,7 +2017,7 @@ gas_pwt_right <span class="op">%&gt;%</span>
 <h2><span class="header-section-number">4.5</span> Functional programming with <code>purrr</code> and <code>purrrlyr</code></h2>
 <div id="mapping-and-reducing-with-purrr-continued" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Mapping and reducing with <code>purrr</code>, continued</h3>
-<p>We’ve already seen how to map functions to elements of lists and how to reduce lists to a single value in <a href="#map_reduce_purrr">Mapping and Reducing: the <code>purrr</code> way</a>, and in this section we’re going to dig a little deeper into the <code>purrr</code> package. We know the standard <code>map()</code> function, which returns a list, but there are a number of variants of this function. <code>map_dbl()</code> returns an atomic vector of doubles:</p>
+<p>We’ve already seen how to map functions to elements of lists and how to reduce lists to a single value in <a href="fprog.html#map_reduce_purrr">Mapping and Reducing: the <code>purrr</code> way</a>, and in this section we’re going to dig a little deeper into the <code>purrr</code> package. We know the standard <code>map()</code> function, which returns a list, but there are a number of variants of this function. <code>map_dbl()</code> returns an atomic vector of doubles:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_dbl</span>(numbers, sqrt_newton, <span class="dt">init =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 4.000001 5.000023 6.000253 7.000000 8.000002 9.000011</code></pre>
 <p><code>map_chr()</code> returns an atomic vector of strings:</p>
@@ -2223,8 +2286,15 @@ safe_sqrt &lt;-<span class="st"> </span><span class="kw">safely</span>(sqrt)
 </div>
 <div id="special-packages-for-special-kinds-of-data-forcats-lubridate-and-stringr" class="section level2">
 <h2><span class="header-section-number">4.6</span> Special packages for special kinds of data: <code>forcats</code>, <code>lubridate</code>, and <code>stringr</code></h2>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> 🐈🐈🐈🐈</h3>
+<p>Factor variables are very useful but not very easy to manipulate. <code>forcats</code> contains very useful functions that make working on factor variables painless. I use mainly three functions in my work, <code>fct_recode()</code>, <code>fct_relevel()</code> and <code>fct_relabel()</code>, so that’s what I’ll be showing.</p>
+<div id="fct_recode" class="section level4">
+<h4><span class="header-section-number">4.6.1.1</span> <code>fct_recode()</code></h4>
 </div>
-<div id="exercises" class="section level2">
+</div>
+</div>
+<div id="exercises-1" class="section level2">
 <h2><span class="header-section-number">4.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>Suppose you have an Excel workbook that contains data on three sheets. Create a function that reads entire workbooks, and that returns a list of tibbles, where each tibble is the data of one sheet (download the example Excel workbook, <code>example_workbook.xlsx</code>, from the <code>assets</code> folder on the books github).</p></li>
@@ -2301,7 +2371,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-tidyverse.Rmd",
 "text": "Edit"
 },
-"download": ["fp_tdd_data.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
