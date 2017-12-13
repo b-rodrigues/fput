@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-25">
+<meta name="date" content="2017-12-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -156,10 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
-<li class="chapter" data-level="5.2" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
-</ul></li>
+<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
@@ -209,15 +206,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="prog-tidyverse" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Programming with the <code>tidyverse</code></h1>
-<div id="naive-tidyverse" class="section level2">
-<h2><span class="header-section-number">5.1</span> The naive (and wrong) approach</h2>
 <p>Functions are very powerful because by using them, we avoid repetition. This means that we must be able to write functions that allow the user to abstract over certain things, such as columns names of datasets. So for example, one would like to write a function that would look like that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_function</span>(my_data, column)</code></pre></div>
 <p>and in this chapter we will learn how to do that using <code>dplyr</code> (version 0.70 or above).</p>
 <p>I advise you to also read the “Programming with dplyr” vignette <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html">here</a>, which explains with great detail the concept I will only skim in this chapter!</p>
 <p>Consider the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(mtcars)
-simple_function &lt;-<span class="st"> </span><span class="cf">function</span>(dataset, col_name){
+simple_function =<span class="st"> </span><span class="cf">function</span>(dataset, col_name){
   dataset <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">group_by</span>(col_name) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
@@ -229,17 +224,14 @@ simple_function &lt;-<span class="st"> </span><span class="cf">function</span>(d
 <pre><code> Error in grouped_df_impl(data, unname(vars), drop) :
   Column `col_name` is unknown</code></pre>
 <p>R is <em>literally</em> looking for a column called <code>col_name</code> in the <code>mtcars</code> dataset. How to solve this issue and make R understand to not take “cyl” literally as a string, but to interpret it?</p>
-</div>
-<div id="getting-serious-with-rlang" class="section level2">
-<h2><span class="header-section-number">5.2</span> Getting serious with <code>rlang</code></h2>
-<p>One way is to use the <code>quo()</code> function, in conjunction with the <code>!!</code> operator introduced with <code>dplyr</code> 0.7 (but actually part of the <code>rlang</code> package, which gets used by <code>dplyr</code> seamlessly). First let’s look at the solution and then I’ll explain how it works:</p>
+<p>One way is to use the <code>enquo()</code> function (or <code>quo()</code> if working interactively), in conjunction with the <code>!!</code> operator introduced with <code>dplyr</code> 0.7 (but actually part of the <code>rlang</code> package, which gets used by <code>dplyr</code> seamlessly). First let’s look at the solution and then I’ll explain how it works:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 
-simple_function &lt;-<span class="st"> </span><span class="cf">function</span>(dataset, col_name){
-  col_name &lt;-<span class="st"> </span><span class="kw">enquo</span>(col_name)
-  dataset <span class="op">%&gt;%</span>
+simple_function =<span class="st"> </span><span class="cf">function</span>(dataset, col_name){
+  col_name =<span class="st"> </span><span class="kw">enquo</span>(col_name)
+  dataset =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">group_by</span>(<span class="op">!!</span>col_name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) -&gt;<span class="st"> </span>dataset
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg)) 
   <span class="kw">return</span>(dataset)
 }
 
@@ -251,9 +243,88 @@ simple_function &lt;-<span class="st"> </span><span class="cf">function</span>(d
 ## 1     4 26.66364
 ## 2     6 19.74286
 ## 3     8 15.10000</code></pre>
-<p>In the above example, I wanted the mean of <code>mpg</code> but first by grouping by <code>cyl</code>.</p>
+<p>In the above example, I wanted the mean of <code>mpg</code> but first by grouping by <code>cyl</code>. The <code>enquo()</code> to quote the input. This tells your function that the variable <code>col_name</code> should be quoted. However then, <code>filter()</code> (and the other <code>dplyr</code> functions) need to have an unquoted variable name. So <code>!!()</code> does this and evaluates its argument.</p>
+<p>If you want to use <code>filter()</code> with a value that the user has to provide, you can also do that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simpleFunction =<span class="st"> </span><span class="cf">function</span>(dataset, col_name, value){
+  col_name =<span class="st"> </span><span class="kw">enquo</span>(col_name)
+  dataset =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>((<span class="op">!!</span>col_name) <span class="op">==</span><span class="st"> </span>value) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">mean_cyl =</span> <span class="kw">mean</span>(cyl)) 
+  <span class="kw">return</span>(dataset)
+}
 
-</div>
+
+<span class="kw">simpleFunction</span>(mtcars, am, <span class="dv">1</span>)</code></pre></div>
+<pre><code>##   mean_cyl
+## 1 5.076923</code></pre>
+<p>There is something that you must pay attention to in the above example. Notice that I’ve written:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>((<span class="op">!!</span>col_name) <span class="op">==</span><span class="st"> </span>value)</code></pre></div>
+<p>and not:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(<span class="op">!!</span>col_name <span class="op">==</span><span class="st"> </span>value)</code></pre></div>
+<p>I have enclosed <code>!!col_name</code> inside parentheses, because <code>==</code> has precedence over <code>!!</code>.</p>
+<p>Let’s make this function a bit more general. I hard-coded the variable <code>cyl</code> inside the body of the function, but what if you need more flexibility and let the user provide the variable to group by to?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simpleFunction =<span class="st"> </span><span class="cf">function</span>(dataset, group_col, mean_col, value){
+  group_col =<span class="st"> </span><span class="kw">enquo</span>(group_col)
+  mean_col =<span class="st"> </span><span class="kw">enquo</span>(mean_col)
+  dataset =<span class="st"> </span>dataset <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>((<span class="op">!!</span>group_col) <span class="op">==</span><span class="st"> </span>value) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="kw">mean</span>((<span class="op">!!</span>mean_col)))
+  <span class="kw">return</span>(dataset)
+}
+
+
+<span class="kw">simpleFunction</span>(mtcars, am, cyl, <span class="dv">1</span>)</code></pre></div>
+<pre><code>##   mean((cyl))
+## 1    5.076923</code></pre>
+<p>It is possible to set the name of the column in the output using <code>:=</code> instead of <code>=</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simpleFunction =<span class="st"> </span><span class="cf">function</span>(dataset, group_col, mean_col, value){
+  group_col =<span class="st"> </span><span class="kw">enquo</span>(group_col)
+  mean_col =<span class="st"> </span><span class="kw">enquo</span>(mean_col)
+  mean_name =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean_&quot;</span>, mean_col)[<span class="dv">2</span>]
+  dataset <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>((<span class="op">!!</span>group_col) <span class="op">==</span><span class="st"> </span>value) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="op">!!</span>mean_name <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">mean</span>((<span class="op">!!</span>mean_col))) -&gt;<span class="st"> </span>dataset
+  <span class="kw">return</span>(dataset)
+}
+
+
+<span class="kw">simpleFunction</span>(mtcars, am, cyl, <span class="dv">1</span>)</code></pre></div>
+<pre><code>##   mean_cyl
+## 1 5.076923</code></pre>
+<p>To get the name of the column I added this line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_name =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean_&quot;</span>, mean_col)[<span class="dv">2</span>]</code></pre></div>
+<p>To see what it does, try the following inside an R interpreter (remember to us <code>quo()</code> instead of <code>enquo()</code> outside functions!):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="st">&quot;mean_&quot;</span>, <span class="kw">quo</span>(cyl))</code></pre></div>
+<pre><code>## [1] &quot;mean_~&quot;   &quot;mean_cyl&quot;</code></pre>
+<p><code>enquo()</code> quotes the input, and with <code>paste0()</code> it gets converted to a string that can be used as a column name. However, the <code>~</code> is in the way and the output of <code>paste0()</code> is a vector of two strings: the correct name is contained in the second element, hence the <code>[2]</code>. There might be a more elegant way of doing that, but for now this has been working well for me.</p>
+<p>It is also possible to write functions that take any amount of variables the user wants:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nice_function =<span class="st"> </span><span class="cf">function</span>(dataset, ...){
+    variables =<span class="st"> </span><span class="kw">quos</span>(...)
+    dataset <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="op">!!!</span>variables), mean)
+}
+
+<span class="kw">nice_function</span>(mtcars, mpg, cyl)</code></pre></div>
+<pre><code>##        mpg    cyl
+## 1 20.09062 6.1875</code></pre>
+<p>You can even be more flexible, and let the user define the functions that will be used by <code>summarised_at()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nice_function =<span class="st"> </span><span class="cf">function</span>(dataset, cols, funcs){
+  dataset <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="op">!!!</span>cols), <span class="kw">funs</span>(<span class="op">!!!</span>funcs))
+}
+
+
+list_cols =<span class="st"> </span><span class="kw">quos</span>(mpg, cyl)
+
+
+list_funs =<span class="st"> </span><span class="kw">quos</span>(mean, sd, sum)
+
+
+<span class="kw">nice_function</span>(mtcars, list_cols, list_funs)</code></pre></div>
+<pre><code>##   mpg_mean cyl_mean   mpg_sd   cyl_sd mpg_sum cyl_sum
+## 1 20.09062   6.1875 6.026948 1.785922   642.9     198</code></pre>
+<p>In this last example however, the user has to provide a list of quoted variables and functions.</p>
+
 </div>
             </section>
 
@@ -293,7 +364,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-prog_tidyverse.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }

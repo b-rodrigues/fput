@@ -25,7 +25,7 @@
 <meta name="author" content="Bruno Rodrigues">
 
 
-<meta name="date" content="2017-08-25">
+<meta name="date" content="2017-12-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -156,10 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#exercises-1"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#naive-tidyverse"><i class="fa fa-check"></i><b>5.1</b> The naive (and wrong) approach</a></li>
-<li class="chapter" data-level="5.2" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html#getting-serious-with-rlang"><i class="fa fa-check"></i><b>5.2</b> Getting serious with <code>rlang</code></a></li>
-</ul></li>
+<li class="chapter" data-level="5" data-path="prog-tidyverse.html"><a href="prog-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Programming with the <code>tidyverse</code></a></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#why-you-need-your-own-packages-in-your-life"><i class="fa fa-check"></i><b>6.1</b> Why you need your own packages in your life</a></li>
 <li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#r-packages-the-basics"><i class="fa fa-check"></i><b>6.2</b> R packages: the basics</a></li>
@@ -221,7 +218,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r-packages-the-basics" class="section level2">
 <h2><span class="header-section-number">6.2</span> R packages: the basics</h2>
 <p>To start writing a package, the easiest way is to load up Rstudio and start a new project, under the <em>File</em> menu. If you’re starting from scratch, just choose the first option, <em>New Directory</em> and then <em>R package</em>. Give a new to your package, for example <code>myFirstPackage</code> and you can also choose to use git for version control. Now if you check the folder where you chose to save your package, you will see a folder with the same name as your package, and inside this folder a lot of new files and other folders. The most important folder for now is the <code>R</code> folder. This is the folder that will hold your <code>.R</code> source code files. You can also see these files and folders inside the <em>Files</em> panel from within Rstudio. Rstudio will also have <code>hello.R</code> opened, which is a single demo source file inside the <code>R</code> folder. You can get rid of this file.</p>
-<p><img src="assets/package_structure.png" /><!-- --></p>
+<p><img src="assets/package_structure.png" width="292" /></p>
 <p>The picture above shows the basic structure of your package. As a first step, create a script called <code>square_root_loop.R</code> and put the following code in it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqrt_newton &lt;-<span class="st"> </span><span class="cf">function</span>(a, init, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">iter =</span> <span class="dv">100</span>){
     <span class="kw">stopifnot</span>(a <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>)
@@ -269,7 +266,7 @@ sqrt_newton &lt;-<span class="st"> </span><span class="cf">function</span>(a, in
 <p>The first difference with standard comments is that <code>roxygen2</code> type comments start with two symbols, <code>#'</code> instead of simply the <code>#</code> symbol. Then, after <code>#'</code> you can supply different keywords such as <code>@param</code>, <code>@description</code>, <code>@export</code>. These keywords are then used by the <code>roxygenise()</code> function from the <code>roxygen</code> package to create the documentation files inside your package. Before <code>roxygen</code>, these documentation files were written in the <code>.Rd</code> format by hand. Now these files get created automagically by simply formatting your comments with this specific syntax and then running <code>roxygen2::roxygenise()</code> in the command prompt. Try it, you should see the following in the command prompt:</p>
 <pre><code>Writing sqrt_newton.Rd</code></pre>
 <p>then you can <em>Build and Reload</em> your package again using <code>CTRL-SHIFT-B</code>. If you go check the documentation of your function inside your package, this is what you should see:</p>
-<p><img src="assets/sqrt_newton_help.png" /><!-- --></p>
+<p><img src="assets/sqrt_newton_help.png" width="452" /></p>
 <p>There is still a keyword that I did not mention: the <code>@export</code> keyword. This keyword is needed if you want your function to be accessible by the user without prepending the package name, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_package<span class="op">::</span>my_function</code></pre></div>
 <p>Not using <code>@export</code> can be useful though, if you want to have helper functions that are used by your other functions inside your package, and if you wish to not make these functions accessible to the users. In the next subsection, I will mention two files that got created with your package, <code>NAMESPACE</code> and <code>DESCRIPTION</code>.</p>
@@ -395,13 +392,13 @@ cov &lt;-<span class="st"> </span><span class="kw">package_coverage</span>()
 
 <span class="kw">shine</span>(cov)</code></pre></div>
 <p>The line <code>shine(cov)</code> launches an interactive shiny app inside your viewer pane with the following:</p>
-<p><img src="assets/covr_MyFirstPackage.png" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage.png" width="432" /></p>
 <p>We see that no unit test executes the highlighted line. So let’s write a unit test to test this line and increase the coverage of our package! Add the following test to <code>test_sqrt_newton.R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_that</span>(<span class="st">&quot;Test maximum number of iterations&quot;</span>,{
     <span class="kw">expect_error</span>(<span class="kw">sqrt_newton</span>(<span class="dv">10</span>, <span class="fl">1E10</span>, <span class="dt">eps=</span><span class="fl">1E-10</span>, <span class="dv">5</span>))
 })</code></pre></div>
 <p>Now if you look at the coverage of the package:</p>
-<p><img src="assets/covr_MyFirstPackage100percent.png" /><!-- --></p>
+<p><img src="assets/covr_MyFirstPackage100percent.png" width="432" /></p>
 <p>In this example, we used <code>package_coverage()</code>, but if you are interested in the coverage of a single function you can use <code>function_coverage()</code>, or even <code>file_coverage()</code> to get the coverage of a single file. However, I suggest to always run <code>package_coverage()</code> since we are working inside a package. There are other functions in the <code>covr</code> package that might be useful depending on your needs, so do not hesitate to explore <code>covr</code> documentation!</p>
 </div>
 <div id="wrap-up-1" class="section level2">
@@ -463,7 +460,7 @@ gitbook.start({
 "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-packages.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["fp_tdd_data.pdf"],
 "toc": {
 "collapse": "subsection"
 }
