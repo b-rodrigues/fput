@@ -110,3 +110,10 @@ that breaks functionality some place else. When you change code, and
 code is correct (actually, don’t be too confident, because maybe you
 didn’t write enough unit tests to cover every case. But we will see how
 we can be sure there is enough *coverage*).
+
+## 2.4 General recommendations to follow this book
+
+You should follow the examples in this book as closely as possible. I
+advise you to use exactly the same names as I do, because I will
+sometimes refer to previous examples and if you use different names, you
+will then need to go back and waste time to change the names.

@@ -1,6 +1,6 @@
-# Chapter 4 Unit testing
+# Chapter 7 Unit testing
 
-## 4.1 Introduction
+## 7.1 Introduction
 
 Let’s take a look at [Wikipedia’s
 definition](https://en.wikipedia.org/wiki/Unit_testing) of unit testing:
@@ -48,7 +48,7 @@ writing the unit tests first, and then the code to make them pass. This
 can be useful sometimes, if you don’t really know where you should start
 but know what you want.
 
-## 4.2 Unit testing with the `testthat` package
+## 7.2 Unit testing with the `testthat` package
 
 We are going to test the function we wrote in the previous chapter,
 `sqrt_newton()`. The basic steps are:
@@ -96,6 +96,14 @@ library("testthat")
 
     ## 
     ## Attaching package: 'testthat'
+
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     matches
+
+    ## The following objects are masked from 'package:magrittr':
+    ## 
+    ##     equals, is_less_than, not
 
     ## The following object is masked from 'package:purrr':
     ## 
@@ -221,7 +229,7 @@ test_that("Test sqrt_newton: not enough iterations",{
 })
 ```
 
-## 4.3 Actually running your tests
+## 7.3 Actually running your tests
 
 One of the easiest ways to run your tests is when your developing a
 package. We are going to see this in the next chapter, but for now,
@@ -312,7 +320,7 @@ is quite a pain. This is why in the next chapter we are going to start
 learning about packages and why writing our own packages to clean
 datasets is the best possible way to write your code.
 
-## 4.4 Wrap-up
+## 7.4 Wrap-up
 
   - Unit tests are a way of testing your code, and more specifically
     your functions.
@@ -325,9 +333,11 @@ datasets is the best possible way to write your code.
     show you how can be sure to test each line of your function with the
     `covr` package.
 
-## 4.5 Exercises
+## 7.5 Exercises
 
 1.  Write unit tests for the functions you wrote in the previous
     chapter. Just play around a little bit, and get a feeling for unit
     tests.
 
+[**](packages.html)
+[**](putting-it-all-together-writing-a-package-to-work-on-data.html)

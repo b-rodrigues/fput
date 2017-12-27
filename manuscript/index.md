@@ -1,10 +1,22 @@
 # Chapter 1 Why this book?
 
-This short book serves to show how functional programming and unit
-testing can be useful for the task of data munging. This book is not an
-in-depth guide to functional programming, nor unit testing with R. If
-you want to have an in-depth understanding of the concepts presented in
-these books, I can’t but recommend Wickham
+## 1.1 Important notice
+
+This book is still being written, some chapters are not finished yet,
+and there might be (there are) some typos. Don’t hesitate to write to me
+if you notice something weird.
+
+You can purchase a digital copy of this book at
+[leanpub](https://www.leanpub.com/fput). The version on Leanpub will not
+always be up-to-date, I only update it when I made very big changes (new
+chapters, etc). But once this book will be finished, both version are
+going to be the same.
+
+This book serves to show how functional programming and unit testing can
+be useful for the task of data munging. This book is not an in-depth
+guide to functional programming, nor unit testing with R. If you want to
+have an in-depth understanding of the concepts presented in these books,
+I can’t but recommend Wickham
 ([2014](#ref-wickham2014)[a](#ref-wickham2014)), Wickham
 ([2015](#ref-wickham2015)) and Wickham and Grolemund
 ([2016](#ref-wickham2016)) enough. Here, I will only briefly present
@@ -14,7 +26,7 @@ Just enough to get you (hopefully) interested and going.
 This book is not an introduction to R either. I will assume that you
 have intermediate knowledge of R.
 
-## 1.1 Motivation
+## 1.2 Motivation
 
 Functional programming has very nice features that make working on data
 sets much more pleasant. It is common that you have to repeat the same
@@ -31,7 +43,7 @@ a better data analyst. Then we will learn to develop our own packages;
 not with the goal of publishing them in CRAN, but with the goal of
 making programming more streamlined.
 
-## 1.2 Who am I?
+## 1.3 Who am I?
 
 I use R daily at my current job, and discovered R some years ago while I
 was at the [University of
@@ -42,11 +54,11 @@ book useful. You can [follow me on
 twitter](https://twitter.com/brodriguesco) or check [my
 blog](http://brodrigues.co).
 
-## 1.3 Thanks
+## 1.4 Thanks
 
 I’d like to thank [Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/)
 and [Robert
-Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician))
+Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
 for developing the R programming language. Many thanks to [Hadley
 Wickham](http://hadley.nz/) for all the wonderful packages he developed
 that make R much more pleasant to use. Thanks to [Yihui
@@ -62,7 +74,7 @@ Finally I have to thank my wife for putting up with my endless rants
 against people not using functional programming nor testing their code
 (or worse, using proprietary software\!).
 
-## 1.4 License
+## 1.5 License
 
 This book is licensed under the GNU Free Documentation License, version
 1.3. A copy of the license is available on the repo, or you can read it

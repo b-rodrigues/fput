@@ -31,11 +31,13 @@ sqrt_newton(16, 2)
 
     ## [1] 4.00122
 
-We are using a `while` loop inside the body[<sup>1</sup>](#fn1) of the
-function. In *pure* functional programming languages, like Haskell, you
-don’t have loops. How can you program without loops, you may ask? In
-functional programming, loops are replaced by recursion. Let’s rewrite
-our little example above with recursion:
+We are using a `while` loop inside the body. The *body* of a function
+are the instructions that define the function. You can get the body of a
+function with `body(some_func)`\] of the function. In *pure* functional
+programming languages, like Haskell, you don’t have loops. How can you
+program without loops, you may ask? In functional programming, loops are
+replaced by recursion. Let’s rewrite our little example above with
+recursion:
 
 ``` sourceCode r
 sqrt_newton_recur <- function(a, init, eps = 0.01){
@@ -485,7 +487,7 @@ Reduce(`+`, numbers, init = 0)
     ## [1] 271
 
 Can you guess what happens? `Reduce()` takes a function as an argument,
-here the function `+`[<sup>2</sup>](#fn2) and then does the following
+here the function `+`[<sup>1</sup>](#fn1) and then does the following
 computation:
 
     0 + numbers[1] + numbers[2] + numbers[3]...
@@ -526,21 +528,13 @@ course R’s built-in `min()` function works on a list of values. But
 `Reduce()` is a very powerful function that can make our life much
 easier and most importantly avoid writing clumsy loops.
 
-This is the end of the introduction to functional programming. Entire
-books have been written on the subject, such as the upcoming book by
-Khan ([2017](#ref-khan2017)) or Lipovaca ([2011](#ref-lipovaca2011)). If
-you’re curious about functional programming, you should read these
-books. For our purposes though, knowing how to write functions, and
-trying to make them referentially transparent as well as knowing about
-`Map()` and `Reduce()` is enough to get us going.
-
 ## 3.3 Mapping and Reducing: the `purrr` way
 
 Hadley Wickham developed a package called `purrr` which contains a lot
-of very useful functions. I will show some of them, but will only
-scratch the surface. Take the time to read `purrr`’s documentation\! You
-can read more about `purrr` in Wickham and Grolemund
-([2016](#ref-wickham2016)).
+of very useful functions. I will show some of them here, but in the next
+chapter, we are going to study `purrr` in greater depth. Also, take the
+time to read `purrr`’s documentation, and of course you can read more
+about `purrr` in Wickham and Grolemund ([2016](#ref-wickham2016)).
 
 ### 3.3.1 The `map*()` family of functions
 
@@ -556,79 +550,37 @@ names all start with `map_` and the second part tells you what this
 function is going to output. For example, if you want `double`s out, you
 would use `map_dbl()`. If you are working on data frames want a data
 frame back, you would use `map_df()`. These are much more intuitive and
-easier to remember. There are also other interesting variants, such as
-`map_if()`:
+easier to remember and we’re going to learn how to use them in the
+chapter about [The Tidyverse](tidyverse.html#tidyverse). For now, let’s
+just focus on the basic functions, `map()` and `reduce()` (and some
+variants of `reduce()`). To map a function to every element of a list,
+simply use `map()`:
 
 ``` sourceCode r
 library("purrr")
-a <- seq(1,10)
-
-is_multiple_of_two <- function(x){
-    ifelse(x %% 2 == 0, TRUE, FALSE)
-}
-
-map_if(a, is_multiple_of_two, sqrt)
+map(numbers, sqrt_newton, init = 1)
 ```
 
     ## [[1]]
-    ## [1] 1
+    ## [1] 4.000001
     ## 
     ## [[2]]
-    ## [1] 1.414214
+    ## [1] 5.000023
     ## 
     ## [[3]]
-    ## [1] 3
+    ## [1] 6.000253
     ## 
     ## [[4]]
-    ## [1] 2
-    ## 
-    ## [[5]]
-    ## [1] 5
-    ## 
-    ## [[6]]
-    ## [1] 2.44949
-    ## 
-    ## [[7]]
     ## [1] 7
     ## 
-    ## [[8]]
-    ## [1] 2.828427
-    ## 
-    ## [[9]]
-    ## [1] 9
-    ## 
-    ## [[10]]
-    ## [1] 3.162278
-
-What happened in this snippet of code? First I wrote a function that
-returns `TRUE` if a number is a multiple of 2, and `FALSE` otherwise.
-Then, I used `map_if()` to take the square root of only those numbers in
-vector `a` that are divisble by 2.
-
-`map2()` is the equivalent of `mapply()` and `pmap()` is the
-generalisation of `map2()` for more than 2 arguments:
-
-``` sourceCode r
-map2(numbers, inits, sqrt_newton)
-```
-
-    ## [[1]]
-    ## [1] 4.000284
-    ## 
-    ## [[2]]
-    ## [1] 5.000001
-    ## 
-    ## [[3]]
-    ## [1] 6.000003
-    ## 
-    ## [[4]]
-    ## [1] 7.000006
-    ## 
     ## [[5]]
-    ## [1] 8.000129
+    ## [1] 8.000002
     ## 
     ## [[6]]
-    ## [1] 9.000006
+    ## [1] 9.000011
+
+Compared to `Map()`, the function and the list are given in the reverse
+order, but the result is the same, of course.
 
 ### 3.3.2 Reducing with `purrr`
 
@@ -671,153 +623,7 @@ accumulate_right(a, `-`)
 
 These two functions keep the intermediary results.
 
-### 3.3.3 Other useful functions from `purrr`
-
-There are a lot of other useful functions in `purrr`. For example
-`safely()` and `possibly()` are great:
-
-``` sourceCode r
-a <- list("a", 4, 5)
-
-sqrt(a)
-```
-
-``` sourceCode r
-Error in sqrt(a) : non-numeric argument to mathematical function
-```
-
-Using `map()` or `Map()` will result in a similar error. However, using
-`safely()` will work for the numbers contained in `a` and show an error
-for the first element of `a` which is a character:
-
-``` sourceCode r
-a <- list("a", 4, 5)
-
-safe_sqrt <- safely(sqrt)
-
-map(a, safe_sqrt)
-```
-
-    ## [[1]]
-    ## [[1]]$result
-    ## NULL
-    ## 
-    ## [[1]]$error
-    ## <simpleError in .f(...): non-numeric argument to mathematical function>
-    ## 
-    ## 
-    ## [[2]]
-    ## [[2]]$result
-    ## [1] 2
-    ## 
-    ## [[2]]$error
-    ## NULL
-    ## 
-    ## 
-    ## [[3]]
-    ## [[3]]$result
-    ## [1] 2.236068
-    ## 
-    ## [[3]]$error
-    ## NULL
-
-And `possibly()` allows you to specify a return value in case of an
-error:
-
-``` sourceCode r
-possible_sqrt <- possibly(sqrt, otherwise = NA_real_)
-
-map(a, possible_sqrt)
-```
-
-    ## [[1]]
-    ## [1] NA
-    ## 
-    ## [[2]]
-    ## [1] 2
-    ## 
-    ## [[3]]
-    ## [1] 2.236068
-
-Of course, in this particular example, the same effect could be obtained
-way more easily:
-
-``` sourceCode r
-sqrt(as.numeric(a))
-```
-
-    ## Warning: NAs introduced by coercion
-
-    ## [1]       NA 2.000000 2.236068
-
-However, in some situations, this trick does not work as intended (or at
-all), so `possibly()` and `safely()` are the way to go.
-
-Another interesting function is `transpose()`. It is not an alternative
-to the function `t()` from `base` but, has a similar effect.
-`transpose()` works on lists. Let’s take a look at the example from
-before:
-
-``` sourceCode r
-safe_sqrt <- safely(sqrt, otherwise = NA_real_)
-
-map(a, safe_sqrt)
-```
-
-    ## [[1]]
-    ## [[1]]$result
-    ## [1] NA
-    ## 
-    ## [[1]]$error
-    ## <simpleError in .f(...): non-numeric argument to mathematical function>
-    ## 
-    ## 
-    ## [[2]]
-    ## [[2]]$result
-    ## [1] 2
-    ## 
-    ## [[2]]$error
-    ## NULL
-    ## 
-    ## 
-    ## [[3]]
-    ## [[3]]$result
-    ## [1] 2.236068
-    ## 
-    ## [[3]]$error
-    ## NULL
-
-The output is a list with the first element being a list with a result
-and an error message. One might want to have all the results in a single
-list, and all the error messages in another list. This is safe with
-transpose:
-
-``` sourceCode r
-transpose(map(a, safe_sqrt))
-```
-
-    ## $result
-    ## $result[[1]]
-    ## [1] NA
-    ## 
-    ## $result[[2]]
-    ## [1] 2
-    ## 
-    ## $result[[3]]
-    ## [1] 2.236068
-    ## 
-    ## 
-    ## $error
-    ## $error[[1]]
-    ## <simpleError in .f(...): non-numeric argument to mathematical function>
-    ## 
-    ## $error[[2]]
-    ## NULL
-    ## 
-    ## $error[[3]]
-    ## NULL
-
-## 3.4 Anonymous functions
+## 3.4 Basic anonymous functions
 
 One last very useful concept are anonymous functions. Suppose that you
 want to apply one of your own functions to a list of datasets. For
@@ -982,6 +788,14 @@ Of course you could have defined the anonymous function as a regular
 function before using `map()`. But sometimes it is faster to simply use
 an anonymous function as long as it does not hurt clarity.
 
+This is the end of the introduction to functional programming. Entire
+books have been written on the subject, such as the upcoming book by
+Khan ([2017](#ref-khan2017)) or Lipovaca ([2011](#ref-lipovaca2011)). If
+you’re curious about functional programming, you should read these
+books. For our purposes though, knowing how to write functions, and
+trying to make them referentially transparent as well as knowing about
+mapping and reducing is enough to get us going.
+
 ## 3.5 Wrap-up
 
   - Make your functions referentially transparent.
@@ -1045,6 +859,9 @@ you write your functions.
 
 ### References
 
+Wickham, Hadley, and Garrett Grolemund. 2016. *R for Data Science*. 1st
+ed. O’Reilly. <http://r4ds.had.co.nz/>.
+
 Khan, Aslam. 2017. *Grokking Functional Programming*. 1st ed. Manning
 Publications.
 <https://www.manning.com/books/grokking-functional-programming>.
@@ -1052,16 +869,9 @@ Publications.
 Lipovaca, Miran. 2011. *Learn You a Haskell for Great Good\!: A
 Beginner’s Guide*. no starch press. <http://learnyouahaskell.com/>.
 
-Wickham, Hadley, and Garrett Grolemund. 2016. *R for Data Science*. 1st
-ed. O’Reilly. <http://r4ds.had.co.nz/>.
-
 -----
 
-1.  The *body* of a function are the instructions that define the
-    function. You can get the body of a function with
-    `body(some_func)`[↩](fprog.html#fnref1)
-
-2.  This is simply the `+` operator you’re used to. Try this out:
+1.  This is simply the `+` operator you’re used to. Try this out:
     `` `+`(1, 5)`` and you’ll see `+` is a function like any other. You
     just have to write backticks around the plus symbol to make it
-    work.[↩](fprog.html#fnref2)
+    work.[↩](fprog.html#fnref1)

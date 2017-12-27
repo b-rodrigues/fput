@@ -1,12 +1,12 @@
-# Chapter 5 Packages
+# Chapter 6 Packages
 
-## 5.1 Why you need your own packages in your life
+## 6.1 Why you need your own packages in your life
 
 One of the reasons you might have tried R in the first place is the
 abundance of packages. As I’m writing these lines (in August 2016), 8922
 packages are available on CRAN. That’s almost over 9000. This is an
 absolutely crazy amount of packages\! Chances are that if you want to do
-something, there’s a package for that (I’ll stop it here with the lame
+something, there’s a package for that (I’ll stop here with the lame
 references, promise\!).
 
 So why the heck should you write your own packages? After all, with 8922
@@ -42,7 +42,7 @@ googling whenever I had a problem. Learning git is really worth it,
 especially if you’re collaborating with some colleagues on your
 packages.
 
-## 5.2 R packages: the basics
+## 6.2 R packages: the basics
 
 To start writing a package, the easiest way is to load up Rstudio and
 start a new project, under the *File* menu. If you’re starting from
@@ -83,7 +83,7 @@ following keyboard shortcut: `CTRL-SHIFT-B`. You will use *Build and
 Reload* quite often, so I advise you remember this shortcut\! In the
 next section we will see how we can add documentation to our functions.
 
-## 5.3 Writing documentation for your functions
+## 6.3 Writing documentation for your functions
 
 Writing documentation for your functions is very streamlined, thanks to
 the `roxygen2` package. Suppose we want to write documentation for our
@@ -128,21 +128,16 @@ sqrt_newton <- function(a, init, eps = 0.01, iter = 100){
 ```
 
 The first difference with standard comments is that `roxygen2` type
-comments start with the `#'` symbol instead of simply the `#` symbol.
+comments start with two symbols, `#'` instead of simply the `#` symbol.
 Then, after `#'` you can supply different keywords such as `@param`,
 `@description`, `@export`. These keywords are then used by the
 `roxygenise()` function from the `roxygen` package to create the
 documentation files inside your package. Before `roxygen`, these
 documentation files were written in the `.Rd` format by hand. Now these
 files get created automagically by simply formatting your comments with
-this specific syntax and then running
-
-``` sourceCode r
-roxygen2::roxygenise()
-```
-
-in the command prompt. Try it, you should see the following in the
-command prompt:
+this specific syntax and then running `roxygen2::roxygenise()` in the
+command prompt. Try it, you should see the following in the command
+prompt:
 
     Writing sqrt_newton.Rd
 
@@ -162,22 +157,110 @@ my_package::my_function
 
 Not using `@export` can be useful though, if you want to have helper
 functions that are used by your other functions inside your package, and
-if you wish to not make these functions accessible to the users.
+if you wish to not make these functions accessible to the users. In the
+next subsection, I will mention two files that got created with your
+package, `NAMESPACE` and `DESCRIPTION`.
 
-## 5.4 Unit test your package
+## 6.4 Extra files inside your package and dependencies
 
-Now that we know the basics of creating a package, we move on to unit
-testing your package. Unit testing is very useful, but require some
-work, especially because you have to run them often to make them truly
-worth your time. However running them often can be painful because you
-have to be careful with the current working directory. The simplest way
-to do unit testing is to put your functions inside a package and write
-unit tests for these functions and use Rstudio’s keyboard shortcuts to
-run your tests. First of all, create a folder called `tests` in the root
-of your package and inside this `tests` folder create another folder,
-called `testthat`. The `testthat` folder will hold your unit tests.
-Inside the `tests` folder, create a script called `test_sqrt_newton.R`
-and put the following code in it:
+### 6.4.1 The `NAMESPACE` file
+
+The `NAMESPACE` file gets generated automatically by `roxyigen2`. You do
+not have to worry much about it; it lists the functions that are made
+available to the user when your package gets loaded. If you have helper
+functions that you do not want to make available to the user, remove the
+`@export` keyword from the function comments and the function will not
+get listed in the `NAMESPACE` file. There is still a way for the user to
+access these helper functions like so:
+
+    package::helper_function
+
+This is somewhat similar to the concept of private/public methods in
+object oriented
+programming.
+
+### 6.4.2 How can you use functions from other packages inside your package?
+
+There are two solutions for this. Without going into much details, this
+is mostly handled by the `DESCRIPTION` file. This file is very important
+for two reasons: if you want to publish a package on CRAN, this is the
+file where you specify your name, contact information and the license of
+the package. But this does not mean that this file is not important if
+you want to write your own personal package to clean data: this is also
+the file where you specify the version of your package, but also where
+you specify the dependencies of your package. You have two fields for
+this: `Imports` and `Depends`. If you are lazy and want to use functions
+from other packages inside your package, you can list them in the
+`Depends` field. However, you should be careful with this approach;
+indeed, if you named some of your functions the same as functions from
+other packages, by loading your package after another, you will
+“overwrite” these functions. For example, imagine you have function
+`f` in package A but also in package B. If you first load A, and then B,
+`f` will refer to `B::f`. It’s basically the same problem when attaching
+datasets, but with functions, so it’s even worse\! A cleaner way of
+solving the problem of using functions from other packages inside your
+package is to list them in the `Imports` field, and then use `::` inside
+your functions. For example:
+
+``` sourceCode r
+my_nice_function <- function(x){
+    readr::read_csv( bla bla )
+    bla bla
+}
+```
+
+This is much cleaner and avoids the problem described above. If you have
+to use a lot of functions from the same package, having always to use
+`::` can get annoying quite fast. In these cases, you can use the
+`@import` keyword when you document your function:
+
+``` sourceCode r
+#' Function to compute the square root of a number
+#' @param a the number whose square root is computed
+#' @param init an initial guess
+#' @param eps *optional* the precision. Default value: 0.01
+#' @param iter *optional* the number of iteration. Default value: 100
+#' @description This function computes the square root of a number using a loop.
+#' @export
+#` @import dplyr
+sqrt_newton <- function(a, init, eps = 0.01, iter = 100){
+    stopifnot(a >= 0)
+    i <- 1
+    while(abs(init**2 - a) > eps){
+        init <- 1/2 *(init + a/init)
+        i <- i + 1
+        if(i > iter) stop("Maximum number of iterations reached")
+    }
+    return(init)
+}
+```
+
+Above, I’ve added the line:
+
+``` sourceCode r
+#` @import dplyr
+```
+
+which allows me to call `dplyr` functions inside my functions. This is
+cleaner and does not pollute your session with attached packages. If you
+check the `NAMESPACE` you will see the following line:
+
+    import(dplyr)
+
+## 6.5 Unit test your package
+
+Now that we know the basics of package creation, we move on to unit
+testing your package. Unit testing is very useful, but requires some
+work, especially because you have to run your unit tests often to make
+them truly worth your time. However running them often can be painful
+because you have to be careful with the current working directory. The
+simplest way to do unit testing is to put your functions inside a
+package and write unit tests for these functions and use Rstudio’s
+keyboard shortcuts to run your tests. First of all, create a folder
+called `tests` in the root of your package and inside this `tests`
+folder create another folder, called `testthat`. The `testthat` folder
+will hold your unit tests. Inside the `tests` folder, create a script
+called `test_sqrt_newton.R` and put the following code in it:
 
 ``` sourceCode r
 library("testthat")
@@ -281,7 +364,7 @@ package, and that I did not document the `iter` parameter. This command
 takes some time to run, so do not run it as often as your unit tests,
 but do not forget about it either\!
 
-## 5.5 Checking the coverage of your unit tests with `covr`
+## 6.6 Checking the coverage of your unit tests with `covr`
 
 To check the coverage of your package run the following code:
 
@@ -320,7 +403,7 @@ a package. There are other functions in the `covr` package that might be
 useful depending on your needs, so do not hesitate to explore `covr`
 documentation\!
 
-## 5.6 Wrap-up
+## 6.7 Wrap-up
 
   - Packages are the easiest way to organize, document and test your
     code.

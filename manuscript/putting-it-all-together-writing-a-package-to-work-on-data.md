@@ -1,4 +1,4 @@
-# Chapter 6 Putting it all together: writing a package to work on data
+# Chapter 8 Putting it all together: writing a package to work on data
 
 Everything we have seen until now allows us to develop our own packages
 with the goal of *working* on data. By *working* on data I mean any
@@ -18,7 +18,7 @@ does not matter. In this chapter, we are going to write a number of
 functions with the goal of going from these awful, badly formatted
 datasets to a nice longitudinal data set.
 
-## 6.1 Getting the data
+## 8.1 Getting the data
 
 You can download the data from the [github
 repository](https://github.com/b-rodrigues/functional_programming_and_unit_testing_for_data_munging)
@@ -49,9 +49,9 @@ that you have hundreds, thousands, of datasets? And image that their
 names are not so well formatted as here? We will start our package by
 writing a function that reads a lot of datasets at once.
 
-## 6.2 Your first data munging package: `prepareData`
+## 8.2 Your first data munging package: `prepareData`
 
-### 6.2.1 Reading a lot of datasets at once
+### 8.2.1 Reading a lot of datasets at once
 
 Using Rstudio, create a new project like shown in the previous chapter,
 and select *R package*. Give it a name, for example `prepareData`. If
@@ -64,7 +64,7 @@ that use you original data. A subset can be enough, or taking the time
 to create a small test dataset might be preferable. It depends on what
 features of your functions you want to test. The first function I will
 show you is actually very general and could work with any datasets. This
-means that I created a package called `broTools`[<sup>3</sup>](#fn3)
+means that I created a package called `broTools`[<sup>2</sup>](#fn2)
 that contains all the little functions that I use daily. But for
 illustration purposes, we will put this function inside `prepareData`,
 even if it does not have anything directly to do with it. I have called
@@ -220,7 +220,7 @@ map(datasets, head)
 ```
 
     ## $`assets/data_2000`
-    ## # A tibble: 6 × 6
+    ## # A tibble: 6 x 6
     ##      id Variable1 other2000 gender2000 eggs2000      spam2000
     ##   <int>     <int>     <int>      <chr>    <int>         <chr>
     ## 1     1        32         3          F       80 -1.5035369157
@@ -231,7 +231,7 @@ map(datasets, head)
     ## 6     6        30         3          F       40   -0.79001853
     ## 
     ## $`assets/data_2001`
-    ## # A tibble: 6 × 6
+    ## # A tibble: 6 x 6
     ##      id VARIABLE1 other2001 Gender2001 eggs2001   spam2001
     ##   <int>     <int>     <int>      <chr>    <int>      <dbl>
     ## 1     1        32         3          F       80 -1.5035369
@@ -242,7 +242,7 @@ map(datasets, head)
     ## 6     6        30         3          F       40 -0.7900185
     ## 
     ## $`assets/data_2002`
-    ## # A tibble: 6 × 6
+    ## # A tibble: 6 x 6
     ##      ID variable1 Other2002 gender2002 eggs2002   Spam2002
     ##   <int>     <int>     <int>      <chr>    <int>      <dbl>
     ## 1     1        32         3          F       80 -1.5035369
@@ -253,7 +253,7 @@ map(datasets, head)
     ## 6     6        30         3          F       40 -0.7900185
     ## 
     ## $`assets/data_2003`
-    ## # A tibble: 6 × 6
+    ## # A tibble: 6 x 6
     ##      id variable1 other2003 gender2003 EGGS2003   spam2003
     ##   <int>     <int>     <int>      <chr>    <int>      <dbl>
     ## 1     1        32         3          F       80 -1.5035369
@@ -264,7 +264,7 @@ map(datasets, head)
     ## 6     6        30         3          F       40 -0.7900185
     ## 
     ## $`assets/data_2004`
-    ## # A tibble: 6 × 6
+    ## # A tibble: 6 x 6
     ##      Id Variable1 Other2004 Gender2004 Eggs2004   Spam2004
     ##   <int>     <int>     <int>      <chr>    <int>      <dbl>
     ## 1     1        32         3          F       80 -1.5035369
@@ -291,7 +291,7 @@ depending on your needs, you might need to add further operations, for
 example creating new variables etc. For now, we are going to focus on
 these three steps.
 
-### 6.2.2 Treating the columns of your datasets
+### 8.2.2 Treating the columns of your datasets
 
 Let us take a look at the column names of the datasets:
 
@@ -594,7 +594,7 @@ map(datasets, head)
 ```
 
     ## $`assets/data_2000`
-    ## # A tibble: 6 × 7
+    ## # A tibble: 6 x 7
     ##      id variable1 other gender  eggs          spam  year
     ##   <int>     <int> <int>  <chr> <int>         <chr> <dbl>
     ## 1     1        32     3      F    80 -1.5035369157  2000
@@ -605,7 +605,7 @@ map(datasets, head)
     ## 6     6        30     3      F    40   -0.79001853  2000
     ## 
     ## $`assets/data_2001`
-    ## # A tibble: 6 × 7
+    ## # A tibble: 6 x 7
     ##      id variable1 other gender  eggs       spam  year
     ##   <int>     <int> <int>  <chr> <int>      <dbl> <dbl>
     ## 1     1        32     3      F    80 -1.5035369  2001
@@ -616,7 +616,7 @@ map(datasets, head)
     ## 6     6        30     3      F    40 -0.7900185  2001
     ## 
     ## $`assets/data_2002`
-    ## # A tibble: 6 × 7
+    ## # A tibble: 6 x 7
     ##      id variable1 other gender  eggs       spam  year
     ##   <int>     <int> <int>  <chr> <int>      <dbl> <dbl>
     ## 1     1        32     3      F    80 -1.5035369  2002
@@ -627,7 +627,7 @@ map(datasets, head)
     ## 6     6        30     3      F    40 -0.7900185  2002
     ## 
     ## $`assets/data_2003`
-    ## # A tibble: 6 × 7
+    ## # A tibble: 6 x 7
     ##      id variable1 other gender  eggs       spam  year
     ##   <int>     <int> <int>  <chr> <int>      <dbl> <dbl>
     ## 1     1        32     3      F    80 -1.5035369  2003
@@ -638,7 +638,7 @@ map(datasets, head)
     ## 6     6        30     3      F    40 -0.7900185  2003
     ## 
     ## $`assets/data_2004`
-    ## # A tibble: 6 × 7
+    ## # A tibble: 6 x 7
     ##      id variable1 other gender  eggs       spam  year
     ##   <int>     <int> <int>  <chr> <int>      <dbl> <dbl>
     ## 1     1        32     3      F    80 -1.5035369  2004
@@ -660,6 +660,6 @@ doi:[10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10).
 
 -----
 
-3.  It stands for `Bruno Rodrigues' Tools`. I’m still working on
+2.  It stands for `Bruno Rodrigues' Tools`. I’m still working on
     releasing the package on Github, and maybe
-    CRAN.[↩](putting-it-all-together-writing-a-package-to-work-on-data.html#fnref3)
+    CRAN.[↩](putting-it-all-together-writing-a-package-to-work-on-data.html#fnref2)
