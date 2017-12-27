@@ -2,7 +2,7 @@ index.md
 intro.md
 fprog.md
 tidyverse.md
-prog-tidyvers.md
+prog-tidyverse.md
 packages.md
 unit-testing.md
 putting-it-all-together-writing-a-package-to-work-on-data.md
