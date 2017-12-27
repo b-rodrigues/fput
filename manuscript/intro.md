@@ -2,7 +2,7 @@
 
 ## 2.1 Getting R
 
-Since I’m assuming you have an intermediate level in R, you already
+Since I'm assuming you have an intermediate level in R, you already
 should have R and Rstudio installed on your machine. However, you may
 lack some of the following packages that are needed to follow the
 examples in this book:
@@ -12,7 +12,7 @@ examples in this book:
   - lazyeval: for lazy evaluation
   - lubridate: makes working with dates easier
   - memoise: makes your function remember intermediate results
-  - purrr: extends R’s functional programming capabilities
+  - purrr: extends R's functional programming capabilities
   - readr: provides alternative functions to `read.csv()` and such
   - roxygen2: creates documentation files from comments
   - stringr: makes working with characters easier
@@ -20,7 +20,7 @@ examples in this book:
   - tibble: provides a nice, cleaner alternative to `data.frame`
   - tidyr: works hand in hand with `dplyr`
 
-If you’re missing some or all of these packages, install them. You’ll
+If you're missing some or all of these packages, install them. You'll
 notice that most, if not all, of these packages were authored or
 co-authored by Hadley Wickham, currently chief scientist at Rstudio, so
 you can install most of these packages by installing a single package
@@ -51,11 +51,11 @@ What is functional programming? Wikipedia tells us the following:
 > the behavior of a program, which is one of the key motivations for the
 > development of functional programming.
 
-That’s the first paragraph of the [Wikipedia
-page](https://en.wikipedia.org/wiki/Functional_programming) and it’s
+That's the first paragraph of the [Wikipedia
+page](https://en.wikipedia.org/wiki/Functional_programming) and it's
 quite heavy already\!
 
-So let’s try to decrypt what is said in this paragraph. Functional
+So let's try to decrypt what is said in this paragraph. Functional
 programming is a programming paradigm. You may have heard of object
 oriented programming, or imperative programming before. You actually
 probably program in an imperative way without knowing it. Imperative
@@ -64,7 +64,7 @@ most people then keep on programming in this way, especially in applied
 sciences like applied econometrics. Usually, people that write code in
 an imperative way tend to write very long scripts that change the state
 of the program gradually. In the case of a statistician (I will use the
-word ‘statistician’ to mean any person that works with datasets. Be it
+word ‘statistician' to mean any person that works with datasets. Be it
 an economist, biologist, data scientist, etc.) this usually means
 loading a dataset, doing whatever has to be done by writing each
 instruction in a file, then running everything. Sometimes this
@@ -80,7 +80,7 @@ program is supposed to do. Comments in a thousand-lines file are
 actually not that much useful. The file is so long, that even when
 commented you simply cannot make any sense of what is going on. It is
 also easier to automate tasks and navigate through the code. Since one
-function does one single task, if you’re looking for the line of code
+function does one single task, if you're looking for the line of code
 that creates variable `X`, just look in the function called
 `create_var_X()`, instead of `CTRL-F`ing around. 1000 lines long script.
 You can also be sure that your functions do not do anything else
@@ -102,13 +102,13 @@ Unit testing is this, but in an automated way. Instead of just trying
 things out in the interpreter, you write unit tests. You write code that
 actually checks your functions. You save this unit tests somewhere, and
 then re-run them whenever you make changes to your code. Even if you
-don’t change some parts of your code, you re-run every unit test.
+don't change some parts of your code, you re-run every unit test.
 Because you actually never know what may happen. Maybe changing a single
 line in one of your functions introduced some unforeseen consequences
 that breaks functionality some place else. When you change code, and
 *all* your unit tests still pass, then you can be confident that your
-code is correct (actually, don’t be too confident, because maybe you
-didn’t write enough unit tests to cover every case. But we will see how
+code is correct (actually, don't be too confident, because maybe you
+didn't write enough unit tests to cover every case. But we will see how
 we can be sure there is enough *coverage*).
 
 ## 2.4 General recommendations to follow this book

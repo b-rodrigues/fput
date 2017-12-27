@@ -57,7 +57,7 @@ also see these files and folders inside the *Files* panel from within
 Rstudio. Rstudio will also have `hello.R` opened, which is a single demo
 source file inside the `R` folder. You can get rid of this file.
 
-![](assets/package_structure.png)
+![](images/package_structure.png)
 
 The picture above shows the basic structure of your package. As a first
 step, create a script called `square_root_loop.R` and put the following
@@ -145,7 +145,7 @@ then you can *Build and Reload* your package again using `CTRL-SHIFT-B`.
 If you go check the documentation of your function inside your package,
 this is what you should see:
 
-![](assets/sqrt_newton_help.png)
+![](images/sqrt_newton_help.png)
 
 There is still a keyword that I did not mention: the `@export` keyword.
 This keyword is needed if you want your function to be accessible by the
@@ -379,7 +379,7 @@ shine(cov)
 The line `shine(cov)` launches an interactive shiny app inside your
 viewer pane with the following:
 
-![](assets/covr_MyFirstPackage.png)
+![](images/covr_MyFirstPackage.png)
 
 We see that no unit test executes the highlighted line. So let’s write a
 unit test to test this line and increase the coverage of our package\!
@@ -393,7 +393,7 @@ test_that("Test maximum number of iterations",{
 
 Now if you look at the coverage of the package:
 
-![](assets/covr_MyFirstPackage100percent.png)
+![](images/covr_MyFirstPackage100percent.png)
 
 In this example, we used `package_coverage()`, but if you are interested
 in the coverage of a single function you can use `function_coverage()`,

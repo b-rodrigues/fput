@@ -12,7 +12,7 @@ functions to work for you.
 
 You should be familiar with function definitions in R. For example,
 suppose you want to compute the square root of a number and want to do
-so using Newton’s algorithm:
+so using Newton's algorithm:
 
 ``` sourceCode r
 sqrt_newton <- function(a, init, eps = 0.01){
@@ -34,9 +34,9 @@ sqrt_newton(16, 2)
 We are using a `while` loop inside the body. The *body* of a function
 are the instructions that define the function. You can get the body of a
 function with `body(some_func)`\] of the function. In *pure* functional
-programming languages, like Haskell, you don’t have loops. How can you
+programming languages, like Haskell, you don't have loops. How can you
 program without loops, you may ask? In functional programming, loops are
-replaced by recursion. Let’s rewrite our little example above with
+replaced by recursion. Let's rewrite our little example above with
 recursion:
 
 ``` sourceCode r
@@ -61,15 +61,15 @@ R is not a pure functional programming language though, so we can still
 use loops (be it `while` or `for` loops) in the bodies of our functions.
 Actually, for R specifically, it is better, performance-wise, to use
 loops instead of recursion, because R is not tail-call optimized. I
-won’t got into the details of what tail-call optimization is but just
+won't got into the details of what tail-call optimization is but just
 remember that if performance is important a loop will be faster.
 However, sometimes, it is easier to write a function using recursion. I
 personally tend to avoid loops if performance is not important, because
 I find that code that avoids loops is easier to read and debug. However,
 knowing that you have can use loops is reassuring. In the coming
 sections I will show you some built-in function that make it possible to
-avoid writing loops and that don’t rely on recursion, so performance
-won’t be penalized.
+avoid writing loops and that don't rely on recursion, so performance
+won't be penalized.
 
 ### 3.1.2 Properties of functions
 
@@ -213,7 +213,7 @@ sqrt_newton_count(16000, 2)
 
 Writing to disk is also considered a side effect, because the function
 changes something (a file) outside its scope. But this cannot be avoided
-(and it’s actually a good thing to have, functions that can write to
+(and it's actually a good thing to have, functions that can write to
 disk) so just remember: try to avoid having functions changing variables
 in the global environment unless you have a very good reason of doing
 so.
@@ -242,16 +242,16 @@ family of functions) and `Reduce()`. `Map()` allows you to map your
 function to every element of a list of arguments and is easy to
 understand, while `Reduce()` (sometimes called `fold()` in other
 programming languages) *reduces* a list of values to a single value by
-successively applying a function. It’s a bit harder to understand, but
+successively applying a function. It's a bit harder to understand, but
 with some examples it will become clear soon enough. In this section we
 will focus on how to do things using `base` functions. In the next
-section we will take a look at the `purrr` package which extends R’s
+section we will take a look at the `purrr` package which extends R's
 functional programming capabilities tremendously.
 
 ### 3.2.1 Mapping with `Map()` and the `*apply()` family of functions
 
 Now that we have our nice function that computes square roots using
-Newton’s algorithm, we would like to compute the square root of every
+Newton's algorithm, we would like to compute the square root of every
 element in the following list:
 
 ``` sourceCode r
@@ -283,8 +283,8 @@ sqrt_newton(numbers, init = rep(1, 6), eps = rep(0.001, 6))
 We get a whole bunch of nasty warning messages, but we do get the
 expected result. But you should not leave it like this. Who knows what
 may happen some time down the road, when you try to compose this
-function with another? Maybe you’ll get an error and you won’t
-understand why\! Let’s rewrite the function properly.
+function with another? Maybe you'll get an error and you won't
+understand why\! Let's rewrite the function properly.
 
 We get these warnings because the condition `(init^2 - a) > eps` does
 not make sense for vectors. Here, R tells the user that it only uses the
@@ -357,7 +357,7 @@ your code easily reusable\!
 R has other higher-order functions that work like `Map()`, such as
 `apply(), lapply(), mapply(), sapply(), vapply()` and `tapply()`.
 Depending on what you want to do, you will have to use one or the other.
-`apply()` and ‘tapply()’ are different from the other `*apply()`
+`apply()` and ‘tapply()' are different from the other `*apply()`
 functions, because they work on arrays. You can apply a function on the
 rows or columns of an array, for example if you want a row-wise sum:
 
@@ -461,7 +461,7 @@ sqrt_newton(numbers[6], inits[6])
 
     ## [1] 9.000006
 
-From the `Map()`’s documentation, we learn
+From the `Map()`'s documentation, we learn
     that:
 
     `Map()` is wrapper to `mapply()` which does not attempt to simplify the result...
@@ -523,8 +523,8 @@ Reduce(my_min, numbers)
 
     ## [1] 16
 
-Here we don’t supply an `init` because there is no need for it. Of
-course R’s built-in `min()` function works on a list of values. But
+Here we don't supply an `init` because there is no need for it. Of
+course R's built-in `min()` function works on a list of values. But
 `Reduce()` is a very powerful function that can make our life much
 easier and most importantly avoid writing clumsy loops.
 
@@ -533,7 +533,7 @@ easier and most importantly avoid writing clumsy loops.
 Hadley Wickham developed a package called `purrr` which contains a lot
 of very useful functions. I will show some of them here, but in the next
 chapter, we are going to study `purrr` in greater depth. Also, take the
-time to read `purrr`’s documentation, and of course you can read more
+time to read `purrr`'s documentation, and of course you can read more
 about `purrr` in Wickham and Grolemund ([2016](#ref-wickham2016)).
 
 ### 3.3.1 The `map*()` family of functions
@@ -541,17 +541,17 @@ about `purrr` in Wickham and Grolemund ([2016](#ref-wickham2016)).
 In the previous section we saw how to map a function to each element of
 a list. Each version of an `*apply()` function has a different purpose,
 but it is not very easy to remember which one returns a list, which
-other one returns an atomic vector and so on. If you’re working on data
+other one returns an atomic vector and so on. If you're working on data
 frames you can use `apply()` to sum (for example) over columns or rows,
 because you can specify which `MARGIN` you want to sum over. But you do
 not get a data frame back. In the `purrr` package, each of the functions
-that do mapping have a similar name. The first part of these functions’
+that do mapping have a similar name. The first part of these functions'
 names all start with `map_` and the second part tells you what this
 function is going to output. For example, if you want `double`s out, you
 would use `map_dbl()`. If you are working on data frames want a data
 frame back, you would use `map_df()`. These are much more intuitive and
-easier to remember and we’re going to learn how to use them in the
-chapter about [The Tidyverse](tidyverse.html#tidyverse). For now, let’s
+easier to remember and we're going to learn how to use them in the
+chapter about [The Tidyverse](tidyverse.html#tidyverse). For now, let's
 just focus on the basic functions, `map()` and `reduce()` (and some
 variants of `reduce()`). To map a function to every element of a list,
 simply use `map()`:
@@ -791,7 +791,7 @@ an anonymous function as long as it does not hurt clarity.
 This is the end of the introduction to functional programming. Entire
 books have been written on the subject, such as the upcoming book by
 Khan ([2017](#ref-khan2017)) or Lipovaca ([2011](#ref-lipovaca2011)). If
-you’re curious about functional programming, you should read these
+you're curious about functional programming, you should read these
 books. For our purposes though, knowing how to write functions, and
 trying to make them referentially transparent as well as knowing about
 mapping and reducing is enough to get us going.
@@ -811,10 +811,10 @@ mapping and reducing is enough to get us going.
 
 For the following exercises, you will have to use any of the functions
 that we saw in this chapter. `Reduce()`, `Map()` or any function from
-the `*apply()` family of functions. Do not use loops\! If you don’t know
-how to solve these exercises wait for the next section, where we’ll
+the `*apply()` family of functions. Do not use loops\! If you don't know
+how to solve these exercises wait for the next section, where we'll
 learn how to write unit tests. Writing unit tests before the functions
-they’re supposed to test is called test-driven development and can help
+they're supposed to test is called test-driven development and can help
 you write your functions.
 
 1.  Create a function that returns the factorial of a number using
@@ -830,7 +830,7 @@ you write your functions.
     removes “.csv” from each of these names. Start by creating a
     function that does so using `stri_split()` from the package
     `stringi` (you can also use `strsplit()` from base R). Below is an
-    illustration of how it’s supposed to work:
+    illustration of how it's supposed to work:
 
 <!-- end list -->
 
@@ -860,18 +860,18 @@ you write your functions.
 ### References
 
 Wickham, Hadley, and Garrett Grolemund. 2016. *R for Data Science*. 1st
-ed. O’Reilly. <http://r4ds.had.co.nz/>.
+ed. O'Reilly. <http://r4ds.had.co.nz/>.
 
 Khan, Aslam. 2017. *Grokking Functional Programming*. 1st ed. Manning
 Publications.
 <https://www.manning.com/books/grokking-functional-programming>.
 
 Lipovaca, Miran. 2011. *Learn You a Haskell for Great Good\!: A
-Beginner’s Guide*. no starch press. <http://learnyouahaskell.com/>.
+Beginner's Guide*. no starch press. <http://learnyouahaskell.com/>.
 
 -----
 
-1.  This is simply the `+` operator you’re used to. Try this out:
-    `` `+`(1, 5)`` and you’ll see `+` is a function like any other. You
+1.  This is simply the `+` operator you're used to. Try this out:
+    `` `+`(1, 5)`` and you'll see `+` is a function like any other. You
     just have to write backticks around the plus symbol to make it
     work.[↩](fprog.html#fnref1)

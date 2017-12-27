@@ -2,51 +2,47 @@
 
 The `tidyverse` is the name given to a certain number of packages, most
 of all (if not all?) developed by, or co-developed by, Hadley Wickham.
-There’s a website that introduces them all: [The
+There's a website that introduces them all: [The
 tidyverse](http://tidyverse.org/). In this chapter, we are going to
 learn about some functions of some of these packages. We already know a
-little bit about `purrr`; let’s discover what these other packages have
+little bit about `purrr`; let's discover what these other packages have
 to offer\!
 
-However, before reading everything that follows, I’d suggest you watch
-Hadley Wickham’s talk [Expressing yourself with
+However, before reading everything that follows, I'd suggest you watch
+Hadley Wickham's talk [Expressing yourself with
 R](https://www.youtube.com/watch?v=1POb5fx_m3I). R is a computer
 *language*, and as with any language we really are writing things that
 are supposed to be read and understood by others, not just the computer.
-Even if you’re working alone, you owe it to your future self to write
+Even if you're working alone, you owe it to your future self to write
 clean, easy to understand code. Using the tidyverse and adopting the
 principles presented in the talk will put you in the right mindset for
 everything that follows\!
 
-First of all, let’s install the `tidyverse` packages. You can install
+First of all, let's install the `tidyverse` packages. You can install
 them one by one, or you can install the `tidyverse` meta-package:
 
 ``` sourceCode r
 install.packages("tidyverse")
 ```
 
-I suggest you do just that, as we’re going to skim over all the
+I suggest you do just that, as we're going to skim over all the
 packages. To start an analysis, we first have to import data into R.
 
 ## 4.1 Smoking is bad for you, but pipes are your friend
 
 The title of this section might sound weird at first, but by the end of
-it, you’ll get this (terrible) pun.
+it, you'll get this (terrible) pun.
 
 You probably know the following painting by René Magritte, *La trahison
 des images*:
 
-``` sourceCode r
-knitr::include_graphics("assets/pas_une_pipe.png")
-```
+![](images/pas_une_pipe.png)
 
-![](assets/pas_une_pipe.png)
-
-It turns out there’s an R package from the `tidyverse` that is called
+It turns out there's an R package from the `tidyverse` that is called
 `magrittr`. What does this package do? It brings *pipes* to R. Pipes are
-a concept from the Unix operating system; if you’re using a GNU+Linux
-distribution or macOS, you’re basically using a *modern* unix. (That’s
-an oversimplification, but I’m an economist by training, and
+a concept from the Unix operating system; if you're using a GNU+Linux
+distribution or macOS, you're basically using a *modern* unix. (That's
+an oversimplification, but I'm an economist by training, and
 outrageously oversimplifying things is what we do, deal with it.)
 
 The idea of pipes is to take the output of a command, and *feed* it as
@@ -74,7 +70,7 @@ multiple functions:
     ## [1] 22
 
 The output of `16` (`16`) got fed to `sqrt()`, and the output of
-`sqrt(16)` (4) got fed to `+(18)` (22). Without `%>%` you’d write the
+`sqrt(16)` (4) got fed to `+(18)` (22). Without `%>%` you'd write the
 line just above like this:
 
 ``` sourceCode r
@@ -88,11 +84,11 @@ is probably one of the best things that R has, because when using
 packages from the `tidyverse`, you will naturally want to chain a lot of
 functions together. Without the `%>%` it would become messy very fast.
 
-`%>%` is not the only pipe operator in `magrittr`. There’s `%T%`, `%<>%`
+`%>%` is not the only pipe operator in `magrittr`. There's `%T%`, `%<>%`
 and `%$%`. All have their uses, but are basically shortcuts to some
 common tasks with `%>%` plus another function. Which means that you can
 live without them, and because of this, I will only discuss them briefly
-once we’ll have learned about the other `tidyverse`
+once we'll have learned about the other `tidyverse`
 packages.
 
 ## 4.2 Getting data into R with `readr`, `readxl`, `haven` and what are *tibbles*
@@ -113,15 +109,15 @@ to get to know `readr` better. But for our purposes, knowing the basic
 sheets into R. Read more about it on the [tidyverse
 website](http://readxl.tidyverse.org/).
 
-`haven` imports data from STATA, SAS and SPSS. I’m going into a bit more
+`haven` imports data from STATA, SAS and SPSS. I'm going into a bit more
 detail here, by showing an example with a STATA file. STATA files are
-usually labelled, and I’d like to show how to work with these labels
-using R. We’re going to work with the `mtcars` dataset. I used STATA 14
+usually labelled, and I'd like to show how to work with these labels
+using R. We're going to work with the `mtcars` dataset. I used STATA 14
 to label the variables; so the dataset looks like one you could have to
 work with one day.
 
 ``` sourceCode r
-mtcars_stata <- haven::read_dta("assets/mtcars.dta")
+mtcars_stata <- haven::read_dta("images/mtcars.dta")
 head(mtcars_stata)
 ```
 
@@ -136,7 +132,7 @@ head(mtcars_stata)
     ## 6           Valiant  18.1     6   225   105  2.76 3.460 20.22     1     0
     ## # ... with 2 more variables: gear <dbl>, carb <dbl>
 
-You don’t see it here, but the columns are labelled. Try the
+You don't see it here, but the columns are labelled. Try the
     following:
 
 ``` sourceCode r
@@ -174,7 +170,7 @@ attr(mtcars_stata$cyl, "label")
 
     ## [1] "Number of cylinders"
 
-Let’s use what we learned until now to get the labels of all the
+Let's use what we learned until now to get the labels of all the
 columns:
 
 ``` sourceCode r
@@ -222,7 +218,7 @@ show_labels(mtcars_stata)
     ## [1] "Number of carburetors"
 
 Could we label any dataset and then export it to a `.dta` file and have
-the labels in STATA? Let’s find out with the `cars` dataset:
+the labels in STATA? Let's find out with the `cars` dataset:
 
 ``` sourceCode r
 data(cars)
@@ -230,17 +226,17 @@ data(cars)
 attr(cars$speed, "label") <- "Speed (mph)"
 attr(cars$dist, "label") <- "Stopping distance (feet)"
 
-haven::write_dta(cars, "assets/cars.dta")
+haven::write_dta(cars, "images/cars.dta")
 ```
 
 Below you see that `cars.dta` file opened in STATA:
 
-![](assets/cars_dta.png)
+![](images/cars_dta.png)
 
 When you use any of the discussed packages to import data, the resulting
-object is a `tibble`. `tibble`s are modern day ‘data.frame’s. The first
+object is a `tibble`. `tibble`s are modern day ‘data.frame's. The first
 thing you might have noticed is when you print a `tibble` vs a
-’data.frame’:
+'data.frame':
 
 ``` sourceCode r
 data(mtcars)
@@ -302,7 +298,7 @@ print(mtcars_stata)
     ## # ... with 22 more rows, and 2 more variables: gear <dbl>, carb <dbl>
 
 Only the first 10 lines of the `tibble` get printed, but the number of
-remaining lines and the names of the columns that didn’t find are shown
+remaining lines and the names of the columns that didn't find are shown
 as well as the types of the columns.
 
 You can easily create a `tibble` from vectors:
@@ -325,7 +321,7 @@ print(example)
     ## 4     4  0.07050839     3
     ## 5     5  0.12928774     1
 
-Even better than `print()`, there’s `glimpse()`:
+Even better than `print()`, there's `glimpse()`:
 
 ``` sourceCode r
 glimpse(mtcars_stata)
@@ -403,7 +399,7 @@ mtcars_stata$m
     ## NULL
 
 `mtcars$m` shows the `mpg` column… for some reason. There might be a
-good reason for this, but I prefer `tibble`s’ behaviour of notifying the
+good reason for this, but I prefer `tibble`s' behaviour of notifying the
 user that this column does not exist.
 
 It is possible to convert a lot of objects into `tibble`s:
@@ -501,7 +497,7 @@ you can integrate in your workflow\!
 You may have never heard of the `tidyverse`, but you most certainly
 heard about `dplyr` and `tidyr`. Both these packages are probably the
 most popular packages of the tidyverse. Even if you know these packages
-already, you might not be using some more advanced functions, I’m
+already, you might not be using some more advanced functions, I'm
 talking about the *scoped* version of the usual `dplyr` *verbs* (`dplyr`
 *verbs* is how Hadley Wickham refers to the functions included in the
 package: `group_by()`, `select()`, etc).
@@ -511,7 +507,7 @@ study, turn off your phone and buckle up.
 
 ### 4.3.1 `filter()` and friends
 
-We’re going to use the `Gasoline` dataset from the `plm` package, so
+We're going to use the `Gasoline` dataset from the `plm` package, so
 install that first:
 
 ``` sourceCode r
@@ -544,7 +540,7 @@ library(dplyr)
 This dataset gives the consumption of gasoline for 18 countries from
 1960 to 1978. When you load the data like this, it is a standard
 `data.frame`. `dplyr` functions can be used on standard `data.frame`
-objects, but just because we learned about `tibble`’s, let’s convert the
+objects, but just because we learned about `tibble`'s, let's convert the
 data to a `tibble` and change its name:
 
 ``` sourceCode r
@@ -580,7 +576,7 @@ filter(gasoline, year == 1969)
     ## 17     U.K.  1969 3.948058 -6.031953 -0.3833246  -8.468119
     ## 18   U.S.A.  1969 4.841383 -5.414374 -1.2231427  -7.792706
 
-Remember the pipe operator, `%>%` from the start of this chapter? Here’s
+Remember the pipe operator, `%>%` from the start of this chapter? Here's
 how this would work with it:
 
 ``` sourceCode r
@@ -610,7 +606,7 @@ gasoline %>% filter(year == 1969)
     ## 18   U.S.A.  1969 4.841383 -5.414374 -1.2231427  -7.792706
 
 So `gasoline`, which is a `tibble` object, is passed as the first
-argument of the `filter()` function. Starting now, we’re only going to
+argument of the `filter()` function. Starting now, we're only going to
 use these pipes. You will see why soon enough, so bear with me.
 
 You can also filter more than just one year, by using the `%in%`
@@ -683,12 +679,12 @@ gasoline %>% filter_if( ~all(is.numeric(.)), all_vars(. > -8))
     ## 10  SWEDEN  1976 3.983997 -7.672043 -2.8229448 -7.956066
     ## # ... with 20 more rows
 
-It’s a bit more complicated than before. `filter_if()` needs 3 arguments
+It's a bit more complicated than before. `filter_if()` needs 3 arguments
 to work; the data, a predicate function (a function that returns `TRUE`,
 or `FALSE`) which will select the columns we want to work on, and then
 the condition. The condition can be applied to *all* the columns that
 were selected by the predicate function (hence the `all_vars()`) or only
-to at least one (you’d use `any_vars()` then). Try to change the
+to at least one (you'd use `any_vars()` then). Try to change the
 condition, or the predicate function, to figure out how `filter_if()`
 works. The dot is a placeholder that stands for whatever columns where
 selected.
@@ -716,8 +712,8 @@ gasoline %>% filter_at(vars(ends_with("p")), all_vars(. > -8))
     ## # ... with 20 more rows
 
 `end_with()` is a helper function that we are going to use a lot (as
-well as `starts_with()` and some others, you’ll see..). So the above
-line means “for the columns whose name end with a ‘p’ only keep the
+well as `starts_with()` and some others, you'll see..). So the above
+line means “for the columns whose name end with a ‘p' only keep the
 lines where, for all the selected columns, the values are strictly
 superior to `-8`”. Again, this is not very easy the first time you deal
 with that, so play around with it for a bit.
@@ -797,7 +793,7 @@ gasoline %>% select(country, date = year, lrpmg)
     ## 10 AUSTRIA  1969 -0.5591105
     ## # ... with 332 more rows
 
-There’s also `rename()`, but it works a bit differently:
+There's also `rename()`, but it works a bit differently:
 
 ``` sourceCode r
 gasoline %>% rename(date = year)
@@ -886,7 +882,7 @@ gasoline %>% select_at(vars(starts_with("l")))
     ## # ... with 332 more rows
 
 `select_at()` can be quite useful if you know the position of the
-columns you’re interested in:
+columns you're interested in:
 
 ``` sourceCode r
 gasoline %>% select_at(vars(c(1,2,5)))
@@ -952,7 +948,7 @@ gasoline %>% select_if(is.numeric, toupper)
     ## 10  1969 4.046355 -6.153140 -0.5591105 -8.788686
     ## # ... with 332 more rows
 
-Another verb, similar to `select()`, is `pull()`. Let’s compare the two:
+Another verb, similar to `select()`, is `pull()`. Let's compare the two:
 
 ``` sourceCode r
 gasoline %>% select(lrpmg)
@@ -1054,7 +1050,7 @@ atomic vector.
 
 `group_by()` is a very useful verb; as the name implies, it allows you
 to create groups and then, for example, compute descriptive statistics
-by groups. For example, let’s group our data by country:
+by groups. For example, let's group our data by country:
 
 ``` sourceCode r
 gasoline %>% group_by(country)
@@ -1212,7 +1208,7 @@ gasoline %>%
     ##    <fctr>        <dbl>
     ## 1  FRANCE     3.815198
 
-Ok, let’s pause here. See what I did in the last example? I chained 3
+Ok, let's pause here. See what I did in the last example? I chained 3
 `dplyr` verbs together with `%>%`. Without using `%>%` I would have
 written:
 
@@ -1229,10 +1225,10 @@ filter(
     ##    <fctr>        <dbl>
     ## 1  FRANCE     3.815198
 
-I don’t know about you, but this is much more difficult to read than the
+I don't know about you, but this is much more difficult to read than the
 version with `%>%`. It is possible to work like that, of course, but
 personally, I would advise you bite the bullet and learn to love the
-pipe. It won’t give you cancer.
+pipe. It won't give you cancer.
 
 Ok, back to `summarise()`. We can really do a lot of stuff with this
 verb. For example, we can compute several descriptive statistics at
@@ -1294,7 +1290,7 @@ desc_gasoline %>%
     ##    <fctr>        <dbl>      <dbl>       <dbl>       <dbl>
     ## 1  TURKEY     5.766355  0.3290139    6.156644    5.141255
 
-Turns out it’s Turkey. What about the minimum consumption?
+Turns out it's Turkey. What about the minimum consumption?
 
 ``` sourceCode r
 desc_gasoline %>%
@@ -1376,7 +1372,7 @@ gasoline %>%
     ## #   lgaspcar_min <dbl>, lincomep_min <dbl>, lrpmg_min <dbl>,
     ## #   lcarpcap_min <dbl>
 
-But maybe you’re just interested in descriptive statistics for some
+But maybe you're just interested in descriptive statistics for some
 variables, but not all those that start with “l”? What if you want to
 use another pattern? Easy to do with the `contains()` helper:
 
@@ -1411,11 +1407,11 @@ gasoline %>%
     ## #   lgaspcar_min <dbl>, lcarpcap_min <dbl>
 
 I used `dplyr::contains()` instead of simply `contains()` because
-there’s also a `purrr::contains()`. If you load `purrr` after `dplyr`,
+there's also a `purrr::contains()`. If you load `purrr` after `dplyr`,
 `contains()` will actually be `purrr::contains()` and not
 `dplyr::contains()` which causes the above code to fail.
 
-There’s also `summarise_if()`:
+There's also `summarise_if()`:
 
 ``` sourceCode r
 gasoline %>%
@@ -1490,7 +1486,7 @@ gasoline %>%
     ## #   lgaspcar_max <dbl>, lincomep_max <dbl>, lrpmg_max <dbl>,
     ## #   lcarpcap_max <dbl>
 
-I removed the `year` variable because it’s not a variable for which we
+I removed the `year` variable because it's not a variable for which we
 want to have descriptive statistics.
 
 ### 4.3.5 `mutate()` and `transmute()`
@@ -1520,9 +1516,9 @@ gasoline %>%
     ## 10 AUSTRIA  1969 4.046355 -6.153140 -0.5591105 -8.788686    19
     ## # ... with 332 more rows
 
-Using `mutate()` I’ve added a column that counts how many times the
+Using `mutate()` I've added a column that counts how many times the
 country appears in the `tibble`, using `n()`, another `dplyr` function.
-There’s also `count()` and `tally()`, which we are going to see further
+There's also `count()` and `tally()`, which we are going to see further
 down. It is also possible to rename the column on the fly:
 
 ``` sourceCode r
@@ -1672,7 +1668,7 @@ The two helper functions I use the most are probably `if_else()` and
 to create a new variable conditonally on the values of other variables.
 For instance, we might want to have a dummy that equals `1` if a country
 in the European Union (to simplify, say as of 2017) and `0` if not.
-First let’s create a list of countries that are in the
+First let's create a list of countries that are in the
 EU:
 
 ``` sourceCode r
@@ -1683,8 +1679,8 @@ eu_countries <- c("austria", "belgium", "bulgaria", "croatia", "republic of cypr
                   "spain", "sweden", "u.k.")
 ```
 
-I’ve had to change “netherlands” to “netherla” because that’s how the
-country is called in the data. Now let’s create a dummy variable that
+I've had to change “netherlands” to “netherla” because that's how the
+country is called in the data. Now let's create a dummy variable that
 equals `1` for EU countries, ind `0` for the others:
 
 ``` sourceCode r
@@ -1760,7 +1756,7 @@ Error: `false` must be type string, not double
 ```
 
 Type conversion, especially without a warning is very dangerous.
-`if_else()`’s behaviour which consists in failing as soon as possble
+`if_else()`'s behaviour which consists in failing as soon as possble
 avoids a lot of pain and suffering, especially when programming
 non-interactively.
 
@@ -1781,8 +1777,8 @@ if_else(1 == NA, 0, 1, NA_real_)
     ## [1] NA
 
 `case_when()` can be seen as a generalization of `if_else()`. Whenever
-you want to use multiple `if_else()`s, that’s when you know you should
-use `case_when()` (I’m adding the filter at the end for the same reason
+you want to use multiple `if_else()`s, that's when you know you should
+use `case_when()` (I'm adding the filter at the end for the same reason
 as before, to see the output better):
 
 ``` sourceCode r
@@ -1830,7 +1826,7 @@ gasoline <- gasoline %>%
 ```
 
 I saved the data with these changes as they will become useful in the
-future. Let’s take a look at the data:
+future. Let's take a look at the data:
 
 ``` sourceCode r
 gasoline %>%
@@ -1847,7 +1843,7 @@ gasoline %>%
 
 `lead()` and `lag()` are especially useful in econometrics. When I was
 doing my masters, in 4 B.d. (*Before dplyr*) lagging variables in panel
-data was quite tricky. Now, with `dplyr` it’s really very easy:
+data was quite tricky. Now, with `dplyr` it's really very easy:
 
 ``` sourceCode r
 gasoline %>%
@@ -1904,9 +1900,9 @@ columns get transformed in place.
 #### 4.3.5.3 `ntile()`
 
 The last helper function I will discuss is `ntile()`. There are some
-other, so do read `mutate()`’s documentation with `help(mutate)`\!
+other, so do read `mutate()`'s documentation with `help(mutate)`\!
 
-If you need quantiles, you need `ntile()`. Let’s see how it works:
+If you need quantiles, you need `ntile()`. Let's see how it works:
 
 ``` sourceCode r
 gasoline %>%
@@ -1932,7 +1928,7 @@ gasoline %>%
 
 `quintile` and `decile` do not hold the values but the quantile the
 value lies in. If you want to have a column that contains the median for
-instance, you can use good ol’ `quantile()`:
+instance, you can use good ol' `quantile()`:
 
 ``` sourceCode r
 gasoline %>%
@@ -2013,7 +2009,7 @@ gasoline %>%
     ## 10  turkey  1965 5.823046 -7.622027 -0.2934761 -12.87934
     ## # ... with 332 more rows
 
-`arrange`’s documentation alerts the user that re-ording by group is
+`arrange`'s documentation alerts the user that re-ording by group is
 only possible by explicitely specifying an option:
 
 ``` sourceCode r
@@ -2072,7 +2068,7 @@ gasoline %>%
     ## 17        u.k.    19
     ## 18      u.s.a.    19
 
-There’s also `add_count()` which adds the column to the data:
+There's also `add_count()` which adds the column to the data:
 
 ``` sourceCode r
 gasoline %>%
@@ -2125,8 +2121,8 @@ where `n()` is a `dplyr` function that can only be used within
 ### 4.3.7 Joining `tibble`s with `full_join()`, `left_join()`, `right_join()` and all the others
 
 I will end this section on `dplyr` with the very useful verbs: the
-`*_join()` verbs. Let’s first start by loading another dataset from the
-`plm` package. `SumHes` and let’s convert it to `tibble` and rename it:
+`*_join()` verbs. Let's first start by loading another dataset from the
+`plm` package. `SumHes` and let's convert it to `tibble` and rename it:
 
 ``` sourceCode r
 data(SumHes, package = "plm")
@@ -2136,7 +2132,7 @@ pwt <- SumHes %>%
   mutate(country = tolower(country))
 ```
 
-Let’s take a quick look at the data:
+Let's take a quick look at the data:
 
 ``` sourceCode r
 glimpse(pwt)
@@ -2155,8 +2151,8 @@ glimpse(pwt)
 We can merge both `gasoline` and `pwt` by country and year, as these two
 variables are common to both datasets. There are more countries and
 years in the `pwt` dataset, so when merging both, and depending on which
-function you use, you will either have `NA`’s for the variables where
-there is no match, or rows that will be dropped. Let’s start with
+function you use, you will either have `NA`'s for the variables where
+there is no match, or rows that will be dropped. Let's start with
 `full_join`:
 
 ``` sourceCode r
@@ -2164,7 +2160,7 @@ gas_pwt_full <- gasoline %>%
   full_join(pwt, by = c("country", "year"))
 ```
 
-Let’s see which countries and years are included:
+Let's see which countries and years are included:
 
 ``` sourceCode r
 gas_pwt_full %>%
@@ -2219,7 +2215,7 @@ gas_pwt_inner <- gasoline %>%
   inner_join(pwt, by = c("country", "year"))
 ```
 
-Let’s use the `tabyl()` from the `janitor` packages which is a very nice
+Let's use the `tabyl()` from the `janitor` packages which is a very nice
 alternative to the `table()` function from base R:
 
 ``` sourceCode r
@@ -2248,10 +2244,10 @@ gas_pwt_inner %>%
     ## 16        u.k. 19 0.05882353
     ## 17      u.s.a. 19 0.05882353
 
-Only countries with values in both datasets were returned. It’s almost
+Only countries with values in both datasets were returned. It's almost
 every country from `gasoline`, apart from Germany (called “germany west”
 in `pwt` and “germany” in `gasoline`. I left it as is to provide an
-example of a country not in `pwt`). Let’s also look at the variables:
+example of a country not in `pwt`). Let's also look at the variables:
 
 ``` sourceCode r
 glimpse(gas_pwt_inner)
@@ -2365,8 +2361,8 @@ The rows are the same, but not the columns.
 `left_join()` and `right_join()` return all the rows from either the
 dataset that is on the “left” (the first argument of the fonction) or on
 the “right” (the second argument of the function) but all columns from
-both datasets. So depending on which countries you’re interested in,
-you’re going to use either one of these functions:
+both datasets. So depending on which countries you're interested in,
+you're going to use either one of these functions:
 
 ``` sourceCode r
 gas_pwt_left <- gasoline %>%
@@ -2566,9 +2562,9 @@ only country from `gasoline` that is not in `pwt`: “germany”.
 
 ### 4.5.1 Mapping and reducing with `purrr`, continued
 
-We’ve already seen how to map functions to elements of lists and how to
+We've already seen how to map functions to elements of lists and how to
 reduce lists to a single value in [Mapping and Reducing: the `purrr`
-way](fprog.html#map_reduce_purrr), and in this section we’re going to
+way](fprog.html#map_reduce_purrr), and in this section we're going to
 dig a little deeper into the `purrr` package. We know the standard
 `map()` function, which returns a list, but there are a number of
 variants of this function. `map_dbl()` returns an atomic vector of
@@ -2877,7 +2873,7 @@ all), so `possibly()` and `safely()` are the way to go.
 
 Another interesting function is `transpose()`. It is not an alternative
 to the function `t()` from `base` but, has a similar effect.
-`transpose()` works on lists. Let’s take a look at the example from
+`transpose()` works on lists. Let's take a look at the example from
 before:
 
 ``` sourceCode r
@@ -2946,7 +2942,7 @@ transpose(map(a, safe_sqrt))
 Factor variables are very useful but not very easy to manipulate.
 `forcats` contains very useful functions that make working on factor
 variables painless. I use mainly three functions in my work,
-`fct_recode()`, `fct_relevel()` and `fct_relabel()`, so that’s what I’ll
+`fct_recode()`, `fct_relevel()` and `fct_relabel()`, so that's what I'll
 be showing.
 
 #### 4.6.1.1 `fct_recode()`
@@ -2971,7 +2967,7 @@ mediterranean <- list("starters" = list("humous", "lasagna"), "dishes" = list("s
 continental <- list("starters" = list("pea soup", "terrine"), "dishes" = list("frikadelle", "sauerkraut"))
 ```
 
-The result we’d like to have would look like this:
+The result we'd like to have would look like this:
 
 ``` sourceCode r
 $starters
