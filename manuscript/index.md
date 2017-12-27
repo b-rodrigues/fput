@@ -56,9 +56,9 @@ blog](http://brodrigues.co).
 
 ## 1.4 Thanks
 
-I’d like to thank [Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/)
+I’d like to thank [Ross Ihaka](https://www.stat.auckland.ac.nz/\~ihaka/)
 and [Robert
-Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_\(statistician\))
+Gentleman](https://en.wikipedia.org/wiki/Robert\_Gentleman\_(statistician))
 for developing the R programming language. Many thanks to [Hadley
 Wickham](http://hadley.nz/) for all the wonderful packages he developed
 that make R much more pleasant to use. Thanks to [Yihui
